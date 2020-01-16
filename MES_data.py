@@ -1,10 +1,13 @@
 import socket,sys
 from threading import Thread
 
-globData = ""
+manualData = ""
+magFrontData = ""
+stage = 2
 
 def TCPServer():
-    global globData
+    global manualData
+    global stage
     address = "172.21.4.152"
     port = 9999
     # Create a TCP/IP socket
@@ -38,8 +41,13 @@ def TCPServer():
                 while True:
                     data = connection.recv(10)
                     if '  ' not in data.decode():
-                        print(data.decode())
-                        globData = data.decode()
+                        # print(data.decode())
+                        if stage == 2:
+                            var = 0
+                            manualData = data.decode()
+                            var = int(manualData.split(",")[4])
+                        if var == 1:
+                            stage = 3
 
             except KeyboardInterrupt:
                 # Clean up the connection
@@ -55,7 +63,9 @@ def TCPServer():
     sock.close()
 
 def Unity():
-    global globData
+    global manualData
+    global magFrontData
+    global stage
     address = "172.21.4.152"
     port = 9998
     # Create a TCP/IP socket
@@ -87,8 +97,12 @@ def Unity():
 
                 # Receive the data in small chunks and retransmit it
                 while True:
-                    print("sending:", globData)
-                    connection.sendall(globData.encode())
+                    print("STAGE:", stage)
+                    if stage == 2:
+                        print("sending:", manualData)
+                        connection.sendall(manualData.encode())
+                    if stage == 3:
+                        print("magFront")
 
             except KeyboardInterrupt:
                 # Clean up the connection
