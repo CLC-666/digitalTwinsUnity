@@ -11,7 +11,7 @@ print (sys.stderr, 'starting up on %s port %s' % server_address)
 
 sock.bind(server_address)
 # Calling listen() puts the socket into server mode, and accept() waits for an incoming connection.
-sending = ["0","1","2"]
+
 counter = 0
 c = 0
 # Listen for incoming connections
@@ -37,7 +37,8 @@ while True:
             try:
                 var = round(time.time())
                 if var % mod == 0 and done == False:
-                    print("sending", sending[c])
+                    #Send good data here.
+                    
                     connection.sendall(sending[c].encode())
                     c += 1
                     done = True
