@@ -36,10 +36,11 @@ while True:
         while True:
             try:
                 var = round(time.time())
-                if var % mod == 0 and done == True:
+                if var % mod == 0 and done == False:
                     print("sending", sending[c])
                     connection.sendall(sending[c].encode())
                     c += 1
+                    done = True
                 if var % mod != 0:
                     done = False
                     connection.sendall("".encode())
