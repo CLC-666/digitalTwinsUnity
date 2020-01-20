@@ -47,7 +47,7 @@ public class ServerClient : MonoBehaviour
 	{
 		try
 		{
-			socketConnection = new TcpClient("10.2.153.155", 9998);
+			socketConnection = new TcpClient("172.21.4.152", 9998);
 			Byte[] bytes = new Byte[10];
 			while (true)
 			{
