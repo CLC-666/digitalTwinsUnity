@@ -1,0 +1,13 @@
+all sensor data coming in
+
+carrier spawn when rfid reached on physical
+rfid register carrier number
+
+set off on course round the conveyor.
+
+# for when the sim is controlling the physical, a random carrier number will be generated
+  from the avaiable carrier list -> this should control the MES software rather than
+  the PLCs because the carriers could be in a different position on the phyisical so will
+  take a bit of time to initially calibrate.
+
+going to need a server client on every station
