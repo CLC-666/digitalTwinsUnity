@@ -6,9 +6,9 @@ using System;
 public class SpawnCarriage : MonoBehaviour
 {
     public GameObject carrierPrefab;
-    public float x = -6.6214f;
-    public float y = 0.979f;
-    public float z = 0.4314f;
+    public GameObject[] carriers;
+    public string locationData;
+
 
     public Dictionary<string, int> magFront = new Dictionary<string, int>()
         {
@@ -37,31 +37,50 @@ public class SpawnCarriage : MonoBehaviour
             {"ID", 0 }
         };
 
+    int[] carrierArray = { 0, 0, 0, 0, 0 };
+
 
     void Start()
     {
-        spawnCarrier();
 
+        carriers = new GameObject[5];
     }
 
     void Update()
     {
         sortData();
+
+        if (manual["ID"] > 0 && carrierArray[manual["ID"]] == 0)
+        {
+            int ID = manual["ID"];
+            Debug.Log(carrierArray[ID]);
+            Debug.Log("creating a carrier");
+            GameObject clone = Instantiate(carrierPrefab) as GameObject;
+            carriers[ID] = clone;
+            carriers[ID].GetComponent<CarrierMove>().carrierID = ID;
+            carriers[ID].GetComponent<CarrierMove>().initPos = 2;
+            carrierArray[ID] = ID;
+        }
+
+      
+
+
+
         //Debug.Log(magFront["first"]);
     }
 
-    private void spawnCarrier()
-    {
-        GameObject a = Instantiate(carrierPrefab) as GameObject;
-        //a.GetComponent<CarrierMove>().carrierID = 1;
-       
-        //a.transform.positoin = new Vector3(x, y, z);
-    }
+    //private void spawnCarrier()
+    //{
+    //    GameObject a = Instantiate(carrierPrefab) as GameObject;
+    //    a.GetComponent<CarrierMove>().carrierID = 1;
+
+    //    a.transform.positoin = new Vector3(x, y, z);
+    //}
 
     void sortData()
     {
         
-        string locationData = GameObject.Find("firstIsland").GetComponent<ServerClient>().locationData;
+        locationData = GameObject.Find("firstIsland").GetComponent<ServerClient>().locationData;
 
         string[] sensors = locationData.Split(',');
         int stationID = Int16.Parse(sensors[0]);
