@@ -7,7 +7,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 
-public class manualClient : MonoBehaviour
+public class ServerClient : MonoBehaviour
 {
 	#region private members 	
 	private TcpClient socketConnection;
@@ -47,27 +47,30 @@ public class manualClient : MonoBehaviour
 	{
 		try
 		{
-			socketConnection = new TcpClient("172.21.4.151", 9997);
+			socketConnection = new TcpClient("172.21.4.152", 9997);
 			Byte[] bytes = new Byte[12];
-			while (true)
-			{
-				// Get a stream object for reading 				
-				using (NetworkStream stream = socketConnection.GetStream())
-				{
-					int length;
-					// Read incomming stream into byte arrary. 					
-					while ((length = stream.Read(bytes, 0, bytes.Length)) != 0)
-					{
-						var incommingData = new byte[length];
-						Array.Copy(bytes, 0, incommingData, 0, length);
-						// Convert byte array to string message. 						
-						string serverMessage = Encoding.ASCII.GetString(incommingData);
-						locationData = serverMessage;
-                        Debug.Log(locationData);
+
+
+            while (true)
+            {
+                // Get a stream object for reading 				
+                using (NetworkStream stream = socketConnection.GetStream())
+                {
+					
+                    int length;
+                    // Read incomming stream into byte arrary. 					
+                    while ((length = stream.Read(bytes, 0, bytes.Length)) != 0)
+                    {
+                        var incommingData = new byte[length];
+                        Array.Copy(bytes, 0, incommingData, 0, length);
+                        // Convert byte array to string message. 						
+                        string serverMessage = Encoding.ASCII.GetString(incommingData);
+                        locationData = serverMessage;
+                        //Debug.Log(locationData);
                     }
-				}
-			}
-		}
+                }
+            }
+        }
 		catch (SocketException socketException)
 		{
 			Debug.Log("Socket exception: " + socketException);
@@ -105,4 +108,3 @@ public class manualClient : MonoBehaviour
 
 
 
-   

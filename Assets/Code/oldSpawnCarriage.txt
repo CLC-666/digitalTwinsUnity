@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -7,7 +7,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 
-public class manualClient : MonoBehaviour
+public class ServerClient : MonoBehaviour
 {
 	#region private members 	
 	private TcpClient socketConnection;
@@ -47,8 +47,8 @@ public class manualClient : MonoBehaviour
 	{
 		try
 		{
-			socketConnection = new TcpClient("172.21.4.151", 9997);
-			Byte[] bytes = new Byte[12];
+			socketConnection = new TcpClient("10.2.153.155", 9998);
+			Byte[] bytes = new Byte[10];
 			while (true)
 			{
 				// Get a stream object for reading 				
@@ -63,8 +63,8 @@ public class manualClient : MonoBehaviour
 						// Convert byte array to string message. 						
 						string serverMessage = Encoding.ASCII.GetString(incommingData);
 						locationData = serverMessage;
-                        Debug.Log(locationData);
-                    }
+						//Debug.Log(locationData);
+					}
 				}
 			}
 		}

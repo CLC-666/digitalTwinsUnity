@@ -5,75 +5,100 @@ using System;
 
 public class SpawnCarriage : MonoBehaviour
 {
-    public GameObject prefab;
-    public GameObject[] gos;
-
-    public int station;
-    public int fInduc;
-    public int mInduc;
-    public int eInduc;
-    public int carriageReleased;
-    public int carrierID;
-    public float speed = 0.09f;
+    public GameObject carrierPrefab;
     public float x = -6.6214f;
     public float y = 0.979f;
-    public float z = 0.264f;
-    public string position = "";
-    int mainSwitch = 1;
-    int magFrontSwitch = 0;
-    int manualSwitch = 1;
-    int c1 = 0;
-    int c2 = 0;
-    int c3 = 0;
-    int c4 = 0;
+    public float z = 0.4314f;
 
-    //void Awake()
-    //{
-    //    gos = new GameObject[1];
-    //    for (int i = 0; i < gos.Length; i++)
-    //    {
-    //        GameObject clone = (GameObject)Instantiate(prefab, Vector3.zero, Quaternion.identity);
-    //        gos[i] = clone;
-    //    }
-    //}
+    public Dictionary<string, int> magFront = new Dictionary<string, int>()
+        {
+            {"first", 0},
+            {"middle", 0},
+            {"rel", 0},
+            {"end",0},
+            {"ID", 0 }
+        };
+
+    public Dictionary<string, int> manual = new Dictionary<string, int>()
+        {
+            {"first", 0},
+            {"middle", 0},
+            {"rel", 0},
+            {"end",0},
+            {"ID", 0 }
+        };
+
+    public Dictionary<string, int> camInspec = new Dictionary<string, int>()
+        {
+            {"first", 0},
+            {"middle", 0},
+            {"rel", 0},
+            {"end",0},
+            {"ID", 0 }
+        };
+
+
     void Start()
     {
-        gos = new GameObject[1];
-        for (int i = 0; i < gos.Length; i++)
-        {
-            GameObject clone = (GameObject)Instantiate(prefab, Vector3.zero, Quaternion.identity);
-            gos[i] = clone;
-        }
-        gos[0].SetActive(true);
-        gos[0].transform.eulerAngles = new Vector3(0f, 270f, 0f);
-        //gos[0].transform.eulerAngles = new Vector3(0f, 270f, 0f);
-        gos[0].transform.position = new Vector3(x, y, z);
+        spawnCarrier();
+
     }
 
     void Update()
     {
-        gos[0].transform.position = new Vector3(x, y, z);
+        sortData();
+        //Debug.Log(magFront["first"]);
+    }
 
-        //GameObject locData = GameObject.Find("firstIsland");
-        //GameObject locationData = locData.GetComponent<ServerClient>();
-        string locationDataManual = GameObject.Find("firstIsland").GetComponent<manualClient>().locationData;
-        string locationDataMagFront = GameObject.Find("firstIsland").GetComponent<magFrontClient>().locationData;
-        Debug.Log("Location Data" + locationDataManual + locationDataMagFront);
-        //char[] chars = locationData.ToCharArray();
-        if (locationDataManual.Length > 1) //2,0,0,0,0,0
+    private void spawnCarrier()
+    {
+        GameObject a = Instantiate(carrierPrefab) as GameObject;
+        //a.GetComponent<CarrierMove>().carrierID = 1;
+       
+        //a.transform.positoin = new Vector3(x, y, z);
+    }
+
+    void sortData()
+    {
+        
+        string locationData = GameObject.Find("firstIsland").GetComponent<ServerClient>().locationData;
+
+        string[] sensors = locationData.Split(',');
+        int stationID = Int16.Parse(sensors[0]);
+        int first = Int16.Parse(sensors[1]);
+        if (stationID == 1)
         {
-            string s = locationDataManual[0].ToString().Trim();
-            string f = locationDataManual[2].ToString().Trim();
-            string m = locationDataManual[4].ToString().Trim();
-            string t = locationDataManual[8].ToString().Trim();
-
-            station = Convert.ToInt32(s);
-            fInduc = Convert.ToInt32(f);
-            mInduc = Convert.ToInt32(m);
-            eInduc = Convert.ToInt32(t);
-            carriageReleased = Convert.ToInt32(locationDataManual[6].ToString().Trim());
-            carrierID = Convert.ToInt32(locationDataManual[10].ToString().Trim());
+            //Debug.Log(locationData);
+            magFront["first"] = Int16.Parse(sensors[1]);
+            magFront["middle"] = Int16.Parse(sensors[2]);
+            magFront["rel"] = Int16.Parse(sensors[3]);
+            magFront["end"] = Int16.Parse(sensors[4]);
+            magFront["ID"] = Int16.Parse(sensors[5]);
         }
 
+        if (stationID == 2)
+        {
+            //Debug.Log(locationData);
+            manual["first"] = Int16.Parse(sensors[1]);
+            manual["middle"] = Int16.Parse(sensors[2]);
+            manual["rel"] = Int16.Parse(sensors[3]);
+            manual["end"] = Int16.Parse(sensors[4]);
+            manual["ID"] = Int16.Parse(sensors[5]);
+        }
+
+        if (stationID == 3)
+        {
+            //Debug.Log(locationData);
+            camInspec["first"] = Int16.Parse(sensors[1]);
+            camInspec["middle"] = Int16.Parse(sensors[2]);
+            camInspec["rel"] = Int16.Parse(sensors[3]);
+            camInspec["end"] = Int16.Parse(sensors[4]);
+            camInspec["ID"] = Int16.Parse(sensors[5]);
+        }
     }
+
+
+    
+
+
 }
