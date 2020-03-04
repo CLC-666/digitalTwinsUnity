@@ -14,3 +14,13 @@ endInduc:
 	x = -6.6214
 	y = 0.979
 	z = -0.1889 
+
+
+camera start corner:	manual end corner:		end angle 3.1416
+	x = -6.3741		x = -6.6214		start angle 4.712
+	y = 0.979		y = 0.979
+	z = -0.4502		z = -0.2051
+
+cp bridge start corner:	camera end corner:	
+	x = -5.613		x = -5.876
+	z = -0.213		z = -0.4502

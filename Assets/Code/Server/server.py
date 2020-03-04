@@ -40,6 +40,7 @@ def clientthread(conn, addr):
     # conn.send("Welcome to this chatroom!")
 
     while True:
+
             try:
                 # time.sleep(0.1)
                 message = conn.recv(12)
@@ -53,7 +54,9 @@ def clientthread(conn, addr):
                     # Calls broadcast function to send message to all
                     message_to_send = message
                     # print("trying in while still")
-                    if addr[0] != "172.21.4.152":
+
+
+                    if addr[0] != IP_address:
                         broadcast(message_to_send, conn)
                         # time.sleep(0.2)
 
@@ -104,7 +107,7 @@ while True:
 
     # prints the address of the user that just connected
     print (addr[0] + " connected")
-    if addr[0] == "172.21.4.152":
+    if addr[0] == IP_address:
         print("unity init")
         unity = list_of_clients.index(conn)
 

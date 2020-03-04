@@ -62,7 +62,7 @@ public class SpawnCarriage : MonoBehaviour
             carrierArray[ID] = ID;
         }
 
-      
+
 
 
 
@@ -79,7 +79,7 @@ public class SpawnCarriage : MonoBehaviour
 
     void sortData()
     {
-        
+
         locationData = GameObject.Find("firstIsland").GetComponent<ServerClient>().locationData;
 
         string[] sensors = locationData.Split(',');
@@ -117,7 +117,7 @@ public class SpawnCarriage : MonoBehaviour
     }
 
 
-    
+
 
 
 }
