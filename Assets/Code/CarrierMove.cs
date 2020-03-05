@@ -10,7 +10,7 @@ public class CarrierMove : MonoBehaviour
     public float z = 1000f;
     public int carrierID = 0;
     public int initPos = 0;
-    float speedConst = 0.0039f;
+    float speedConst = 0.0035f;
     float speed = 0;
     bool initialise = false;
     public int startMan = 0;
@@ -21,8 +21,10 @@ public class CarrierMove : MonoBehaviour
     public string currentLocation;
     public int caseSwitch = 0;
     float angle = 3.141592f; //4.71239
-    public float angleSpeed = 0;
+    float angleSpeed = 0;
     bool initcase40 = false;
+    int counter = 0;
+    bool pause = false;
     
 
     public Dictionary<string, int> magFront = new Dictionary<string, int>()
@@ -71,7 +73,7 @@ public class CarrierMove : MonoBehaviour
     void Update()
     {
         sortData();
-        initCarrierPos();
+        //initCarrierPos();
         transform.position = new Vector3(x, y, z);
         track();
         sensorDefinitions();
@@ -80,35 +82,26 @@ public class CarrierMove : MonoBehaviour
 
 
 
-    void initCarrierPos()
-    {
-        //if (initPos == 2 && initialise == false)
-        if (1 == 1 && initialise == false)
-        {
-            x = -6.6214f;
-            y = 0.979f;
-            z = 0.0533f;
-            transform.position = new Vector3(x, y, z);
-            initialise = true;
-        }
-    }
+    //void initCarrierPos()
+    //{
+    //    //if (initPos == 2 && initialise == false)
+    //    if (1 == 1 && initialise == false)
+    //    {
+    //        x = -6.6214f;
+    //        y = 0.979f;
+    //        z = 0.0533f;
+    //        transform.position = new Vector3(x, y, z);
+    //        initialise = true;
+    //    }
+    //}
 
 
     void track()
     {
 
-
-        //Debug.Log("case: " + caseSwitch);
-        //xsin(angle) = x | zsin(angle) = z
         switch (caseSwitch)
         {
-            case 0:
-
-                if (initPos == 2)
-                {
-                    caseSwitch = 30;
-                }
-                break;
+            
 
             case 30:
 
@@ -130,52 +123,43 @@ public class CarrierMove : MonoBehaviour
                 if (manual["end"] == 1)
                 {
                     //z = -0.21f; //-0.1959 -0.2051
+                    counter = 0;
+                    angleSpeed = 0.2f;
                     caseSwitch = 40;
                 }
                 break;
 
             case 40: //start x = -6.6214, z =  -0.1959 | end x = -6.372, z = -0.4502 | difference x = 0.2494, z = -0.2543
-                x = -6.3741f + 0.27f * Convert.ToSingle(Math.Cos(angle));
-                z = -0.21f + 0.25f * Convert.ToSingle(Math.Sin(angle));
-                Quaternion target = Quaternion.Euler(0, 180, 0);
-                transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 0.7f);
-                if (angle <= 4.71239)
-                {
-                    angle += Convert.ToSingle(0.007);
-                }
-                
-                if (x <= -6.46 && x >= -6.47 )
+                if (pause == false)
                 {
                     
-                    //x = -6.372f;
-                    z = -0.4502f;
+                    angle = transform.eulerAngles.y * (Convert.ToSingle(Math.PI) / 180);
+                    Debug.Log(angle);
+                    x = -6.3741f + 0.25f * Convert.ToSingle(Math.Cos(-angle + (Math.PI / 2)));
+                    z = -0.21f + 0.25f * Convert.ToSingle(Math.Sin(-angle + (Math.PI / 2)));
+
+                    Quaternion target = Quaternion.Euler(0, 170, 0);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * angleSpeed);
+                }
+
+                if (transform.eulerAngles.y > 210 && transform.eulerAngles.y < 212 && camInspec["first"] == 0)
+                {
+                    pause = true;
+                }
+
+                if (camInspec["first"] == 1)
+                {
+                    pause = false;
+                    angleSpeed = 1;
+                }
+
+                if (transform.eulerAngles.y > 190 && transform.eulerAngles.y < 192)
+                {
                     transform.eulerAngles = new Vector3(0, 180, 0);
-                    initcase40 = true;
-                }
-
-
-
-                //if (angle <= 3.1416f)
-                //{
-                //    x = -6.372f;
-                //    z = -0.4502f;
-                //    transform.eulerAngles = new Vector3(0,180,0);
-                //    caseSwitch = 43;
-                //}
-                //0.666723259762309 0.0416702037351443
-                //x += speed;
-                //z -= speed;
-
-                if (camInspec["first"] == 1 && initcase40)
-                {
                     caseSwitch = 43;
-                    
-
                 }
 
-
-                //Quaternion target = Quaternion.Euler(0, 180, 0);
-                //transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime);
+                
                 break;
             case 43:
 
@@ -216,46 +200,62 @@ public class CarrierMove : MonoBehaviour
                 {
                     x = -5.876f;
                     angle = 4.71239f;
+                    pause = false;
                     caseSwitch = 55;
                 }
 
                 break;
 
             case 55:
-                // start x = -5.876 and final z = -0.213
-                Debug.Log(angle);
-                x = -5.876f + 0.27f * Convert.ToSingle(Math.Cos(angle));
-                z = -0.21f + 0.25f * Convert.ToSingle(Math.Sin(angle));
-                Quaternion target2 = Quaternion.Euler(0, 90, 0);
-                transform.rotation = Quaternion.Slerp(transform.rotation, target2, Time.deltaTime * 0.7f);
-                if (angle <= 6.28319f)
+                if(pause == false)
                 {
-                    angle += Convert.ToSingle(0.007);
+
+                    angle = transform.eulerAngles.y * (Convert.ToSingle(Math.PI) / 180);
+                    Debug.Log(angle);
+                    x = -5.876f + 0.25f * Convert.ToSingle(Math.Cos(-angle + (Math.PI / 2)));
+                    z = -0.21f + 0.25f * Convert.ToSingle(Math.Sin(-angle + (Math.PI / 2)));
+
+                    Quaternion target = Quaternion.Euler(0, 80, 0);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * angleSpeed);
                 }
 
-
-
-                //if (x <= -6.46 && x >= -6.47)
+                //if (transform.eulerAngles.y > 210 && transform.eulerAngles.y < 212 && camInspec["first"] == 0)
                 //{
+                //    pause = true;
+                //}
 
-                //    //x = -6.372f;
-                //    z = -0.4502f;
+                if (cpBridge["first"] == 1)
+                {
+                    pause = false;
+                    angleSpeed = 1;
+                }
+
+                //if (transform.eulerAngles.y > 190 && transform.eulerAngles.y < 192)
+                //{
                 //    transform.eulerAngles = new Vector3(0, 180, 0);
-                //    initcase40 = true;
+                //    caseSwitch = 43;
                 //}
-                //x = -5.876f + 0.263f * Convert.ToSingle(Math.Sin(angle));
-                //z = -0.213f + 0.237f * Convert.ToSingle(Math.Cos(angle));
+
+                //// start x = -5.876 and final z = -0.213
+                //Debug.Log(angle);
+                //x = -5.876f + 0.27f * Convert.ToSingle(Math.Cos(angle));
+                //z = -0.21f + 0.25f * Convert.ToSingle(Math.Sin(angle));
                 //Quaternion target2 = Quaternion.Euler(0, 90, 0);
-                //transform.rotation = Quaternion.Slerp(transform.rotation, target2, Time.deltaTime - (Time.deltaTime / 4));
-                //if (angle > (3.1416f / 2))
+                //transform.rotation = Quaternion.Slerp(transform.rotation, target2, Time.deltaTime * 0.75f);
+                //if (angle <= 6.28319f)
                 //{
-                //    angle -= Convert.ToSingle(0.025);
-
+                //    angle += Convert.ToSingle(0.007);
+                //}
+                //if (angle > 6.28319f)
+                //{
+                //    transform.eulerAngles = new Vector3(0, 90, 0);
 
                 //}
 
-                //if (angle <= (3.1416f/2))
+                //if (cpBridge["first"] == 1)
                 //{
+                //    z = -0.345f;
+                //    x = -5.615f;
                 //    transform.eulerAngles = new Vector3(0, 90, 0);
                 //    caseSwitch = 57;
                 //}
@@ -265,8 +265,9 @@ public class CarrierMove : MonoBehaviour
             case 57:
                 z += speed;
 
-                if (cpBridge["start"] == 1)
+                if (cpBridge["middle"] == 1)
                 {
+                    z = -0.148f;
                     caseSwitch = 60;
                 }
                 break;
@@ -319,7 +320,11 @@ public class CarrierMove : MonoBehaviour
         if (stationID == 7) //CP Bridge
         {
             cpBridge["first"] = Int16.Parse(sensors[1]);
-            cpBridge["rel"] = Int16.Parse(sensors[2]);
+            cpBridge["middle"] = Int16.Parse(sensors[2]);
+            cpBridge["rel"] = Int16.Parse(sensors[3]);
+            cpBridge["end"] = Int16.Parse(sensors[4]);
+            cpBridge["ID"] = Int16.Parse(sensors[5]);
+
         }
     }
 

@@ -37,6 +37,15 @@ public class SpawnCarriage : MonoBehaviour
             {"ID", 0 }
         };
 
+    public Dictionary<string, int> cpBridge = new Dictionary<string, int>()
+        {
+            {"first", 0},
+            {"middle", 0},
+            {"rel", 0},
+            {"end",0},
+            {"ID", 0 }
+        };
+
     int[] carrierArray = { 0, 0, 0, 0, 0 };
 
 
@@ -49,8 +58,9 @@ public class SpawnCarriage : MonoBehaviour
     void Update()
     {
         sortData();
+        Debug.Log("manual id" + manual["ID"]);
 
-        if (manual["ID"] > 0 && carrierArray[manual["ID"]] == 0)
+        if (carrierArray[manual["ID"]] == 0 && manual["rel"] == 1)
         {
             int ID = manual["ID"];
             Debug.Log(carrierArray[ID]);
@@ -58,10 +68,23 @@ public class SpawnCarriage : MonoBehaviour
             GameObject clone = Instantiate(carrierPrefab) as GameObject;
             carriers[ID] = clone;
             carriers[ID].GetComponent<CarrierMove>().carrierID = ID;
-            carriers[ID].GetComponent<CarrierMove>().initPos = 2;
+            carriers[ID].GetComponent<CarrierMove>().x = -6.6214f;
+            carriers[ID].GetComponent<CarrierMove>().y = 0.979f;
+            carriers[ID].GetComponent<CarrierMove>().z = 0.0533f;
+            carriers[ID].GetComponent<CarrierMove>().caseSwitch = 35;
             carrierArray[ID] = ID;
+            //carriers[ID].SetActive(false);
+
         }
 
+        //if (manual["rel"] == 1)
+        //{
+        //    int ID = manual["ID"];
+        //    carriers[ID].GetComponent<CarrierMove>().carrierID = ID;
+        //    carriers[manual["ID"]].SetActive(true);
+        //}
+
+        
 
 
 
@@ -113,6 +136,16 @@ public class SpawnCarriage : MonoBehaviour
             camInspec["rel"] = Int16.Parse(sensors[3]);
             camInspec["end"] = Int16.Parse(sensors[4]);
             camInspec["ID"] = Int16.Parse(sensors[5]);
+        }
+
+        if (stationID == 7) //CP Bridge
+        {
+            cpBridge["first"] = Int16.Parse(sensors[1]);
+            cpBridge["middle"] = Int16.Parse(sensors[2]);
+            cpBridge["rel"] = Int16.Parse(sensors[3]);
+            cpBridge["end"] = Int16.Parse(sensors[4]);
+            cpBridge["ID"] = Int16.Parse(sensors[5]);
+
         }
     }
 
