@@ -98,7 +98,7 @@ public class CarrierMove : MonoBehaviour
     {
 
 
-        Debug.Log("case: " + caseSwitch);
+        //Debug.Log("case: " + caseSwitch);
         //xsin(angle) = x | zsin(angle) = z
         switch (caseSwitch)
         {
@@ -113,6 +113,7 @@ public class CarrierMove : MonoBehaviour
             case 30:
 
                 //if (transform.position.y == 0.979f && transform.position.x == -6.6214f && transform.position.z > -0.1959f && transform.position.z < 0.446f && manual["rel"] == 1)
+                Debug.Log(manual["rel"]);
                 if (manual["rel"] == 1)
                 {
                     caseSwitch = 35;
@@ -315,7 +316,7 @@ public class CarrierMove : MonoBehaviour
             camInspec["ID"] = Int16.Parse(sensors[5]);
         }
 
-        if (stationID == 8) //CP Bridge
+        if (stationID == 7) //CP Bridge
         {
             cpBridge["first"] = Int16.Parse(sensors[1]);
             cpBridge["rel"] = Int16.Parse(sensors[2]);

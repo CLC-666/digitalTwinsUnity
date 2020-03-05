@@ -43,7 +43,7 @@ def clientthread(conn, addr):
 
             try:
                 # time.sleep(0.1)
-                message = conn.recv(12)
+                message = conn.recv(11)
                 if message:
 
                     """prints the message and address of the
@@ -54,11 +54,18 @@ def clientthread(conn, addr):
                     # Calls broadcast function to send message to all
                     message_to_send = message
                     # print("trying in while still")
+                    if addr[0] == '172.21.4.1':
+                        # print(counter)
+                        if counter % 5 == 0:
+                            # print(message.decode())
+                            broadcast(message_to_send, conn)
+                            counter = 0
+                    #     var = round(time.time()*1000)
+                    #     if var % 2:
+                    #         broadcast(message_to_send, conn)
 
-
-                    if addr[0] != IP_address:
+                    if addr[0] != IP_address and addr[0] != "172.21.4.1":
                         broadcast(message_to_send, conn)
-                        # time.sleep(0.2)
 
 
 
