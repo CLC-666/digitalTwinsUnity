@@ -135,8 +135,8 @@ public class CarrierMove : MonoBehaviour
                     
                     angle = transform.eulerAngles.y * (Convert.ToSingle(Math.PI) / 180);
                     Debug.Log(angle);
-                    x = -6.3741f + 0.25f * Convert.ToSingle(Math.Cos(-angle + (Math.PI / 2)));
-                    z = -0.21f + 0.25f * Convert.ToSingle(Math.Sin(-angle + (Math.PI / 2)));
+                    x = -6.3741f + 0.27f * Convert.ToSingle(Math.Cos(-angle + (Math.PI / 2)));
+                    z = -0.21f + 0.27f * Convert.ToSingle(Math.Sin(-angle + (Math.PI / 2)));
 
                     Quaternion target = Quaternion.Euler(0, 170, 0);
                     transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * angleSpeed);
@@ -150,12 +150,13 @@ public class CarrierMove : MonoBehaviour
                 if (camInspec["first"] == 1)
                 {
                     pause = false;
-                    angleSpeed = 1;
+                    angleSpeed = 0.9f;
                 }
 
                 if (transform.eulerAngles.y > 190 && transform.eulerAngles.y < 192)
                 {
                     transform.eulerAngles = new Vector3(0, 180, 0);
+                    z = -0.4502f;
                     caseSwitch = 43;
                 }
 
@@ -193,16 +194,19 @@ public class CarrierMove : MonoBehaviour
                 if (camInspec["end"] == 1)
                 {
                     x = -5.876f;
-                    caseSwitch = 55;
-                }
-
-                if (x < (-5.876f + (speed / 2)) && x > (-5.876f - (speed / 2)))
-                {
-                    x = -5.876f;
-                    angle = 4.71239f;
+                    angleSpeed = 0.2f;
                     pause = false;
                     caseSwitch = 55;
                 }
+
+                //if (x < (-5.876f + (speed / 2)) && x > (-5.876f - (speed / 2)))
+                //{
+                //    x = -5.876f;
+                    
+                //    angleSpeed = 0.2f;
+                //    pause = false;
+                //    caseSwitch = 55;
+                //}
 
                 break;
 
@@ -211,54 +215,32 @@ public class CarrierMove : MonoBehaviour
                 {
 
                     angle = transform.eulerAngles.y * (Convert.ToSingle(Math.PI) / 180);
-                    Debug.Log(angle);
-                    x = -5.876f + 0.25f * Convert.ToSingle(Math.Cos(-angle + (Math.PI / 2)));
-                    z = -0.21f + 0.25f * Convert.ToSingle(Math.Sin(-angle + (Math.PI / 2)));
+                    Debug.Log(transform.eulerAngles.y);
+                    x = -5.876f + 0.27f * Convert.ToSingle(Math.Cos(-angle + (Math.PI / 2)));
+                    z = -0.21f + 0.27f * Convert.ToSingle(Math.Sin(-angle + (Math.PI / 2)));
 
                     Quaternion target = Quaternion.Euler(0, 80, 0);
                     transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * angleSpeed);
                 }
 
-                //if (transform.eulerAngles.y > 210 && transform.eulerAngles.y < 212 && camInspec["first"] == 0)
-                //{
-                //    pause = true;
-                //}
+                if (transform.eulerAngles.y > 120 && transform.eulerAngles.y < 122 && cpBridge["first"] == 0)
+                {
+                    pause = true;
+                }
 
                 if (cpBridge["first"] == 1)
                 {
                     pause = false;
-                    angleSpeed = 1;
+                    angleSpeed = 0.9f;
                 }
 
-                //if (transform.eulerAngles.y > 190 && transform.eulerAngles.y < 192)
-                //{
-                //    transform.eulerAngles = new Vector3(0, 180, 0);
-                //    caseSwitch = 43;
-                //}
+                if (transform.eulerAngles.y > 90 && transform.eulerAngles.y < 92)
+                {
+                    transform.eulerAngles = new Vector3(0, 90, 0);
+                    caseSwitch = 57;
+                }
 
-                //// start x = -5.876 and final z = -0.213
-                //Debug.Log(angle);
-                //x = -5.876f + 0.27f * Convert.ToSingle(Math.Cos(angle));
-                //z = -0.21f + 0.25f * Convert.ToSingle(Math.Sin(angle));
-                //Quaternion target2 = Quaternion.Euler(0, 90, 0);
-                //transform.rotation = Quaternion.Slerp(transform.rotation, target2, Time.deltaTime * 0.75f);
-                //if (angle <= 6.28319f)
-                //{
-                //    angle += Convert.ToSingle(0.007);
-                //}
-                //if (angle > 6.28319f)
-                //{
-                //    transform.eulerAngles = new Vector3(0, 90, 0);
-
-                //}
-
-                //if (cpBridge["first"] == 1)
-                //{
-                //    z = -0.345f;
-                //    x = -5.615f;
-                //    transform.eulerAngles = new Vector3(0, 90, 0);
-                //    caseSwitch = 57;
-                //}
+               
 
                 break;
 
@@ -271,6 +253,123 @@ public class CarrierMove : MonoBehaviour
                     caseSwitch = 60;
                 }
                 break;
+
+            case 60:
+                if (cpBridge["rel"] == 1)
+                {
+                    caseSwitch = 63;
+                }
+                break;
+
+            case 63:
+                z += speed;
+
+                if (cpBridge["end"] == 1)
+                {
+                    z = 0.335f;
+                    angleSpeed = 0.2f;
+                    pause = false;
+                    caseSwitch = 65;
+                }
+
+                break;
+
+            case 65:
+                if (pause == false)
+                {
+                    angle = transform.eulerAngles.y * (Convert.ToSingle(Math.PI) / 180);
+                    Debug.Log(transform.eulerAngles.y);
+                    x = -5.88f + 0.27f * Convert.ToSingle(Math.Cos((Math.PI /2) - angle));
+                    z = 0.31f + 0.27f * Convert.ToSingle(Math.Sin((Math.PI /2 ) - angle));
+
+                    Quaternion target = Quaternion.Euler(0, -10, 0);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * angleSpeed);
+                }
+
+                if (transform.eulerAngles.y > 25 && transform.eulerAngles.y < 27 && magFront["first"] == 0)
+                {
+                    pause = true;
+                }
+
+                if (magFront["first"] == 1)
+                {
+                    pause = false;
+                    angleSpeed = 0.9f;
+                }
+
+                if (transform.eulerAngles.y > 0 && transform.eulerAngles.y < 2)
+                {
+                    z = 0.5573f;
+                    transform.eulerAngles = new Vector3(0, 0, 0);
+                    caseSwitch = 67;
+                }
+
+                break;
+
+            case 67:
+                x -= speed;
+
+                if (magFront["middle"] == 1)
+                {
+                    x = -6.127f;
+                    caseSwitch = 70;
+                }
+                break;
+
+            case 70:
+                if (magFront["rel"] == 1)
+                {
+                    caseSwitch = 73;
+                }
+                break;
+
+            case 73:
+
+                x -= speed;
+
+                if (magFront["end"] == 1)
+                {
+                    x = -6.375f;
+                    angleSpeed = 0.2f;
+                    pause = false;
+                    caseSwitch = 75;
+                }
+
+                break;
+
+            case 75:
+                if (pause == false)
+                {
+                    angle = transform.eulerAngles.y * (Convert.ToSingle(Math.PI) / 180);
+                    Debug.Log(transform.eulerAngles.y);
+                    x = -5.88f + 0.27f * Convert.ToSingle(Math.Cos((Math.PI / 2) - angle));
+                    z = 0.31f + 0.27f * Convert.ToSingle(Math.Sin((Math.PI / 2) - angle));
+
+                    Quaternion target = Quaternion.Euler(0, -10, 0);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * angleSpeed);
+                }
+
+                if (transform.eulerAngles.y > 25 && transform.eulerAngles.y < 27 && magFront["first"] == 0)
+                {
+                    pause = true;
+                }
+
+                if (magFront["first"] == 1)
+                {
+                    pause = false;
+                    angleSpeed = 0.9f;
+                }
+
+                if (transform.eulerAngles.y > 0 && transform.eulerAngles.y < 2)
+                {
+                    z = 0.5573f;
+                    transform.eulerAngles = new Vector3(0, 0, 0);
+                    caseSwitch = 67;
+                }
+
+
+                break;
+
         }
     }
 

@@ -56,7 +56,7 @@ def clientthread(conn, addr):
                     # print("trying in while still")
                     if addr[0] == '172.21.4.1':
                         # print(counter)
-                        if counter % 5 == 0:
+                        if counter % 6 == 0:
                             # print(message.decode())
                             broadcast(message_to_send, conn)
                             counter = 0
@@ -84,7 +84,7 @@ def broadcast(message, connection):
     global unity
     try:
         list_of_clients[unity].send(message)
-        print("sent", message)
+        # print("sent", message)
     except Exception as e:
         # print(e)
         list_of_clients[unity].close()
