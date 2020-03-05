@@ -44,7 +44,7 @@ def clientthread(conn, addr):
             try:
 
                 # time.sleep(0.1)
-                message = conn.recv(11)
+                message = conn.recv(15)
 
                 if message:
 

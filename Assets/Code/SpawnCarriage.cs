@@ -116,6 +116,8 @@ public class SpawnCarriage : MonoBehaviour
             magFront["rel"] = Int16.Parse(sensors[3]);
             magFront["end"] = Int16.Parse(sensors[4]);
             magFront["ID"] = Int16.Parse(sensors[5]);
+            magFront["liftisUp"] = Int16.Parse(sensors[6]);
+            magFront["liftisDown"] = Int16.Parse(sensors[7]);
         }
 
         if (stationID == 2)

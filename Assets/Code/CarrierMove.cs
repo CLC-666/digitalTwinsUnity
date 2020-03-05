@@ -100,6 +100,9 @@ public class CarrierMove : MonoBehaviour
     void track()
     {
         //Debug.Log(caseSwitch);
+
+        
+
         switch (caseSwitch)
         {
 
@@ -318,6 +321,8 @@ public class CarrierMove : MonoBehaviour
                 break;
 
             case 70:
+                
+
                 if (magFront["rel"] == 1)
                 {
                     caseSwitch = 73;
@@ -407,6 +412,8 @@ public class CarrierMove : MonoBehaviour
             magFront["rel"] = Int16.Parse(sensors[3]);
             magFront["end"] = Int16.Parse(sensors[4]);
             magFront["ID"] = Int16.Parse(sensors[5]);
+            magFront["liftisUp"] = Int16.Parse(sensors[6]);
+            magFront["liftisDown"] = Int16.Parse(sensors[7]);
         }
 
         if (stationID == 2)
