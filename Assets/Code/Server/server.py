@@ -42,8 +42,10 @@ def clientthread(conn, addr):
     while True:
 
             try:
+
                 # time.sleep(0.1)
                 message = conn.recv(11)
+
                 if message:
 
                     """prints the message and address of the
@@ -51,6 +53,9 @@ def clientthread(conn, addr):
                     terminal"""
                     # print ("<" + addr[0] + "> " + message.decode(), counter)
                     counter += 1
+
+                    # if addr[0] == "172.21.1.1":
+                    #     print(message.decode())
                     # Calls broadcast function to send message to all
                     message_to_send = message
                     # print("trying in while still")
@@ -69,10 +74,13 @@ def clientthread(conn, addr):
 
 
 
+
+
                 else:
                     """message may have no content if the connection
                     is broken, in this case we remove the connection"""
-                    remove(conn)
+                    if addr[0] != IP_address:
+                        remove(conn)
 
             except:
                 continue

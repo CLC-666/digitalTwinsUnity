@@ -58,7 +58,7 @@ public class SpawnCarriage : MonoBehaviour
     void Update()
     {
         sortData();
-        Debug.Log("manual id" + manual["ID"]);
+        //Debug.Log("manual id" + manual["ID"]);
 
         if (carrierArray[manual["ID"]] == 0 && manual["rel"] == 1)
         {
