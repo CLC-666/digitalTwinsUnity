@@ -40,49 +40,54 @@ public class magFrontLiftScript : MonoBehaviour
         int stationID = Int16.Parse(sensors[0]);
         if (stationID == 1)
         {
-            magFront["liftisUp"] = Int16.Parse(sensors[6]);
-            magFront["liftisDown"] = Int16.Parse(sensors[7]);
+            magFront["liftisUp"] = Int16.Parse(sensors[7]);
+            magFront["liftisDown"] = Int16.Parse(sensors[8]);
+            magFront["nextResource"] = Int16.Parse(sensors[9]);
         }
+        Debug.Log(magFront["nextResource"] + magFront["liftisUp"]);
 
-        if (magFront["liftisUp"] == 1) {
-            y = 0.956f;
-            wasUp = true;
-            wasDown = false;
-            stop = false;
-        }
-
-        if (magFront["liftisDown"] == 1)
+        if (magFront["nextResource"] == 2)
         {
-            y = 0.9298f;
-            wasUp = false;
-            wasDown = true;
-            stop = false;
-        }
-
-        if (magFront["liftisUp"] == 0 && magFront["liftisDown"] == 0)
-        {
-            if (wasUp == true && stop == false)
+            if (magFront["liftisUp"] == 1)
             {
-                y -= speed;
-                if (y <= 0.9298f)
+                y = 0.956f;
+                wasUp = true;
+                wasDown = false;
+                stop = false;
+            }
+
+            if (magFront["liftisDown"] == 1)
+            {
+                y = 0.9298f;
+                wasUp = false;
+                wasDown = true;
+                stop = false;
+            }
+
+            if (magFront["liftisUp"] == 0 && magFront["liftisDown"] == 0)
+            {
+                if (wasUp == true && stop == false)
                 {
-                    stop = true;
+                    y -= speed;
+                    if (y <= 0.9298f)
+                    {
+                        stop = true;
+                    }
+                }
+
+                if (wasDown == true && stop == false)
+                {
+                    y += speed;
+
+                    if (y >= 0.9452f)
+                    {
+                        stop = true;
+                    }
                 }
             }
 
-            if (wasDown == true && stop == false)
-            {
-                y += speed;
 
-                if (y >= 0.9452f)
-                {
-                    stop = true;
-                }
-            }
         }
-
-
-
         
     }
 }

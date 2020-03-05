@@ -412,8 +412,10 @@ public class CarrierMove : MonoBehaviour
             magFront["rel"] = Int16.Parse(sensors[3]);
             magFront["end"] = Int16.Parse(sensors[4]);
             magFront["ID"] = Int16.Parse(sensors[5]);
-            magFront["liftisUp"] = Int16.Parse(sensors[6]);
-            magFront["liftisDown"] = Int16.Parse(sensors[7]);
+            magFront["orderNo"] = Int16.Parse(sensors[6]);
+            magFront["liftisUp"] = Int16.Parse(sensors[7]);
+            magFront["liftisDown"] = Int16.Parse(sensors[8]);
+            magFront["nextResource"] = Int16.Parse(sensors[9]);
         }
 
         if (stationID == 2)
