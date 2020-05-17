@@ -4,6 +4,7 @@ import select
 import sys
 from _thread import *
 import time
+from threading import Thread
 
 """The first argument AF_INET is the address domain of the
 socket. This is used when we have an Internet Domain with
@@ -19,7 +20,7 @@ sendBuffer = []
 
 # takes the first argument from command prompt as IP address
 # IP_address = "172.21.4.152"
-IP_address = "10.3.201.209"
+IP_address = "10.3.201.190"
 
 # takes second argument from command prompt as port number
 Port = 9997
@@ -42,11 +43,11 @@ def clientthread(conn, addr):
             try:
 
                 # time.sleep(0.1)
-                message = conn.recv(17)
+                message = conn.recv(11)
 
                 if message:
 
-                    # print ("<" + addr[0] + "> " + message.decode(), counter)
+                    print ("<" + addr[0] + "> " + message.decode(), counter)
 
                     # if addr[0] == "172.21.1.1":
                     #     print(message.decode())
@@ -58,9 +59,16 @@ def clientthread(conn, addr):
                     #     if var % 2:
                     #         broadcast(message_to_send, conn)
 
-                    if addr[0] != IP_address and addr[0] != "172.21.4.1" and message.decode() != old:
-                        broadcast(message_to_send, conn)
-                        old = message.decode()
+                    #!!!!!!!!!!!!!!!!!
+                    # if addr[0] != IP_address and addr[0] != "172.21.4.1" and message != old:
+                    #     sendBuffer.append(message)
+                    #     old = message
+
+                    if message != old:
+                        sendBuffer.append(message)
+                        old = message
+
+
 
 
 
@@ -75,21 +83,26 @@ def clientthread(conn, addr):
             except:
                 continue
 
-"""Using the below function, we broadcast the message to all
-clients who's object is not the same as the one sending
-the message """
-def broadcast(message, connection):
+
+def broadcast():
     global unity
-    try:
-        print(list_of_clients)
-        list_of_clients[unity].send(message)
-        print("sent", message)
-    except Exception as e:
-        # print(e)
-        list_of_clients[unity].close()
+    global sendBuffer
+    global list_of_clients
+    print("working")
+    while True:
+        try:
+            # print(list_of_clients)
+            for i in range(len(sendBuffer)):
+                # print("start", list_of_clients)
+                list_of_clients[unity].send(sendBuffer[i])
+                print("sent", sendBuffer[i])
+        except Exception as e:
+        #     print(e)
+            ye ="man"
+        # list_of_clients[unity].close()
 
         # if the link is broken, we remove the client
-        remove(clients)
+        # remove(clients)
 
 """The following function simply removes the object
 from the list that was created at the beginning of
@@ -99,20 +112,33 @@ def remove(connection):
         list_of_clients.remove(connection)
 
 
-while True:
 
-    conn, addr = server.accept()
-    list_of_clients.append(conn)
 
-    # prints the address of the user that just connected
-    print (addr[0] + " connected")
-    if addr[0] == IP_address:
-        print("unity init")
-        unity = list_of_clients.index(conn)
+def main():
+    while True:
 
-    # creates and individual thread for every user
-    # that connects
-    start_new_thread(clientthread,(conn,addr))
+        conn, addr = server.accept()
+        list_of_clients.append(conn)
 
-conn.close()
-server.close()
+        # prints the address of the user that just connected
+        print (addr[0] + " connected")
+        if addr[0] == IP_address:
+            print("unity init")
+            unity = list_of_clients.index(conn)
+
+        # creates and individual thread for every user
+        # that connects
+        start_new_thread(clientthread,(conn,addr))
+
+    conn.close()
+    server.close()
+
+if __name__ == '__main__':
+    p1 = Thread(target=main, args=())
+    p2 = Thread(target=broadcast, args=())
+
+    p1.start()
+    p2.start()
+
+    p1.join()
+    p2.join()

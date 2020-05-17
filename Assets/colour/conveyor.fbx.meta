@@ -1,0 +1,1117 @@
+fileFormatVersion: 2
+guid: 46a64d3e63db2d846b1b0635446b2b61
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: '*MODELSPACE'
+    100002: 0280084e-df9c-4808-be8b-1f02fdaf0fca
+    100004: 0456928a-9bc9-452a-8c44-5a2e6550ba7d
+    100006: 056ccc92-af81-4c5c-bde6-7d33e1445b87
+    100008: 07614aa2-54f7-4703-a1bf-d8055c52a2e0
+    100010: 07ff7597-286b-41e6-b79f-6b49c8eb4383
+    100012: 088111ba-efd0-4b2a-b3c3-d207dcd1008b
+    100014: 08db5ed2-b413-476c-915b-51c53f8d332c
+    100016: 0aedc6d9-ced4-42df-83f1-a419e2fd007f
+    100018: 0bdb0acb-115c-450e-9aef-494fd7c2299c
+    100020: 0e5bb01a-b7f8-4079-9d1b-e736741783ad
+    100022: 1019579f-2a1f-4e3f-9179-a735f4e504dc
+    100024: 106c40f8-8d09-4e3b-8a3c-a114263bd09b
+    100026: 109890d6-c54c-4776-b3a4-30c76b7c1839
+    100028: 10b861e8-1b40-4bbf-83a8-5b36695037c3
+    100030: 14ce3ddb-f35f-490c-8e1f-a287b91eaa37
+    100032: 17677888-7e45-4653-9e22-608b362e45ad
+    100034: 18606552-3967-4aa0-857b-3c4d360fb3df
+    100036: 18c22c91-975f-4d8e-ae97-2c7209179bbe
+    100038: 1b2274d8-1c33-487d-8b15-d5b44bedf870
+    100040: 1e08f795-4046-468a-9073-2ac3394e54e7
+    100042: 201e9138-235a-4c5c-b8c9-36761d5582b3
+    100044: 250fe2b4-5480-4b5b-bc54-2665cf687572
+    100046: 26a1f7db-97f9-4853-bad2-562887835a74
+    100048: 29bdcd9f-3f79-4d82-b382-591226bfa631
+    100050: 2a8dfc84-491d-4666-8679-eb9f8d113048
+    100052: 2d42ce1f-925f-49c8-8681-88bc47d44249
+    100054: 2d504f64-a7d3-4f90-8fa6-2ce946c37e89
+    100056: 2dd4f351-683b-45c5-ac3c-5c53b451c77d
+    100058: 30aff9ba-70bf-4623-b75e-5de4ed1265d3
+    100060: 30fe0d78-5a63-4b83-aace-fb12fc1e9f40
+    100062: 322538a2-6abc-4997-915c-6f3b998645c7
+    100064: 342bb157-a663-466e-bf06-e0f55670f464
+    100066: 36609be7-f5b5-4ea9-b695-0076b0b18107
+    100068: 36f25f85-3413-4cc7-9a03-e29579f26fa2
+    100070: 3829b4cb-d3ac-410d-a28d-8b8de1daf005
+    100072: 383f6b0e-1907-4083-a39f-2063c3e6afa3
+    100074: 3a47c0db-9e28-4fed-b88d-cc25ddeec82d
+    100076: 3ae2a152-f604-4dbe-98ef-9f1d094dbf0b
+    100078: 3b812c44-a0fa-47ca-9c06-956c77ba8916
+    100080: 3dae0bdc-a603-42cd-93b9-43a3041f814a
+    100082: 3f5b41ab-a7c0-463e-b2f5-4a8b4f489ade
+    100084: 4047be8e-f729-416c-b0f3-30b69d1289f7
+    100086: 4075a163-d09b-4bd0-8c0e-47e707d05872
+    100088: 425e3b6b-2bd7-44a0-b6e1-68bcef530a61
+    100090: 436231aa-de17-4384-a62b-04b1fac994fc
+    100092: 45d9402c-0d09-4f71-899a-27814b6c273a
+    100094: 47c7af07-2d63-47eb-b00b-8b80df0645cc
+    100096: 493bd90d-88f2-4c49-930e-a93d26e34755
+    100098: 49f5d142-1477-4ffe-a2e2-d809dcba89ff
+    100100: 4e920d0e-8957-4882-bcec-50733f3fd1d0
+    100102: 4f284fce-7235-4167-8388-7ee6d96ba82c
+    100104: 53d2ba4c-2237-4d8e-ac27-21b185a1847d
+    100106: 55107570-0564-48d5-86f4-52320f1037d0
+    100108: 555cfa17-568a-4feb-93d7-2497cc63dcbe
+    100110: 567a3398-e2c6-405c-a318-bb8228dbe06a
+    100112: 585148fe-bbd7-4fe8-91cd-8bbff5b44378
+    100114: 585a531c-6bba-4cc0-a68c-40938f74120f
+    100116: 5c5130f2-8cb5-4daf-9545-8c44ea74df86
+    100118: 6103bcfb-f609-484b-ae72-153acb3d2202
+    100120: 61c41551-9f27-4d03-9c84-ef14a20ba1f7
+    100122: 6383b40a-7623-4fe4-9697-4bb56c4ea612
+    100124: 63982f18-ea30-4dbf-90e7-1937a831823e
+    100126: 659a4b60-61f2-4f98-a024-cd2ff80f46d9
+    100128: 6c7169e8-49bc-4b67-9d5f-ed815b8b26fd
+    100130: 6e191d98-6240-4389-8b54-71ad1cbe51cd
+    100132: 6f32bc67-4c80-4c45-b4a0-66b5ed0c53eb
+    100134: 6fdba4ad-4f5e-429b-8b2b-d27ba4fb5168
+    100136: 77af1ee5-e79a-4633-9577-bd612eea02fc
+    100138: 77b0fd427fcf8716fa51fc57ec80884c
+    100140: 7bc8b597-ca67-4b87-b91e-04199ff0ddac
+    100142: 7c0b5649-7c01-443f-a0bd-99f5fb6ff556
+    100144: 7df18cd8-1b70-44bf-a54f-a327f4347d76
+    100146: 7f019801-9d08-4cad-b524-4b8ccc63b9e9
+    100148: 7f4b9e8b-7ef7-49af-8428-3428f33ea040
+    100150: 812a6865-2619-4f92-ae37-9c8cadab7a6c
+    100152: 84618a06-ebc7-444d-b146-b102498ad6e9
+    100154: 8773ff47-c751-4587-87c0-6ad0a834ce27
+    100156: 8dc4ff33-a8d2-4eca-99cf-7e7c6cb461d9
+    100158: 8ec732ba-8c4e-48a8-b16b-a3930b185b57
+    100160: 9173ae6e-cb92-412b-9ec7-15534b16138f
+    100162: 9192dc57-cb08-4b73-baf7-9d4bb7b34b76
+    100164: 95d55a11-7507-4b10-b425-3e6981bc3d27
+    100166: 9983c42b-43f2-49b4-91d7-a0d1a7413eb9
+    100168: 99bb6b81-7821-4679-81b1-990777702ab9
+    100170: 9c479b74-63f5-46c0-aab7-119d705233c7
+    100172: 9f90589e-f97a-440c-b500-51bf20624363
+    100174: a0dba4d4-9c83-4309-9a99-414c7d63d693
+    100176: a287e414-a222-421b-8515-12448ecef5da
+    100178: a74b9070-d514-47d4-bd96-f6e6191a6c33
+    100180: a8cc5f60-5c70-405c-98bd-1ce42f747a1a
+    100182: aaba334c-2b1b-485f-9922-725583dbba7f
+    100184: ab1003cc4b6a8d677f702e97fc2a5542
+    100186: ad8c8316-fa39-43e3-b078-a31e9ef186e9
+    100188: af4dd8fd-a1b2-4f01-91c1-102e2a290fad
+    100190: b61da916-22d6-4b25-9ee3-19ed66fd28bb
+    100192: b73f4b1e-a692-47dc-8131-b56855c6f63b
+    100194: b81b7689-e874-4b32-9fd9-a575edd480b5
+    100196: ba479605-d2b4-430c-9982-b7a53af593be
+    100198: badf49f0-405e-41e7-832b-6b840d24a1d2
+    100200: bdbaf057-b710-42bd-84b6-5bec007c6e1d
+    100202: bf6dfcc9-fc4d-4e63-a61a-c594aada9aa8
+    100204: c0971e3b-79c0-4eb4-a9f2-55861637eaf2
+    100206: c71b604e-b354-4a3c-ac6e-26de87ed41b5
+    100208: c7c816e5-7e60-45a4-bf5c-dfd4c9e3a7a2
+    100210: c8ceb771-cb49-45ec-a511-581e6286f986
+    100212: c8f196f2-aef8-4fe7-a95b-bea1ee1839fd
+    100214: c8f453d0-49e2-430d-ae8a-72435c0d0510
+    100216: c92ac262-0a1f-47e0-be50-3061fccd4f65
+    100218: ccaccc17-3877-4996-a6ee-eb44438045fa
+    100220: cd4138e0-fa55-4d5d-8976-4bbf8a4f0ce5
+    100222: cd62bf97-61fe-4fbf-a4ed-9271dd2f4391
+    100224: //RootNode
+    100226: d02a971c-add3-4ef2-b362-8f82570e27cd
+    100228: d19b95b3-02f1-411a-89ca-4193118c4258
+    100230: d3b52688-d203-402e-962f-63b652a8c284
+    100232: d45d9a76-3834-4873-baa8-bb2e34a9e819
+    100234: d4821c32-9d39-4e25-aa86-4f2ce647536b
+    100236: d52a7bd3-5b2d-415e-9b6a-32acc76f1c53
+    100238: d6247027-110c-4f40-80c8-4961f0e7fb42
+    100240: d6a84f09-6ae7-46b4-89e9-6091f7c70fdb
+    100242: d73219e1-f7cf-4fa1-b66c-f9258696d4d1
+    100244: d7b75ab8-55ce-4dac-845d-9e9766f923d1
+    100246: d82e814a-98a9-40e5-aa4c-001a85561c73
+    100248: d8e130fb-d8aa-4335-8932-e8a08ca37fc7
+    100250: dd3ac020-e3b3-4bcc-b56d-38682d55cbb2
+    100252: ddb407bc-dd61-4351-858b-299aeb0f8558
+    100254: df3bf618-5c8c-41d7-b106-711119c7fa04
+    100256: dfb15dbc-d395-4df9-b0bb-f71e446902f5
+    100258: e1326c5f-1f9d-4983-9b41-9376b19f2dc7
+    100260: e39bda3e-a271-4ddc-9e2e-37a6f2ef5b12
+    100262: e9248bad-d754-4aa7-8ab1-166a53cbd628
+    100264: ea1d4362-26ac-44e2-89d4-a0af9b4ae9f1
+    100266: eb98ef46-38ea-47db-80e7-17f34f91b9d6
+    100268: ed276b6f-d103-4179-a123-947fb608da99
+    100270: ed594397-bb7f-4825-acdb-c2f08161bcd6
+    100272: efc2454d-0334-426d-b39c-b5ee4c32a384
+    100274: eff63a8f-8ed7-400a-94c1-22869c886df2
+    100276: f137ff8c-6395-491a-8738-8b9b0cde2c79
+    100278: f13c263a-01e5-45f3-aa2d-e2221b04d40a
+    100280: f13efdf564772cb33b36a7cbf3bfcb4e
+    100282: f58ca9ba-f47f-4a11-8095-ea6b574c5b5d
+    100284: f5a3d43b-128d-4926-84d0-ad96e49b5c7e
+    100286: f5b900c3-cc6a-4c61-9cef-d408f1ff5c1a
+    100288: f60a18d8-bb92-40a2-90a6-2d71705b318a
+    100290: f713ae12-1884-4c21-b0be-7f35448c6fcd
+    100292: f81c6838-f1f6-44af-bd44-a8c497aaa56c
+    100294: f8cbeeb3-045c-47a3-a752-cfae1ef16754
+    100296: f93c7424-c125-4e50-90bd-bc3f1310b67f
+    100298: FbxMesh
+    100300: FbxMesh 1
+    100302: FbxMesh 10
+    100304: FbxMesh 100
+    100306: FbxMesh 101
+    100308: FbxMesh 102
+    100310: FbxMesh 103
+    100312: FbxMesh 104
+    100314: FbxMesh 105
+    100316: FbxMesh 106
+    100318: FbxMesh 107
+    100320: FbxMesh 108
+    100322: FbxMesh 109
+    100324: FbxMesh 11
+    100326: FbxMesh 110
+    100328: FbxMesh 111
+    100330: FbxMesh 112
+    100332: FbxMesh 113
+    100334: FbxMesh 114
+    100336: FbxMesh 115
+    100338: FbxMesh 116
+    100340: FbxMesh 117
+    100342: FbxMesh 118
+    100344: FbxMesh 119
+    100346: FbxMesh 12
+    100348: FbxMesh 120
+    100350: FbxMesh 121
+    100352: FbxMesh 122
+    100354: FbxMesh 123
+    100356: FbxMesh 124
+    100358: FbxMesh 125
+    100360: FbxMesh 126
+    100362: FbxMesh 127
+    100364: FbxMesh 128
+    100366: FbxMesh 129
+    100368: FbxMesh 13
+    100370: FbxMesh 130
+    100372: FbxMesh 131
+    100374: FbxMesh 132
+    100376: FbxMesh 133
+    100378: FbxMesh 134
+    100380: FbxMesh 135
+    100382: FbxMesh 136
+    100384: FbxMesh 137
+    100386: FbxMesh 138
+    100388: FbxMesh 139
+    100390: FbxMesh 14
+    100392: FbxMesh 140
+    100394: FbxMesh 15
+    100396: FbxMesh 16
+    100398: FbxMesh 17
+    100400: FbxMesh 18
+    100402: FbxMesh 19
+    100404: FbxMesh 2
+    100406: FbxMesh 20
+    100408: FbxMesh 21
+    100410: FbxMesh 22
+    100412: FbxMesh 23
+    100414: FbxMesh 24
+    100416: FbxMesh 25
+    100418: FbxMesh 26
+    100420: FbxMesh 27
+    100422: FbxMesh 28
+    100424: FbxMesh 29
+    100426: FbxMesh 3
+    100428: FbxMesh 30
+    100430: FbxMesh 31
+    100432: FbxMesh 32
+    100434: FbxMesh 33
+    100436: FbxMesh 34
+    100438: FbxMesh 35
+    100440: FbxMesh 36
+    100442: FbxMesh 37
+    100444: FbxMesh 38
+    100446: FbxMesh 39
+    100448: FbxMesh 4
+    100450: FbxMesh 40
+    100452: FbxMesh 41
+    100454: FbxMesh 42
+    100456: FbxMesh 43
+    100458: FbxMesh 44
+    100460: FbxMesh 45
+    100462: FbxMesh 46
+    100464: FbxMesh 47
+    100466: FbxMesh 48
+    100468: FbxMesh 49
+    100470: FbxMesh 5
+    100472: FbxMesh 50
+    100474: FbxMesh 51
+    100476: FbxMesh 52
+    100478: FbxMesh 53
+    100480: FbxMesh 54
+    100482: FbxMesh 55
+    100484: FbxMesh 56
+    100486: FbxMesh 57
+    100488: FbxMesh 58
+    100490: FbxMesh 59
+    100492: FbxMesh 6
+    100494: FbxMesh 60
+    100496: FbxMesh 61
+    100498: FbxMesh 62
+    100500: FbxMesh 63
+    100502: FbxMesh 64
+    100504: FbxMesh 65
+    100506: FbxMesh 66
+    100508: FbxMesh 67
+    100510: FbxMesh 68
+    100512: FbxMesh 69
+    100514: FbxMesh 7
+    100516: FbxMesh 70
+    100518: FbxMesh 71
+    100520: FbxMesh 72
+    100522: FbxMesh 73
+    100524: FbxMesh 74
+    100526: FbxMesh 75
+    100528: FbxMesh 76
+    100530: FbxMesh 77
+    100532: FbxMesh 78
+    100534: FbxMesh 79
+    100536: FbxMesh 8
+    100538: FbxMesh 80
+    100540: FbxMesh 81
+    100542: FbxMesh 82
+    100544: FbxMesh 83
+    100546: FbxMesh 84
+    100548: FbxMesh 85
+    100550: FbxMesh 86
+    100552: FbxMesh 87
+    100554: FbxMesh 88
+    100556: FbxMesh 89
+    100558: FbxMesh 9
+    100560: FbxMesh 90
+    100562: FbxMesh 91
+    100564: FbxMesh 92
+    100566: FbxMesh 93
+    100568: FbxMesh 94
+    100570: FbxMesh 95
+    100572: FbxMesh 96
+    100574: FbxMesh 97
+    100576: FbxMesh 98
+    100578: FbxMesh 99
+    100580: fdc3e9c4-225c-4429-8962-23b1996d75f4
+    100582: LightsNode
+    400000: '*MODELSPACE'
+    400002: 0280084e-df9c-4808-be8b-1f02fdaf0fca
+    400004: 0456928a-9bc9-452a-8c44-5a2e6550ba7d
+    400006: 056ccc92-af81-4c5c-bde6-7d33e1445b87
+    400008: 07614aa2-54f7-4703-a1bf-d8055c52a2e0
+    400010: 07ff7597-286b-41e6-b79f-6b49c8eb4383
+    400012: 088111ba-efd0-4b2a-b3c3-d207dcd1008b
+    400014: 08db5ed2-b413-476c-915b-51c53f8d332c
+    400016: 0aedc6d9-ced4-42df-83f1-a419e2fd007f
+    400018: 0bdb0acb-115c-450e-9aef-494fd7c2299c
+    400020: 0e5bb01a-b7f8-4079-9d1b-e736741783ad
+    400022: 1019579f-2a1f-4e3f-9179-a735f4e504dc
+    400024: 106c40f8-8d09-4e3b-8a3c-a114263bd09b
+    400026: 109890d6-c54c-4776-b3a4-30c76b7c1839
+    400028: 10b861e8-1b40-4bbf-83a8-5b36695037c3
+    400030: 14ce3ddb-f35f-490c-8e1f-a287b91eaa37
+    400032: 17677888-7e45-4653-9e22-608b362e45ad
+    400034: 18606552-3967-4aa0-857b-3c4d360fb3df
+    400036: 18c22c91-975f-4d8e-ae97-2c7209179bbe
+    400038: 1b2274d8-1c33-487d-8b15-d5b44bedf870
+    400040: 1e08f795-4046-468a-9073-2ac3394e54e7
+    400042: 201e9138-235a-4c5c-b8c9-36761d5582b3
+    400044: 250fe2b4-5480-4b5b-bc54-2665cf687572
+    400046: 26a1f7db-97f9-4853-bad2-562887835a74
+    400048: 29bdcd9f-3f79-4d82-b382-591226bfa631
+    400050: 2a8dfc84-491d-4666-8679-eb9f8d113048
+    400052: 2d42ce1f-925f-49c8-8681-88bc47d44249
+    400054: 2d504f64-a7d3-4f90-8fa6-2ce946c37e89
+    400056: 2dd4f351-683b-45c5-ac3c-5c53b451c77d
+    400058: 30aff9ba-70bf-4623-b75e-5de4ed1265d3
+    400060: 30fe0d78-5a63-4b83-aace-fb12fc1e9f40
+    400062: 322538a2-6abc-4997-915c-6f3b998645c7
+    400064: 342bb157-a663-466e-bf06-e0f55670f464
+    400066: 36609be7-f5b5-4ea9-b695-0076b0b18107
+    400068: 36f25f85-3413-4cc7-9a03-e29579f26fa2
+    400070: 3829b4cb-d3ac-410d-a28d-8b8de1daf005
+    400072: 383f6b0e-1907-4083-a39f-2063c3e6afa3
+    400074: 3a47c0db-9e28-4fed-b88d-cc25ddeec82d
+    400076: 3ae2a152-f604-4dbe-98ef-9f1d094dbf0b
+    400078: 3b812c44-a0fa-47ca-9c06-956c77ba8916
+    400080: 3dae0bdc-a603-42cd-93b9-43a3041f814a
+    400082: 3f5b41ab-a7c0-463e-b2f5-4a8b4f489ade
+    400084: 4047be8e-f729-416c-b0f3-30b69d1289f7
+    400086: 4075a163-d09b-4bd0-8c0e-47e707d05872
+    400088: 425e3b6b-2bd7-44a0-b6e1-68bcef530a61
+    400090: 436231aa-de17-4384-a62b-04b1fac994fc
+    400092: 45d9402c-0d09-4f71-899a-27814b6c273a
+    400094: 47c7af07-2d63-47eb-b00b-8b80df0645cc
+    400096: 493bd90d-88f2-4c49-930e-a93d26e34755
+    400098: 49f5d142-1477-4ffe-a2e2-d809dcba89ff
+    400100: 4e920d0e-8957-4882-bcec-50733f3fd1d0
+    400102: 4f284fce-7235-4167-8388-7ee6d96ba82c
+    400104: 53d2ba4c-2237-4d8e-ac27-21b185a1847d
+    400106: 55107570-0564-48d5-86f4-52320f1037d0
+    400108: 555cfa17-568a-4feb-93d7-2497cc63dcbe
+    400110: 567a3398-e2c6-405c-a318-bb8228dbe06a
+    400112: 585148fe-bbd7-4fe8-91cd-8bbff5b44378
+    400114: 585a531c-6bba-4cc0-a68c-40938f74120f
+    400116: 5c5130f2-8cb5-4daf-9545-8c44ea74df86
+    400118: 6103bcfb-f609-484b-ae72-153acb3d2202
+    400120: 61c41551-9f27-4d03-9c84-ef14a20ba1f7
+    400122: 6383b40a-7623-4fe4-9697-4bb56c4ea612
+    400124: 63982f18-ea30-4dbf-90e7-1937a831823e
+    400126: 659a4b60-61f2-4f98-a024-cd2ff80f46d9
+    400128: 6c7169e8-49bc-4b67-9d5f-ed815b8b26fd
+    400130: 6e191d98-6240-4389-8b54-71ad1cbe51cd
+    400132: 6f32bc67-4c80-4c45-b4a0-66b5ed0c53eb
+    400134: 6fdba4ad-4f5e-429b-8b2b-d27ba4fb5168
+    400136: 77af1ee5-e79a-4633-9577-bd612eea02fc
+    400138: 77b0fd427fcf8716fa51fc57ec80884c
+    400140: 7bc8b597-ca67-4b87-b91e-04199ff0ddac
+    400142: 7c0b5649-7c01-443f-a0bd-99f5fb6ff556
+    400144: 7df18cd8-1b70-44bf-a54f-a327f4347d76
+    400146: 7f019801-9d08-4cad-b524-4b8ccc63b9e9
+    400148: 7f4b9e8b-7ef7-49af-8428-3428f33ea040
+    400150: 812a6865-2619-4f92-ae37-9c8cadab7a6c
+    400152: 84618a06-ebc7-444d-b146-b102498ad6e9
+    400154: 8773ff47-c751-4587-87c0-6ad0a834ce27
+    400156: 8dc4ff33-a8d2-4eca-99cf-7e7c6cb461d9
+    400158: 8ec732ba-8c4e-48a8-b16b-a3930b185b57
+    400160: 9173ae6e-cb92-412b-9ec7-15534b16138f
+    400162: 9192dc57-cb08-4b73-baf7-9d4bb7b34b76
+    400164: 95d55a11-7507-4b10-b425-3e6981bc3d27
+    400166: 9983c42b-43f2-49b4-91d7-a0d1a7413eb9
+    400168: 99bb6b81-7821-4679-81b1-990777702ab9
+    400170: 9c479b74-63f5-46c0-aab7-119d705233c7
+    400172: 9f90589e-f97a-440c-b500-51bf20624363
+    400174: a0dba4d4-9c83-4309-9a99-414c7d63d693
+    400176: a287e414-a222-421b-8515-12448ecef5da
+    400178: a74b9070-d514-47d4-bd96-f6e6191a6c33
+    400180: a8cc5f60-5c70-405c-98bd-1ce42f747a1a
+    400182: aaba334c-2b1b-485f-9922-725583dbba7f
+    400184: ab1003cc4b6a8d677f702e97fc2a5542
+    400186: ad8c8316-fa39-43e3-b078-a31e9ef186e9
+    400188: af4dd8fd-a1b2-4f01-91c1-102e2a290fad
+    400190: b61da916-22d6-4b25-9ee3-19ed66fd28bb
+    400192: b73f4b1e-a692-47dc-8131-b56855c6f63b
+    400194: b81b7689-e874-4b32-9fd9-a575edd480b5
+    400196: ba479605-d2b4-430c-9982-b7a53af593be
+    400198: badf49f0-405e-41e7-832b-6b840d24a1d2
+    400200: bdbaf057-b710-42bd-84b6-5bec007c6e1d
+    400202: bf6dfcc9-fc4d-4e63-a61a-c594aada9aa8
+    400204: c0971e3b-79c0-4eb4-a9f2-55861637eaf2
+    400206: c71b604e-b354-4a3c-ac6e-26de87ed41b5
+    400208: c7c816e5-7e60-45a4-bf5c-dfd4c9e3a7a2
+    400210: c8ceb771-cb49-45ec-a511-581e6286f986
+    400212: c8f196f2-aef8-4fe7-a95b-bea1ee1839fd
+    400214: c8f453d0-49e2-430d-ae8a-72435c0d0510
+    400216: c92ac262-0a1f-47e0-be50-3061fccd4f65
+    400218: ccaccc17-3877-4996-a6ee-eb44438045fa
+    400220: cd4138e0-fa55-4d5d-8976-4bbf8a4f0ce5
+    400222: cd62bf97-61fe-4fbf-a4ed-9271dd2f4391
+    400224: //RootNode
+    400226: d02a971c-add3-4ef2-b362-8f82570e27cd
+    400228: d19b95b3-02f1-411a-89ca-4193118c4258
+    400230: d3b52688-d203-402e-962f-63b652a8c284
+    400232: d45d9a76-3834-4873-baa8-bb2e34a9e819
+    400234: d4821c32-9d39-4e25-aa86-4f2ce647536b
+    400236: d52a7bd3-5b2d-415e-9b6a-32acc76f1c53
+    400238: d6247027-110c-4f40-80c8-4961f0e7fb42
+    400240: d6a84f09-6ae7-46b4-89e9-6091f7c70fdb
+    400242: d73219e1-f7cf-4fa1-b66c-f9258696d4d1
+    400244: d7b75ab8-55ce-4dac-845d-9e9766f923d1
+    400246: d82e814a-98a9-40e5-aa4c-001a85561c73
+    400248: d8e130fb-d8aa-4335-8932-e8a08ca37fc7
+    400250: dd3ac020-e3b3-4bcc-b56d-38682d55cbb2
+    400252: ddb407bc-dd61-4351-858b-299aeb0f8558
+    400254: df3bf618-5c8c-41d7-b106-711119c7fa04
+    400256: dfb15dbc-d395-4df9-b0bb-f71e446902f5
+    400258: e1326c5f-1f9d-4983-9b41-9376b19f2dc7
+    400260: e39bda3e-a271-4ddc-9e2e-37a6f2ef5b12
+    400262: e9248bad-d754-4aa7-8ab1-166a53cbd628
+    400264: ea1d4362-26ac-44e2-89d4-a0af9b4ae9f1
+    400266: eb98ef46-38ea-47db-80e7-17f34f91b9d6
+    400268: ed276b6f-d103-4179-a123-947fb608da99
+    400270: ed594397-bb7f-4825-acdb-c2f08161bcd6
+    400272: efc2454d-0334-426d-b39c-b5ee4c32a384
+    400274: eff63a8f-8ed7-400a-94c1-22869c886df2
+    400276: f137ff8c-6395-491a-8738-8b9b0cde2c79
+    400278: f13c263a-01e5-45f3-aa2d-e2221b04d40a
+    400280: f13efdf564772cb33b36a7cbf3bfcb4e
+    400282: f58ca9ba-f47f-4a11-8095-ea6b574c5b5d
+    400284: f5a3d43b-128d-4926-84d0-ad96e49b5c7e
+    400286: f5b900c3-cc6a-4c61-9cef-d408f1ff5c1a
+    400288: f60a18d8-bb92-40a2-90a6-2d71705b318a
+    400290: f713ae12-1884-4c21-b0be-7f35448c6fcd
+    400292: f81c6838-f1f6-44af-bd44-a8c497aaa56c
+    400294: f8cbeeb3-045c-47a3-a752-cfae1ef16754
+    400296: f93c7424-c125-4e50-90bd-bc3f1310b67f
+    400298: FbxMesh
+    400300: FbxMesh 1
+    400302: FbxMesh 10
+    400304: FbxMesh 100
+    400306: FbxMesh 101
+    400308: FbxMesh 102
+    400310: FbxMesh 103
+    400312: FbxMesh 104
+    400314: FbxMesh 105
+    400316: FbxMesh 106
+    400318: FbxMesh 107
+    400320: FbxMesh 108
+    400322: FbxMesh 109
+    400324: FbxMesh 11
+    400326: FbxMesh 110
+    400328: FbxMesh 111
+    400330: FbxMesh 112
+    400332: FbxMesh 113
+    400334: FbxMesh 114
+    400336: FbxMesh 115
+    400338: FbxMesh 116
+    400340: FbxMesh 117
+    400342: FbxMesh 118
+    400344: FbxMesh 119
+    400346: FbxMesh 12
+    400348: FbxMesh 120
+    400350: FbxMesh 121
+    400352: FbxMesh 122
+    400354: FbxMesh 123
+    400356: FbxMesh 124
+    400358: FbxMesh 125
+    400360: FbxMesh 126
+    400362: FbxMesh 127
+    400364: FbxMesh 128
+    400366: FbxMesh 129
+    400368: FbxMesh 13
+    400370: FbxMesh 130
+    400372: FbxMesh 131
+    400374: FbxMesh 132
+    400376: FbxMesh 133
+    400378: FbxMesh 134
+    400380: FbxMesh 135
+    400382: FbxMesh 136
+    400384: FbxMesh 137
+    400386: FbxMesh 138
+    400388: FbxMesh 139
+    400390: FbxMesh 14
+    400392: FbxMesh 140
+    400394: FbxMesh 15
+    400396: FbxMesh 16
+    400398: FbxMesh 17
+    400400: FbxMesh 18
+    400402: FbxMesh 19
+    400404: FbxMesh 2
+    400406: FbxMesh 20
+    400408: FbxMesh 21
+    400410: FbxMesh 22
+    400412: FbxMesh 23
+    400414: FbxMesh 24
+    400416: FbxMesh 25
+    400418: FbxMesh 26
+    400420: FbxMesh 27
+    400422: FbxMesh 28
+    400424: FbxMesh 29
+    400426: FbxMesh 3
+    400428: FbxMesh 30
+    400430: FbxMesh 31
+    400432: FbxMesh 32
+    400434: FbxMesh 33
+    400436: FbxMesh 34
+    400438: FbxMesh 35
+    400440: FbxMesh 36
+    400442: FbxMesh 37
+    400444: FbxMesh 38
+    400446: FbxMesh 39
+    400448: FbxMesh 4
+    400450: FbxMesh 40
+    400452: FbxMesh 41
+    400454: FbxMesh 42
+    400456: FbxMesh 43
+    400458: FbxMesh 44
+    400460: FbxMesh 45
+    400462: FbxMesh 46
+    400464: FbxMesh 47
+    400466: FbxMesh 48
+    400468: FbxMesh 49
+    400470: FbxMesh 5
+    400472: FbxMesh 50
+    400474: FbxMesh 51
+    400476: FbxMesh 52
+    400478: FbxMesh 53
+    400480: FbxMesh 54
+    400482: FbxMesh 55
+    400484: FbxMesh 56
+    400486: FbxMesh 57
+    400488: FbxMesh 58
+    400490: FbxMesh 59
+    400492: FbxMesh 6
+    400494: FbxMesh 60
+    400496: FbxMesh 61
+    400498: FbxMesh 62
+    400500: FbxMesh 63
+    400502: FbxMesh 64
+    400504: FbxMesh 65
+    400506: FbxMesh 66
+    400508: FbxMesh 67
+    400510: FbxMesh 68
+    400512: FbxMesh 69
+    400514: FbxMesh 7
+    400516: FbxMesh 70
+    400518: FbxMesh 71
+    400520: FbxMesh 72
+    400522: FbxMesh 73
+    400524: FbxMesh 74
+    400526: FbxMesh 75
+    400528: FbxMesh 76
+    400530: FbxMesh 77
+    400532: FbxMesh 78
+    400534: FbxMesh 79
+    400536: FbxMesh 8
+    400538: FbxMesh 80
+    400540: FbxMesh 81
+    400542: FbxMesh 82
+    400544: FbxMesh 83
+    400546: FbxMesh 84
+    400548: FbxMesh 85
+    400550: FbxMesh 86
+    400552: FbxMesh 87
+    400554: FbxMesh 88
+    400556: FbxMesh 89
+    400558: FbxMesh 9
+    400560: FbxMesh 90
+    400562: FbxMesh 91
+    400564: FbxMesh 92
+    400566: FbxMesh 93
+    400568: FbxMesh 94
+    400570: FbxMesh 95
+    400572: FbxMesh 96
+    400574: FbxMesh 97
+    400576: FbxMesh 98
+    400578: FbxMesh 99
+    400580: fdc3e9c4-225c-4429-8962-23b1996d75f4
+    400582: LightsNode
+    2100000: Tube_Black_2c6139c0
+    2100002: Festo_Grey_2c6139c0
+    2100004: Gold_Metal_2c6139c0
+    2100006: VMtl1314_2c6139c0
+    2100008: Festo_Blue_2c6139c0
+    2100010: VMtl1146_2c6139c0
+    2100012: Grey_2c6139c0
+    2100014: Green_2c6139c0
+    2100016: Metal_2c6139c0
+    2100018: Dark_Grey_2c6139c0
+    2100020: VMtl1304_2c6139c0
+    2100022: Dark_Grey1_2c6139c0
+    2100024: TintedGlass_2c6139c0
+    2100026: Red_2c6139c0
+    2100028: c9f04c81-badc-4889-9758-97dc806fb7e4
+    2100030: CP_Grey_2c6139c0
+    2100032: Dark_Grey#1_2c6139c0
+    2100034: Green2_2c6139c0
+    2100036: CP_Grey_488a93e6
+    2300000: FbxMesh
+    2300002: FbxMesh 1
+    2300004: FbxMesh 10
+    2300006: FbxMesh 100
+    2300008: FbxMesh 101
+    2300010: FbxMesh 102
+    2300012: FbxMesh 103
+    2300014: FbxMesh 104
+    2300016: FbxMesh 105
+    2300018: FbxMesh 106
+    2300020: FbxMesh 107
+    2300022: FbxMesh 108
+    2300024: FbxMesh 109
+    2300026: FbxMesh 11
+    2300028: FbxMesh 110
+    2300030: FbxMesh 111
+    2300032: FbxMesh 112
+    2300034: FbxMesh 113
+    2300036: FbxMesh 114
+    2300038: FbxMesh 115
+    2300040: FbxMesh 116
+    2300042: FbxMesh 117
+    2300044: FbxMesh 118
+    2300046: FbxMesh 119
+    2300048: FbxMesh 12
+    2300050: FbxMesh 120
+    2300052: FbxMesh 121
+    2300054: FbxMesh 122
+    2300056: FbxMesh 123
+    2300058: FbxMesh 124
+    2300060: FbxMesh 125
+    2300062: FbxMesh 126
+    2300064: FbxMesh 127
+    2300066: FbxMesh 128
+    2300068: FbxMesh 129
+    2300070: FbxMesh 13
+    2300072: FbxMesh 130
+    2300074: FbxMesh 131
+    2300076: FbxMesh 132
+    2300078: FbxMesh 133
+    2300080: FbxMesh 134
+    2300082: FbxMesh 135
+    2300084: FbxMesh 136
+    2300086: FbxMesh 137
+    2300088: FbxMesh 138
+    2300090: FbxMesh 139
+    2300092: FbxMesh 14
+    2300094: FbxMesh 140
+    2300096: FbxMesh 15
+    2300098: FbxMesh 16
+    2300100: FbxMesh 17
+    2300102: FbxMesh 18
+    2300104: FbxMesh 19
+    2300106: FbxMesh 2
+    2300108: FbxMesh 20
+    2300110: FbxMesh 21
+    2300112: FbxMesh 22
+    2300114: FbxMesh 23
+    2300116: FbxMesh 24
+    2300118: FbxMesh 25
+    2300120: FbxMesh 26
+    2300122: FbxMesh 27
+    2300124: FbxMesh 28
+    2300126: FbxMesh 29
+    2300128: FbxMesh 3
+    2300130: FbxMesh 30
+    2300132: FbxMesh 31
+    2300134: FbxMesh 32
+    2300136: FbxMesh 33
+    2300138: FbxMesh 34
+    2300140: FbxMesh 35
+    2300142: FbxMesh 36
+    2300144: FbxMesh 37
+    2300146: FbxMesh 38
+    2300148: FbxMesh 39
+    2300150: FbxMesh 4
+    2300152: FbxMesh 40
+    2300154: FbxMesh 41
+    2300156: FbxMesh 42
+    2300158: FbxMesh 43
+    2300160: FbxMesh 44
+    2300162: FbxMesh 45
+    2300164: FbxMesh 46
+    2300166: FbxMesh 47
+    2300168: FbxMesh 48
+    2300170: FbxMesh 49
+    2300172: FbxMesh 5
+    2300174: FbxMesh 50
+    2300176: FbxMesh 51
+    2300178: FbxMesh 52
+    2300180: FbxMesh 53
+    2300182: FbxMesh 54
+    2300184: FbxMesh 55
+    2300186: FbxMesh 56
+    2300188: FbxMesh 57
+    2300190: FbxMesh 58
+    2300192: FbxMesh 59
+    2300194: FbxMesh 6
+    2300196: FbxMesh 60
+    2300198: FbxMesh 61
+    2300200: FbxMesh 62
+    2300202: FbxMesh 63
+    2300204: FbxMesh 64
+    2300206: FbxMesh 65
+    2300208: FbxMesh 66
+    2300210: FbxMesh 67
+    2300212: FbxMesh 68
+    2300214: FbxMesh 69
+    2300216: FbxMesh 7
+    2300218: FbxMesh 70
+    2300220: FbxMesh 71
+    2300222: FbxMesh 72
+    2300224: FbxMesh 73
+    2300226: FbxMesh 74
+    2300228: FbxMesh 75
+    2300230: FbxMesh 76
+    2300232: FbxMesh 77
+    2300234: FbxMesh 78
+    2300236: FbxMesh 79
+    2300238: FbxMesh 8
+    2300240: FbxMesh 80
+    2300242: FbxMesh 81
+    2300244: FbxMesh 82
+    2300246: FbxMesh 83
+    2300248: FbxMesh 84
+    2300250: FbxMesh 85
+    2300252: FbxMesh 86
+    2300254: FbxMesh 87
+    2300256: FbxMesh 88
+    2300258: FbxMesh 89
+    2300260: FbxMesh 9
+    2300262: FbxMesh 90
+    2300264: FbxMesh 91
+    2300266: FbxMesh 92
+    2300268: FbxMesh 93
+    2300270: FbxMesh 94
+    2300272: FbxMesh 95
+    2300274: FbxMesh 96
+    2300276: FbxMesh 97
+    2300278: FbxMesh 98
+    2300280: FbxMesh 99
+    3300000: FbxMesh
+    3300002: FbxMesh 1
+    3300004: FbxMesh 10
+    3300006: FbxMesh 100
+    3300008: FbxMesh 101
+    3300010: FbxMesh 102
+    3300012: FbxMesh 103
+    3300014: FbxMesh 104
+    3300016: FbxMesh 105
+    3300018: FbxMesh 106
+    3300020: FbxMesh 107
+    3300022: FbxMesh 108
+    3300024: FbxMesh 109
+    3300026: FbxMesh 11
+    3300028: FbxMesh 110
+    3300030: FbxMesh 111
+    3300032: FbxMesh 112
+    3300034: FbxMesh 113
+    3300036: FbxMesh 114
+    3300038: FbxMesh 115
+    3300040: FbxMesh 116
+    3300042: FbxMesh 117
+    3300044: FbxMesh 118
+    3300046: FbxMesh 119
+    3300048: FbxMesh 12
+    3300050: FbxMesh 120
+    3300052: FbxMesh 121
+    3300054: FbxMesh 122
+    3300056: FbxMesh 123
+    3300058: FbxMesh 124
+    3300060: FbxMesh 125
+    3300062: FbxMesh 126
+    3300064: FbxMesh 127
+    3300066: FbxMesh 128
+    3300068: FbxMesh 129
+    3300070: FbxMesh 13
+    3300072: FbxMesh 130
+    3300074: FbxMesh 131
+    3300076: FbxMesh 132
+    3300078: FbxMesh 133
+    3300080: FbxMesh 134
+    3300082: FbxMesh 135
+    3300084: FbxMesh 136
+    3300086: FbxMesh 137
+    3300088: FbxMesh 138
+    3300090: FbxMesh 139
+    3300092: FbxMesh 14
+    3300094: FbxMesh 140
+    3300096: FbxMesh 15
+    3300098: FbxMesh 16
+    3300100: FbxMesh 17
+    3300102: FbxMesh 18
+    3300104: FbxMesh 19
+    3300106: FbxMesh 2
+    3300108: FbxMesh 20
+    3300110: FbxMesh 21
+    3300112: FbxMesh 22
+    3300114: FbxMesh 23
+    3300116: FbxMesh 24
+    3300118: FbxMesh 25
+    3300120: FbxMesh 26
+    3300122: FbxMesh 27
+    3300124: FbxMesh 28
+    3300126: FbxMesh 29
+    3300128: FbxMesh 3
+    3300130: FbxMesh 30
+    3300132: FbxMesh 31
+    3300134: FbxMesh 32
+    3300136: FbxMesh 33
+    3300138: FbxMesh 34
+    3300140: FbxMesh 35
+    3300142: FbxMesh 36
+    3300144: FbxMesh 37
+    3300146: FbxMesh 38
+    3300148: FbxMesh 39
+    3300150: FbxMesh 4
+    3300152: FbxMesh 40
+    3300154: FbxMesh 41
+    3300156: FbxMesh 42
+    3300158: FbxMesh 43
+    3300160: FbxMesh 44
+    3300162: FbxMesh 45
+    3300164: FbxMesh 46
+    3300166: FbxMesh 47
+    3300168: FbxMesh 48
+    3300170: FbxMesh 49
+    3300172: FbxMesh 5
+    3300174: FbxMesh 50
+    3300176: FbxMesh 51
+    3300178: FbxMesh 52
+    3300180: FbxMesh 53
+    3300182: FbxMesh 54
+    3300184: FbxMesh 55
+    3300186: FbxMesh 56
+    3300188: FbxMesh 57
+    3300190: FbxMesh 58
+    3300192: FbxMesh 59
+    3300194: FbxMesh 6
+    3300196: FbxMesh 60
+    3300198: FbxMesh 61
+    3300200: FbxMesh 62
+    3300202: FbxMesh 63
+    3300204: FbxMesh 64
+    3300206: FbxMesh 65
+    3300208: FbxMesh 66
+    3300210: FbxMesh 67
+    3300212: FbxMesh 68
+    3300214: FbxMesh 69
+    3300216: FbxMesh 7
+    3300218: FbxMesh 70
+    3300220: FbxMesh 71
+    3300222: FbxMesh 72
+    3300224: FbxMesh 73
+    3300226: FbxMesh 74
+    3300228: FbxMesh 75
+    3300230: FbxMesh 76
+    3300232: FbxMesh 77
+    3300234: FbxMesh 78
+    3300236: FbxMesh 79
+    3300238: FbxMesh 8
+    3300240: FbxMesh 80
+    3300242: FbxMesh 81
+    3300244: FbxMesh 82
+    3300246: FbxMesh 83
+    3300248: FbxMesh 84
+    3300250: FbxMesh 85
+    3300252: FbxMesh 86
+    3300254: FbxMesh 87
+    3300256: FbxMesh 88
+    3300258: FbxMesh 89
+    3300260: FbxMesh 9
+    3300262: FbxMesh 90
+    3300264: FbxMesh 91
+    3300266: FbxMesh 92
+    3300268: FbxMesh 93
+    3300270: FbxMesh 94
+    3300272: FbxMesh 95
+    3300274: FbxMesh 96
+    3300276: FbxMesh 97
+    3300278: FbxMesh 98
+    3300280: FbxMesh 99
+    4300000: FbxMesh
+    4300002: FbxMesh
+    4300004: FbxMesh
+    4300006: FbxMesh
+    4300008: FbxMesh
+    4300010: FbxMesh
+    4300012: FbxMesh
+    4300014: FbxMesh
+    4300016: FbxMesh
+    4300018: FbxMesh
+    4300020: FbxMesh
+    4300022: FbxMesh
+    4300024: FbxMesh
+    4300026: FbxMesh
+    4300028: FbxMesh
+    4300030: FbxMesh
+    4300032: FbxMesh
+    4300034: FbxMesh
+    4300036: FbxMesh
+    4300038: FbxMesh
+    4300040: FbxMesh
+    4300042: FbxMesh
+    4300044: FbxMesh
+    4300046: FbxMesh
+    4300048: FbxMesh
+    4300050: FbxMesh
+    4300052: FbxMesh
+    4300054: FbxMesh
+    4300056: FbxMesh
+    4300058: FbxMesh
+    4300060: FbxMesh
+    4300062: FbxMesh
+    4300064: FbxMesh
+    4300066: FbxMesh
+    4300068: FbxMesh
+    4300070: FbxMesh
+    4300072: FbxMesh
+    4300074: FbxMesh
+    4300076: FbxMesh
+    4300078: FbxMesh
+    4300080: FbxMesh
+    4300082: FbxMesh
+    4300084: FbxMesh
+    4300086: FbxMesh
+    4300088: FbxMesh
+    4300090: FbxMesh
+    4300092: FbxMesh
+    4300094: FbxMesh
+    4300096: FbxMesh
+    4300098: FbxMesh
+    4300100: FbxMesh
+    4300102: FbxMesh
+    4300104: FbxMesh
+    4300106: FbxMesh
+    4300108: FbxMesh
+    4300110: FbxMesh
+    4300112: FbxMesh
+    4300114: FbxMesh
+    4300116: FbxMesh
+    4300118: FbxMesh
+    4300120: FbxMesh
+    4300122: FbxMesh
+    4300124: FbxMesh
+    4300126: FbxMesh
+    4300128: FbxMesh
+    4300130: FbxMesh
+    4300132: FbxMesh
+    4300134: FbxMesh
+    4300136: FbxMesh
+    4300138: FbxMesh
+    4300140: FbxMesh
+    4300142: FbxMesh
+    4300144: FbxMesh
+    4300146: FbxMesh
+    4300148: FbxMesh
+    4300150: FbxMesh
+    4300152: FbxMesh
+    4300154: FbxMesh
+    4300156: FbxMesh
+    4300158: FbxMesh
+    4300160: FbxMesh
+    4300162: FbxMesh
+    4300164: FbxMesh
+    4300166: FbxMesh
+    4300168: FbxMesh
+    4300170: FbxMesh
+    4300172: FbxMesh
+    4300174: FbxMesh
+    4300176: FbxMesh
+    4300178: FbxMesh
+    4300180: FbxMesh
+    4300182: FbxMesh
+    4300184: FbxMesh
+    4300186: FbxMesh
+    4300188: FbxMesh
+    4300190: FbxMesh
+    4300192: FbxMesh
+    4300194: FbxMesh
+    4300196: FbxMesh
+    4300198: FbxMesh
+    4300200: FbxMesh
+    4300202: FbxMesh
+    4300204: FbxMesh
+    4300206: FbxMesh
+    4300208: FbxMesh
+    4300210: FbxMesh
+    4300212: FbxMesh
+    4300214: FbxMesh
+    4300216: FbxMesh
+    4300218: FbxMesh
+    4300220: FbxMesh
+    4300222: FbxMesh
+    4300224: FbxMesh
+    4300226: FbxMesh
+    4300228: FbxMesh
+    4300230: FbxMesh
+    4300232: FbxMesh
+    4300234: FbxMesh
+    4300236: FbxMesh
+    4300238: FbxMesh
+    4300240: FbxMesh
+    4300242: FbxMesh
+    4300244: FbxMesh
+    4300246: FbxMesh
+    4300248: FbxMesh
+    4300250: FbxMesh
+    4300252: FbxMesh
+    4300254: FbxMesh
+    4300256: FbxMesh
+    4300258: FbxMesh
+    4300260: FbxMesh
+    4300262: FbxMesh
+    4300264: FbxMesh
+    4300266: FbxMesh
+    4300268: FbxMesh
+    4300270: FbxMesh
+    4300272: FbxMesh
+    4300274: FbxMesh
+    4300276: FbxMesh
+    4300278: FbxMesh
+    4300280: FbxMesh
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

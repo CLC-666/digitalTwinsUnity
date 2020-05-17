@@ -3,9 +3,9 @@ from threading import Thread
 import time
 
 '''
-data = [assembly station, conveyor start, module position, carrier released, conveyor end, carrierID]
+data = [assembly station, conveyo]r start, module position, carrier released, conveyor end, carrierID]
 '''
-data = ['1,0,0,0,0,1', '1,1,0,0,0,1', '1,0,1,0,0,1', '1,0,1,1,0,1', '1,0,0,0,1,1']
+data = ['1,0,0,0,0,1,0,1,1', '1,1,0,0,0,1,0,1,1', '1,0,1,0,0,1,0,1,1', '1,0,1,1,0,1,0,1,1', '1,0,0,0,1,1,0,1,1', '2,0,0,0,0,1', '2,1,0,0,0,1', '2,0,1,0,0,1', '2,0,1,1,0,1', '2,0,0,0,1,1','3,0,0,0,0,1', '3,1,0,0,0,1', '3,0,1,0,0,1', '3,0,1,1,0,1', '3,0,0,0,1,1']
 toSend = ""
 
 def prefData():
@@ -19,12 +19,12 @@ def prefData():
         if counter == 5:
             counter = 0
 
-        if var % 5 == 0 and printed == False:
-            toSend = data[counter]
+        if var % 2 == 0 and printed == False:
+            toSend = data[counter + 5]
             counter += 1
             printed = True
 
-        if var % 5 != 0:
+        if var % 2 != 0:
             printed = False
 
 
@@ -32,7 +32,7 @@ def main():
     global toSend
 
     s = socket.socket()
-    s.connect(("172.21.4.152", 9997))
+    s.connect(("10.2.254.178", 9992))
 
     while True:
         print("sending", toSend)

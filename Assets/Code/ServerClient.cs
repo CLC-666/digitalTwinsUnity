@@ -9,9 +9,12 @@ using System.Threading;
 
 public class ServerClient : MonoBehaviour
 {
+	string oldMessage;
 	#region private members 	
-	private TcpClient socketConnection;
-	private Thread clientReceiveThread;
+	private TcpClient socketConnectionMagFront;
+	private TcpClient socketConnectionManual;
+	private Thread clientReceiveThreadMagFront;
+	private Thread clientReceiveThreadManual;
 	public string locationData;
 	#endregion
 	// Use this for initialization 	
@@ -31,9 +34,13 @@ public class ServerClient : MonoBehaviour
 	{
 		try
 		{
-			clientReceiveThread = new Thread(new ThreadStart(ListenForData));
-			clientReceiveThread.IsBackground = true;
-			clientReceiveThread.Start();
+			clientReceiveThreadMagFront = new Thread(new ThreadStart(ListenMagFront));
+			clientReceiveThreadMagFront.IsBackground = true;
+			clientReceiveThreadMagFront.Start();
+			clientReceiveThreadManual = new Thread(new ThreadStart(ListenManual));
+			clientReceiveThreadManual.IsBackground = true;
+			clientReceiveThreadManual.Start();
+
 		}
 		catch (Exception e)
 		{
@@ -43,60 +50,40 @@ public class ServerClient : MonoBehaviour
 	/// <summary> 	
 	/// Runs in background clientReceiveThread; Listens for incomming data. 	
 	/// </summary>     
-	private void ListenForData()
+	private void ListenMagFront()
 	{
 		try
 		{
-			socketConnection = new TcpClient("172.21.4.152", 9997);
-			Byte[] bytes = new Byte[22];
+			Debug.Log("hello");
+			socketConnectionMagFront = new TcpClient("10.2.254.178", 9991);
+			Debug.Log("hello1");
+			Byte[] bytes = new Byte[17];
+			Debug.Log("hello2");
 
-
-            while (true)
-            {
-                // Get a stream object for reading 				
-                using (NetworkStream stream = socketConnection.GetStream())
-                {
-					
-                    int length;
-                    // Read incomming stream into byte arrary. 					
-                    while ((length = stream.Read(bytes, 0, bytes.Length)) != 0)
-                    {
-                        var incommingData = new byte[length];
-                        Array.Copy(bytes, 0, incommingData, 0, length);
-                        // Convert byte array to string message. 						
-                        string serverMessage = Encoding.ASCII.GetString(incommingData);
-                        locationData = serverMessage;
-                        //Debug.Log(locationData);
-                    }
-                }
-            }
-        }
-		catch (SocketException socketException)
-		{
-			Debug.Log("Socket exception: " + socketException);
-		}
-	}
-	/// <summary> 	
-	/// Send message to server using socket connection. 	
-	/// </summary> 	
-	private void SendMessage()
-	{
-		if (socketConnection == null)
-		{
-			return;
-		}
-		try
-		{
-			// Get a stream object for writing. 			
-			NetworkStream stream = socketConnection.GetStream();
-			if (stream.CanWrite)
+			while (true)
 			{
-				string clientMessage = "This is a message from one of your clients.";
-				// Convert string message to byte array.                 
-				byte[] clientMessageAsByteArray = Encoding.ASCII.GetBytes(clientMessage);
-				// Write byte array to socketConnection stream.                 
-				stream.Write(clientMessageAsByteArray, 0, clientMessageAsByteArray.Length);
-				Debug.Log("Client sent his message - should be received by server");
+				// Get a stream object for reading 				
+				using (NetworkStream stream = socketConnectionMagFront.GetStream())
+				{
+					Debug.Log("hello3");
+					int length;
+					// Read incomming stream into byte arrary. 					
+					while ((length = stream.Read(bytes, 0, bytes.Length)) != 0)
+					{
+						Debug.Log("hello4");
+						var incommingData = new byte[length];
+						Array.Copy(bytes, 0, incommingData, 0, length);
+						// Convert byte array to string message. 		
+						Debug.Log("hello5");
+						string serverMessage = Encoding.ASCII.GetString(incommingData);
+						//if (serverMessage != oldMessage)
+						//{
+						locationData = serverMessage;
+						//}
+						//oldMessage = serverMessage;
+						Debug.Log(locationData);
+					}
+				}
 			}
 		}
 		catch (SocketException socketException)
@@ -104,6 +91,74 @@ public class ServerClient : MonoBehaviour
 			Debug.Log("Socket exception: " + socketException);
 		}
 	}
+
+	private void ListenManual()
+	{
+		try
+		{
+			Debug.Log("hello");
+			socketConnectionManual = new TcpClient("10.2.254.178", 9992);
+			Debug.Log("hello1");
+			Byte[] bytes = new Byte[17];
+			Debug.Log("hello2");
+
+			while (true)
+			{
+				// Get a stream object for reading 				
+				using (NetworkStream stream = socketConnectionManual.GetStream())
+				{
+					Debug.Log("hello3");
+					int length;
+					// Read incomming stream into byte arrary. 					
+					while ((length = stream.Read(bytes, 0, bytes.Length)) != 0)
+					{
+						Debug.Log("hello4");
+						var incommingData = new byte[length];
+						Array.Copy(bytes, 0, incommingData, 0, length);
+						// Convert byte array to string message. 		
+						Debug.Log("hello5");
+						string serverMessage = Encoding.ASCII.GetString(incommingData);
+						//if (serverMessage != oldMessage)
+						//{
+						locationData = serverMessage;
+						//}
+						//oldMessage = serverMessage;
+						Debug.Log(locationData);
+					}
+				}
+			}
+		}
+		catch (SocketException socketException)
+		{
+			Debug.Log("Socket exception: " + socketException);
+		}
+	}
+
+	//private void SendMessage()
+	//{
+	//	if (socketConnection == null)
+	//	{
+	//		return;
+	//	}
+	//	try
+	//	{
+	//		// Get a stream object for writing. 			
+	//		NetworkStream stream = socketConnection.GetStream();
+	//		if (stream.CanWrite)
+	//		{
+	//			string clientMessage = "This is a message from one of your clients.";
+	//			// Convert string message to byte array.                 
+	//			byte[] clientMessageAsByteArray = Encoding.ASCII.GetBytes(clientMessage);
+	//			// Write byte array to socketConnection stream.                 
+	//			stream.Write(clientMessageAsByteArray, 0, clientMessageAsByteArray.Length);
+	//			Debug.Log("Client sent his message - should be received by server");
+	//		}
+	//	}
+	//	catch (SocketException socketException)
+	//	{
+	//		Debug.Log("Socket exception: " + socketException);
+	//	}
+	//}
 }
 
 
