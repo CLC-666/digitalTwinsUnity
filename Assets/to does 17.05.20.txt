@@ -1,0 +1,33 @@
+problem:
+	- plcs are sending all data
+
+solution:
+	- only send update data
+		- find a way to keep the tcp connection held by the plc
+
+	this will mean that there is no wasted processing performance by unity
+
+
+problem:
+	- in need of a mathematical description of the conveyor for smooth movement
+
+solution:
+	- just do it lol
+
+problem:
+	- data incoming into unity is often missed or is slow to process DONE!!!!!!!!!!!
+
+solution:
+	- use threading in unity and have individual tcp connections to every plc to speed up data transfer.
+	  These threads will also have to update and sort all variable values at the same time to minimise performance loss.
+
+	- hopefully by minimising the stream of data from the plc side this will help with performance.
+
+To Does:
+	- create a new plc sim as we're away from the rig.
+		- this will need one main script which calls another script manys times, each with its own thread using args for different IPs. 
+
+	- create a working threaded tcp server(s) in unity to be able to receive all this data and efficiently process it. DONE!!!!!!!!!!!
+	  Currently, unity is set up as TCP CLIENT! CHANGE IT!
+
+	- once step one and two are completed, work on the mathemical description of the conveyor belts.
