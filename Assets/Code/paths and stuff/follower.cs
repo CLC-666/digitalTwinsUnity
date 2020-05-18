@@ -15,7 +15,7 @@ public class follower : MonoBehaviour
         //3.753859
         //distanceTravelled = (percentLap / 100) * 3.753859f;
 
-        distanceTravelled += speed * Time.deltaTime;
+        distanceTravelled -= speed * Time.deltaTime;
 
         transform.position = firstIsland.path.GetPointAtDistance(distanceTravelled);
         transform.rotation = firstIsland.path.GetRotationAtDistance(distanceTravelled);

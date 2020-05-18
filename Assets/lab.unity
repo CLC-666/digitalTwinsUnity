@@ -826,7 +826,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 101988, guid: 264897e16346467459599c64d4e55474, type: 3}
       propertyPath: m_Name
-      value: ManualEndInduction
+      value: manualEndInduction
       objectReference: {fileID: 0}
     - target: {fileID: 102090, guid: 264897e16346467459599c64d4e55474, type: 3}
       propertyPath: m_Name
@@ -850,7 +850,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 102142, guid: 264897e16346467459599c64d4e55474, type: 3}
       propertyPath: m_Name
-      value: ManualStartInduction
+      value: manualStartInduction
       objectReference: {fileID: 0}
     - target: {fileID: 102868, guid: 264897e16346467459599c64d4e55474, type: 3}
       propertyPath: m_Name
@@ -1261,6 +1261,7 @@ GameObject:
   - component: {fileID: 1860901270}
   - component: {fileID: 1860901269}
   - component: {fileID: 1860901272}
+  - component: {fileID: 1860901273}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1349,6 +1350,29 @@ MonoBehaviour:
     type: 3}
   carriers: []
   locationData: 
+--- !u!114 &1860901273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860901268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28be6efa0849b26458468980ca79fdee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  caseSwitch: 0
+  manualStartInduction: 0
+  manualStopInduction: 0
+  manualEndInduction: 0
+  camInspectStartInduction: 0
+  camInspectStopInduction: 0
+  camInspectEndInduction: 0
+  codesys1StopInduction: 0
+  magFrontStartInduction: 0
+  magFrontStopInduction: 0
+  magFrontEndInduction: 0
 --- !u!1001 &2031925502
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1491,6 +1515,11 @@ PrefabInstance:
         type: 3}
       propertyPath: distanceTravelled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8692403101385208095, guid: 83497a3acb289b64ba3403e082305d3f,
+        type: 3}
+      propertyPath: speed
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 341124496723201598, guid: 83497a3acb289b64ba3403e082305d3f,
         type: 3}
