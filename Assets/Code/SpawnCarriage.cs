@@ -68,10 +68,11 @@ public class SpawnCarriage : MonoBehaviour
             GameObject clone = Instantiate(carrierPrefab) as GameObject;
             carriers[ID] = clone;
             carriers[ID].GetComponent<CarrierMove>().carrierID = ID;
-            carriers[ID].GetComponent<CarrierMove>().x = -6.6214f;
-            carriers[ID].GetComponent<CarrierMove>().y = 0.979f;
-            carriers[ID].GetComponent<CarrierMove>().z = 0.0533f;
-            carriers[ID].GetComponent<CarrierMove>().caseSwitch = 35;
+
+            //carriers[ID].GetComponent<CarrierMove>().x = -6.6214f;
+            //carriers[ID].GetComponent<CarrierMove>().y = 0.979f;
+            //carriers[ID].GetComponent<CarrierMove>().z = 0.0533f;
+            //carriers[ID].GetComponent<CarrierMove>().caseSwitch = 35;
             carrierArray[ID] = ID;
             //carriers[ID].SetActive(false);
 

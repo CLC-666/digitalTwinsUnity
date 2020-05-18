@@ -5,17 +5,24 @@ using PathCreation;
 
 public class follower : MonoBehaviour
 {
-    public PathCreator pathCreator;
+    public PathCreator firstIsland;
     public float speed = 5;
-    float distanceTravelled;
+    public float distanceTravelled;
+    public float percentLap;
 
-    void Update()
+    private void Update()
     {
+        //3.753859
+        //distanceTravelled = (percentLap / 100) * 3.753859f;
+
         distanceTravelled += speed * Time.deltaTime;
-        transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled);
-        transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled);
+
+        transform.position = firstIsland.path.GetPointAtDistance(distanceTravelled);
+        transform.rotation = firstIsland.path.GetRotationAtDistance(distanceTravelled);
         transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y + 270, 0f);
 
-        Debug.Log(pathCreator.path.GetRotationAtDistance(distanceTravelled));
+        //Debug.Log(firstIsland.path.GetPointAtDistance(distanceTravelled));
+
+
     }
 }

@@ -15,4 +15,9 @@ public class sensorTrigger : MonoBehaviour
     {
         
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        Debug.Log(gameObject.name);
+    }
 }

@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class sensorCollider : MonoBehaviour
+
+
+public class runInSimMode : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -14,10 +16,5 @@ public class sensorCollider : MonoBehaviour
     void Update()
     {
         
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("trigggererrrrreddddd");
     }
 }
