@@ -7,6 +7,7 @@ using UnityEngine;
 public class runInSimMode : MonoBehaviour
 {
     public int caseSwitch = 0;
+    public float speed = 0.25f;
 
     public bool manualStartInduction = false;
     public bool manualStopInduction = false; //SPAWN LOCATION 2 = follower: 92%.
@@ -51,12 +52,7 @@ public class runInSimMode : MonoBehaviour
     void Update()
     {
      
-       carriers[ID].GetComponent<follower>().percentLap += 0.25f;
-       
-
-   
-        
-        Prog();
+       Prog();
     }
 
     void Prog()
