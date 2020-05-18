@@ -19,15 +19,20 @@ public class follower : MonoBehaviour
     //A LAP IS THIS LONG 3.753859.
     public PathCreator firstIsland;
     public bool goStop = false;
-    public float pauseTime = 50;
-    public int counter = 0;
-    bool stopper = false;
-    public bool fallingEdge = false;
+    float pauseTime = 50;
+    int counter = 0;
     public float distanceTravelled;
     public float percentLap;
+    int caseSwitch = 0;
+    public int spawnLocation;
+    int currentLocation;
 
     public int carrierID;
-    public int spawnLocation;
+    int productCode;
+    float targetTemp;
+    float heatingTime;
+    float pressure;
+
 
     private void Start()
     {
@@ -49,7 +54,9 @@ public class follower : MonoBehaviour
 
         pauseAtStopper();
 
+        location();
 
+        mainOrderStructure();
     }
 
     void OnTriggerEnter(Collider other)
@@ -167,7 +174,27 @@ public class follower : MonoBehaviour
         {
             counter = 0;
         }
-
-      
     }
+
+    void location()
+    {
+        if(percentLap <= 67 && percentLap > 38f ) { currentLocation = 1; }
+        if (percentLap <= 92.5f && percentLap > 69) { currentLocation = 2; }
+        if (percentLap <= 17f || percentLap > 94f) { currentLocation = 3; }
+        if (percentLap <= 36.5f && percentLap > 19) { currentLocation = 4; }
+    }
+
+    void mainOrderStructure()
+    {
+        switch (caseSwitch) //each case should be a target station. If it meets the wrong one, move on.
+        {
+            case 0: //magFront
+
+
+
+
+                break;
+        }
+    }
+
 }
