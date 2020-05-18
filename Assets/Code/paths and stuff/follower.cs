@@ -33,6 +33,9 @@ public class follower : MonoBehaviour
     float heatingTime;
     float pressure;
 
+    public bool busy = false;
+    public bool order = true;
+
 
     private void Start()
     {
@@ -164,7 +167,7 @@ public class follower : MonoBehaviour
         {
             if (counter < pauseTime) { goStop = false; }
             counter++;
-            if (counter == pauseTime)
+            if (counter >= pauseTime && busy == false)
             {
                 goStop = true;
             }
@@ -190,7 +193,13 @@ public class follower : MonoBehaviour
         {
             case 0: //magFront
 
+                if (currentLocation == 1 && goStop == false && order == true)
+                {
+                    busy = true;
+                    Debug.Log("I'm doing stuff.");
 
+                    GameObject.Find("magFrontLift").GetComponent<magFrontLiftScript>().run = true;
+                }
 
 
                 break;

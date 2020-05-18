@@ -13,7 +13,8 @@ import socket
 
 
 PLCDATA = {1: magFront, 2: manual, 3: camInspect, 4: codesys1, 5: codesys2, 6: magBack, 7: pressing, 8: heating}
-magFront = [""]
+#data = [assembly station, conveyo]r start, module position, carrier released, conveyor end, carrierID, aux1, aux2, aux3]
+magFront = ["1,0,0,0,0,0,0,0,0", "1,1,"]
 
 
 def TCPclient(IP, PORT, PLC_NUMBER):
