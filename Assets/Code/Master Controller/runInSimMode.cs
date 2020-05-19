@@ -19,6 +19,8 @@ public class runInSimMode : MonoBehaviour
     public bool magFrontStartInduction = false;
     public bool magFrontStopInduction = false; //SPAWN LOCATION 1 = follower: 67%.
     public bool magFrontEndInduction = false;
+    public bool magFrontTop = false;
+    public bool magFrontBottom = false;
 
     public GameObject carrierPrefab;
     public GameObject[] carriers;

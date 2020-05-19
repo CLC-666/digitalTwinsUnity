@@ -23,6 +23,8 @@ public class sensorTrigger : MonoBehaviour
     {
         caseSwtich = gameObject.name;
 
+        
+
         switch (caseSwtich)
         {
             case "magFrontStartInduction":
@@ -35,6 +37,13 @@ public class sensorTrigger : MonoBehaviour
                 GameObject.Find("Main Camera").GetComponent<runInSimMode>().magFrontEndInduction = true;
                 break;
 
+            case "magFrontTop":
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().magFrontTop = true;
+                break;
+            case "magFrontBottom":
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().magFrontBottom = true;
+                break;
+        
 
             case "manualStartInduction":
                 GameObject.Find("Main Camera").GetComponent<runInSimMode>().manualStartInduction = true;
@@ -81,6 +90,13 @@ public class sensorTrigger : MonoBehaviour
                 break;
             case "magFrontEndInduction":
                 GameObject.Find("Main Camera").GetComponent<runInSimMode>().magFrontEndInduction = false;
+                break;
+
+            case "magFrontTop":
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().magFrontTop = false;
+                break;
+            case "magFrontBottom":
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().magFrontBottom = false;
                 break;
 
 

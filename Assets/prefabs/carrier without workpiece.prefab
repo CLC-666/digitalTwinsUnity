@@ -209,13 +209,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac7c1c91c03b4a64eab6d5450267a736, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  manualStartInduction: 0
+  manualStopInduction: 0
+  manualEndInduction: 0
+  camInspectStartInduction: 0
+  camInspectStopInduction: 0
+  camInspectEndInduction: 0
+  codesys1StopInduction: 0
+  magFrontStartInduction: 0
+  magFrontStopInduction: 0
+  magFrontEndInduction: 0
   firstIsland: {fileID: 3114707824259583203, guid: 0528a67acdec5664c800d93985d005a5,
     type: 3}
-  speed: 2
+  goStop: 0
   distanceTravelled: 0
   percentLap: 0
-  carrierID: 0
   spawnLocation: 0
+  carrierID: 0
+  busy: 0
+  order: 1
 --- !u!65 &2935835130707129008
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -227,7 +239,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.17, y: 0.1, z: 0.12}
+  m_Size: {x: 0.17, y: 0.09253131, z: 0.12}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &-103947793778622976
 Rigidbody:

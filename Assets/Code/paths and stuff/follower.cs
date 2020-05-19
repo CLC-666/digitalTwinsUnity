@@ -196,13 +196,22 @@ public class follower : MonoBehaviour
                 if (currentLocation == 1 && goStop == false && order == true)
                 {
                     busy = true;
-                    Debug.Log("I'm doing stuff.");
 
                     GameObject.Find("magFrontLift").GetComponent<magFrontLiftScript>().run = true;
+                    GameObject.Find("magFrontLift").GetComponent<magFrontLiftScript>().carrierID = carrierID;
+                    caseSwitch = 1;
                 }
-
-
                 break;
+
+            case 1:
+
+                if (GameObject.Find("magFrontLift").GetComponent<magFrontLiftScript>().run == false)
+                {
+                    busy = false;
+                    caseSwitch = 2;
+                }
+                break;
+
         }
     }
 
