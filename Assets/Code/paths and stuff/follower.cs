@@ -15,6 +15,7 @@ public class follower : MonoBehaviour
     public bool magFrontStartInduction = false;
     public bool magFrontStopInduction = false; //SPAWN LOCATION 1 = follower: 67%.
     public bool magFrontEndInduction = false;
+    public bool parkedOnRobotino = false;
 
     //A FIRSTISLAND LAP IS THIS LONG 3.753859.
     //A TOROBOTINO LATP IS THIS LONG 1.174999.
@@ -124,6 +125,11 @@ public class follower : MonoBehaviour
 
             case "codesys1StopInduction":
                codesys1StopInduction = true;
+                break;
+
+
+            case "parkedOnRobotino":
+                parkedOnRobotino = false;
                 break;
         }
 
