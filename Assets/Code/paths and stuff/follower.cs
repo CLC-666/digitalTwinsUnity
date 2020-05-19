@@ -16,13 +16,18 @@ public class follower : MonoBehaviour
     public bool magFrontStopInduction = false; //SPAWN LOCATION 1 = follower: 67%.
     public bool magFrontEndInduction = false;
 
-    //A LAP IS THIS LONG 3.753859.
+    //A FIRSTISLAND LAP IS THIS LONG 3.753859.
+    //A TOROBOTINO LATP IS THIS LONG 1.174999.
     public PathCreator firstIsland;
+    public PathCreator toRobotino;
+    public int pathMode = 0;
     public bool goStop = false;
     float pauseTime = 50;
     int counter = 0;
     public float distanceTravelled;
+    public float distanceTravelledtoRobot;
     public float percentLap;
+    public float toRobotPercentLap;
     public int caseSwitch = 0;
     public int spawnLocation;
     int currentLocation;
@@ -47,19 +52,34 @@ public class follower : MonoBehaviour
 
     void Update()
     {
-        if (percentLap == 100) {percentLap = 0; }
-        if (goStop == true){percentLap += 0.25f;}
+        if (pathMode == 0)
+        {
+            if (percentLap == 100) { percentLap = 0; }
+            if (goStop == true) { percentLap += 0.25f; }
 
-        distanceTravelled = ((percentLap / 100) * -3.753859f);
-        transform.position = firstIsland.path.GetPointAtDistance(distanceTravelled);
-        transform.rotation = firstIsland.path.GetRotationAtDistance(distanceTravelled);
-        transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y + 270, 0f);
+            distanceTravelled = ((percentLap / 100) * -3.753859f);
+            transform.position = firstIsland.path.GetPointAtDistance(distanceTravelled);
+            transform.rotation = firstIsland.path.GetRotationAtDistance(distanceTravelled);
+            transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y + 270, 0f);
+        }
+
+        if (pathMode == 1)
+        {
+            if (goStop == true && toRobotPercentLap < 100) { toRobotPercentLap += 0.25f; }
+
+            distanceTravelledtoRobot = ((toRobotPercentLap / 100) * 1.174999f);
+            transform.position = toRobotino.path.GetPointAtDistance(distanceTravelledtoRobot, EndOfPathInstruction.Stop);
+            transform.rotation = toRobotino.path.GetRotationAtDistance(distanceTravelledtoRobot, EndOfPathInstruction.Stop);
+            transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y + 270, 0f);          
+        }
 
         pauseAtStopper();
 
         location();
 
         mainOrderStructure();
+
+
     }
 
     void OnTriggerEnter(Collider other)
@@ -162,7 +182,6 @@ public class follower : MonoBehaviour
 
     void pauseAtStopper()
     {
-
         if (magFrontStopInduction == true || manualStopInduction == true || camInspectStopInduction == true || codesys1StopInduction == true)
         {
             if (counter < pauseTime) { goStop = false; }
@@ -234,11 +253,28 @@ public class follower : MonoBehaviour
                 if (currentLocation == 3 && goStop == false && order == true)
                 {
                     busy = true;
-
+                    GameObject.Find("camInspectConveyor").GetComponent<camInspectScript>().run = true;
+                    GameObject.Find("camInspectConveyor").GetComponent<camInspectScript>().carrierID = carrierID;
+                    caseSwitch = 31;
                 }
-                    break;
+                break;
 
+            case 31:
+                if (GameObject.Find("camInspectConveyor").GetComponent<camInspectScript>().run == false)
+                {
+                    busy = false;
+                    caseSwitch = 40;
+                }
+                break;
+
+            case 40:
+                if (currentLocation == 4 && goStop == false && order == true)
+                {
+                    pathMode = 1;
+                }
+                break;
         }
+
     }
 
 }
