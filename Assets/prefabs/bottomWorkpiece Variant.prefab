@@ -16,7 +16,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &5070290484901344675
+--- !u!65 &3043256189868721102
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -27,8 +27,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.0011368212, y: 0.00059386366, z: 0.0001471698}
-  m_Center: {x: 0.000003301364, y: 1.4551913e-11, z: 0.00008716101}
+  m_Size: {x: 0.0011302185, y: 0.00059386494, z: 0.0001462197}
+  m_Center: {x: 0.00000161171, y: 5.7742e-10, z: 0.00002179554}
 --- !u!114 &-7015500407601032766
 MonoBehaviour:
   m_ObjectHideFlags: 0

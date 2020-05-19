@@ -21,16 +21,16 @@ public class magFrontLiftScript : MonoBehaviour
     int workpieceCounter = 0;
     int pauseTime = 50;
     int pauseCounter = 0;
-    float topPosWorkpiece = 1.082f;
-    float bottomPosWorkpiece = 1.0505f;
-    float carrierPlateWorkpiece = 1.0362f; //1.0372f;
+    float topPosWorkpiece = 1.0761f;
+    float bottomPosWorkpiece = 1.0372f;
+    float carrierPlateWorkpiece = 1.0262f; //1.0372f;
     float currentPosWorkpiece;
 
-    float workX = -6.1316f;
-    float workY = 1.082f;
+    float workX = -6.1304f; //spawn position
+    float workY = 1.0761f;
     float workZ = 0.5605f;
 
-    float liftX = -6.0778f;
+    float liftX = -6.0778f; //spawn position
     float liftY = 0.959f;
     float liftZ = 0.5593f;
 
@@ -43,7 +43,7 @@ public class magFrontLiftScript : MonoBehaviour
             GameObject clone = Instantiate(workpiecePrefab) as GameObject;
             clone.SetActive(false);
             clone.transform.position = new Vector3(workX, workY, workZ);
-            clone.transform.rotation = Quaternion.Euler(90f, 0, 0);
+            clone.transform.rotation = Quaternion.Euler(270f, 0, 0);
             workpieces[i] = clone;
         }
     }

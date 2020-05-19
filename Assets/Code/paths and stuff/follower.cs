@@ -208,8 +208,13 @@ public class follower : MonoBehaviour
                 if (GameObject.Find("magFrontLift").GetComponent<magFrontLiftScript>().run == false)
                 {
                     busy = false;
-                    caseSwitch = 2;
+                    caseSwitch = 20;
                 }
+                break;
+
+            case 20: //manual
+
+
                 break;
 
         }
