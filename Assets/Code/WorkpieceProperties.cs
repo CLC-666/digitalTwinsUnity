@@ -7,6 +7,7 @@ public class WorkpieceProperties : MonoBehaviour
 
     public int carrierID;
     Vector3 carrierPosition;
+    GameObject carrier;
     
     // Start is called before the first frame update
     void Start()
@@ -18,6 +19,16 @@ public class WorkpieceProperties : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.name.Contains("carrier"))
+        {
+            Debug.Log("collision " + other.gameObject.name);
+            carrier = other.gameObject;
+            gameObject.transform.parent = carrier.transform;
+        }
     }
 
 

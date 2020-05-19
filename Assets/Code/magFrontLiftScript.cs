@@ -23,7 +23,7 @@ public class magFrontLiftScript : MonoBehaviour
     int pauseCounter = 0;
     float topPosWorkpiece = 1.082f;
     float bottomPosWorkpiece = 1.0505f;
-    float carrierPlateWorkpiece = 1.0372f;
+    float carrierPlateWorkpiece = 1.0362f; //1.0372f;
     float currentPosWorkpiece;
 
     float workX = -6.1316f;
@@ -116,6 +116,12 @@ public class magFrontLiftScript : MonoBehaviour
                     workpieces[workpieceCounter - 1].transform.position = new Vector3(workX, currentPosWorkpiece, workZ);
                 }
 
+                if (currentPosWorkpiece <= carrierPlateWorkpiece)
+                {
+                    workpieces[workpieceCounter - 1].transform.position = new Vector3(workX, carrierPlateWorkpiece, workZ);
+                }
+
+          
                 if (GameObject.Find("Main Camera").GetComponent<runInSimMode>().magFrontTop == true)
                 {
                     run = false;
