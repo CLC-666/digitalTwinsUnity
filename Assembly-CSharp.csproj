@@ -70,11 +70,14 @@
     <Compile Include="Assets\Code\MultiThreadServer170520.cs" />
     <Compile Include="Assets\Code\ServerClient.cs" />
     <Compile Include="Assets\Code\SpawnCarriage.cs" />
+    <Compile Include="Assets\Code\WorkpieceProperties.cs" />
     <Compile Include="Assets\Code\magFrontClient.cs" />
     <Compile Include="Assets\Code\magFrontLiftScript.cs" />
     <Compile Include="Assets\Code\manualClient.cs" />
+    <Compile Include="Assets\Code\manualPlaceScript.cs" />
     <Compile Include="Assets\Code\paths and stuff\follower.cs" />
     <Compile Include="Assets\Code\sensorTrigger.cs" />
+    <Compile Include="Assets\Code\setGameObjectInactive.cs" />
     <Compile Include="Assets\Code\testingRemoteNodeRed.cs" />
     <Compile Include="Assets\Code\testsdk.cs" />
     <Compile Include="Assets\PathCreator\Examples\Scripts\GeneratePathExample.cs" />

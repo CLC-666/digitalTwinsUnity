@@ -26,7 +26,7 @@ public class magFrontLiftScript : MonoBehaviour
     float carrierPlateWorkpiece = 1.0262f; //1.0372f;
     float currentPosWorkpiece;
 
-    float workX = -6.1304f; //spawn position
+    float workX = -6.1287684179f; //spawn position
     float workY = 1.0761f;
     float workZ = 0.5605f;
 

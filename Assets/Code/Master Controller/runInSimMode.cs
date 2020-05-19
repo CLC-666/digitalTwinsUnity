@@ -44,7 +44,7 @@ public class runInSimMode : MonoBehaviour
         GameObject clone = Instantiate(carrierPrefab) as GameObject;
         carriers[ID] = clone;
         carriers[ID].GetComponent<follower>().carrierID = ID;
-        carriers[ID].GetComponent<follower>().spawnLocation = 2;
+        carriers[ID].GetComponent<follower>().spawnLocation = 4;
         carrierArray[ID] = ID;
         //carriers[ID].SetActive(false);
         //}

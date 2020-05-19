@@ -23,7 +23,7 @@ public class follower : MonoBehaviour
     int counter = 0;
     public float distanceTravelled;
     public float percentLap;
-    int caseSwitch = 0;
+    public int caseSwitch = 0;
     public int spawnLocation;
     int currentLocation;
 
@@ -213,9 +213,30 @@ public class follower : MonoBehaviour
                 break;
 
             case 20: //manual
-
-
+                if (currentLocation == 2 && goStop == false && order == true)
+                {
+                    busy = true;
+                    GameObject.Find("manualConveyor").GetComponent<manualPlaceScript>().run = true;
+                    GameObject.Find("manualConveyor").GetComponent<manualPlaceScript>().carrierID = carrierID;
+                    caseSwitch = 21;
+                }
                 break;
+
+            case 21:
+                if (GameObject.Find("manualConveyor").GetComponent<manualPlaceScript>().run == false)
+                {
+                    busy = false;
+                    caseSwitch = 30;
+                }
+                break;
+
+            case 30:
+                if (currentLocation == 3 && goStop == false && order == true)
+                {
+                    busy = true;
+
+                }
+                    break;
 
         }
     }
