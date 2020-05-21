@@ -12,26 +12,28 @@ public class follower : MonoBehaviour
     public bool camInspectStopInduction = false; //SPAWN LOCATION 3 = follower: 17%.
     public bool camInspectEndInduction = false;
     public bool codesys1StopInduction = false; //SPAWN LOCATION 4 = follower: 36.5%.
+    public bool codesys1ToRobotino = false;
+    public bool robotinoCarrierStop = false;
+    public bool codesys1FromRobotino = false;
     public bool magFrontStartInduction = false;
     public bool magFrontStopInduction = false; //SPAWN LOCATION 1 = follower: 67%.
     public bool magFrontEndInduction = false;
-    public bool parkedOnRobotino = false;
 
     //A FIRSTISLAND LAP IS THIS LONG 3.753859.
     //A TOROBOTINO LATP IS THIS LONG 1.174999.
     public PathCreator firstIsland;
     public PathCreator toRobotino;
-    public int pathMode = 0;
+    public int pathMode = 1;
     public bool goStop = false;
     float pauseTime = 50;
     int counter = 0;
-    public float distanceTravelled;
+    public float distanceTravelledFirstIsland;
     public float distanceTravelledtoRobot;
-    public float percentLap;
+    public float percentLapFirstIsland;
     public float toRobotPercentLap;
     public int caseSwitch = 0;
     public int spawnLocation;
-    int currentLocation;
+    public int currentLocation;
 
     public int carrierID;
     int productCode;
@@ -45,26 +47,26 @@ public class follower : MonoBehaviour
 
     private void Start()
     {
-        if (spawnLocation == 1) { percentLap = 67; }
-        if (spawnLocation == 2) { percentLap = 92.5f; }
-        if (spawnLocation == 3) { percentLap = 17; }
-        if (spawnLocation == 4) { percentLap = 36.5f; }
+        if (spawnLocation == 1) { percentLapFirstIsland = 67; }
+        if (spawnLocation == 2) { percentLapFirstIsland = 92.5f; }
+        if (spawnLocation == 3) { percentLapFirstIsland = 17; }
+        if (spawnLocation == 4) { percentLapFirstIsland = 36.5f; }
     }
 
     void Update()
     {
-        if (pathMode == 0)
+        if (pathMode == 1)
         {
-            if (percentLap == 100) { percentLap = 0; }
-            if (goStop == true) { percentLap += 0.25f; }
+            if (percentLapFirstIsland == 100) { percentLapFirstIsland = 0; }
+            if (goStop == true) { percentLapFirstIsland += 0.25f; }
 
-            distanceTravelled = ((percentLap / 100) * -3.753859f);
-            transform.position = firstIsland.path.GetPointAtDistance(distanceTravelled);
-            transform.rotation = firstIsland.path.GetRotationAtDistance(distanceTravelled);
+            distanceTravelledFirstIsland = ((percentLapFirstIsland / 100) * -3.753859f);
+            transform.position = firstIsland.path.GetPointAtDistance(distanceTravelledFirstIsland);
+            transform.rotation = firstIsland.path.GetRotationAtDistance(distanceTravelledFirstIsland);
             transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y + 270, 0f);
         }
 
-        if (pathMode == 1)
+        if (pathMode == 2)
         {
             if (goStop == true && toRobotPercentLap < 100) { toRobotPercentLap += 0.25f; }
 
@@ -126,11 +128,18 @@ public class follower : MonoBehaviour
             case "codesys1StopInduction":
                codesys1StopInduction = true;
                 break;
-
-
-            case "parkedOnRobotino":
-                parkedOnRobotino = false;
+            case "codesys1ToRobotino":
+                codesys1ToRobotino = true;
+                Debug.Log(distanceTravelledtoRobot);
                 break;
+            case "codesys1FromRobotino":
+                codesys1FromRobotino = true;
+                break;
+
+            case "robotinoCarrierStop":
+                robotinoCarrierStop = true;
+                break;
+
         }
 
 
@@ -180,6 +189,16 @@ public class follower : MonoBehaviour
             case "codesys1StopInduction":
                 codesys1StopInduction = false;
                 break;
+            case "codesys1ToRobotino":
+                codesys1ToRobotino = false;
+                break;
+            case "codesys1FromRobotino":
+                codesys1FromRobotino = false;
+                break;
+
+            case "robotinoCarrierStop":
+                robotinoCarrierStop = false;
+                break;
         }
 
 
@@ -188,7 +207,7 @@ public class follower : MonoBehaviour
 
     void pauseAtStopper()
     {
-        if (magFrontStopInduction == true || manualStopInduction == true || camInspectStopInduction == true || codesys1StopInduction == true)
+        if (magFrontStopInduction == true || manualStopInduction == true || camInspectStopInduction == true || codesys1StopInduction == true || codesys1ToRobotino == true || codesys1FromRobotino == true || robotinoCarrierStop == true)
         {
             if (counter < pauseTime) { goStop = false; }
             counter++;
@@ -198,7 +217,7 @@ public class follower : MonoBehaviour
             }
         }
 
-        if (magFrontStopInduction == false && manualStopInduction == false && camInspectStopInduction == false && codesys1StopInduction == false)
+        if (magFrontStopInduction == false && manualStopInduction == false && camInspectStopInduction == false && codesys1StopInduction == false && codesys1ToRobotino == false && codesys1FromRobotino == false && robotinoCarrierStop == false)
         {
             counter = 0;
         }
@@ -206,10 +225,12 @@ public class follower : MonoBehaviour
 
     void location()
     {
-        if(percentLap <= 67 && percentLap > 38f ) { currentLocation = 1; }
-        if (percentLap <= 92.5f && percentLap > 69) { currentLocation = 2; }
-        if (percentLap <= 17f || percentLap > 94f) { currentLocation = 3; }
-        if (percentLap <= 36.5f && percentLap > 19) { currentLocation = 4; }
+        if (percentLapFirstIsland <= 67 && percentLapFirstIsland > 38f && pathMode == 1) { currentLocation = 1; }
+        if (percentLapFirstIsland <= 92.5f && percentLapFirstIsland > 69 && pathMode == 1) { currentLocation = 2; }
+        if (percentLapFirstIsland <= 17f || percentLapFirstIsland > 94f && pathMode == 1) { currentLocation = 3; }
+        if (percentLapFirstIsland <= 36.5f && percentLapFirstIsland > 19 && pathMode == 1) { currentLocation = 4; }
+        if (toRobotPercentLap <= 20.25 && percentLapFirstIsland > 35 && pathMode == 2) { currentLocation = 5; }
+        //if (toRobotPercentLap) { currentLocation = 6; }
     }
 
     void mainOrderStructure()
@@ -276,10 +297,33 @@ public class follower : MonoBehaviour
             case 40:
                 if (currentLocation == 4 && goStop == false && order == true)
                 {
-                    pathMode = 1;
+                    pathMode = 2;
+                    caseSwitch = 50;
                 }
                 break;
-        }
+            case 50:
+                if (currentLocation == 5 && goStop == false && order == true)
+                {
+                    busy = true;
+                    if (GameObject.Find("robotino").GetComponent<robotinoScript>().robotinoFirstIsland == true)
+                    {
+                        busy = false;
+                        caseSwitch = 51;
+                    }
+                }
+                break;
+            case 51:
+                //if (currentLocation == 6 && goStop == false && order == true)
+                //{
+                //    busy = true;
+                //}
+                if (GameObject.Find("Main Camera").GetComponent<runInSimMode>().robotinoCarrierStop == true)
+                {
+                    Debug.Log(toRobotPercentLap);
+                }
+                break;
+
+        } 
 
     }
 

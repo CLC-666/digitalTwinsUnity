@@ -216,20 +216,26 @@ MonoBehaviour:
   camInspectStopInduction: 0
   camInspectEndInduction: 0
   codesys1StopInduction: 0
+  codesys1ToRobotino: 0
+  robotinoCarrierStop: 0
+  codesys1FromRobotino: 0
   magFrontStartInduction: 0
   magFrontStopInduction: 0
   magFrontEndInduction: 0
+  parkedOnRobotino: 0
   firstIsland: {fileID: 3114707824259583203, guid: 0528a67acdec5664c800d93985d005a5,
     type: 3}
   toRobotino: {fileID: 1008384357824188420, guid: 6e114ee6745cbb045b7837be3b543bd6,
     type: 3}
-  pathMode: 0
+  pathMode: 1
   goStop: 0
-  distanceTravelled: 0
+  distanceTravelledFirstIsland: 0
   distanceTravelledtoRobot: 0
-  percentLap: 0
+  percentLapFirstIsland: 0
+  toRobotPercentLap: 0
   caseSwitch: 0
   spawnLocation: 0
+  currentLocation: 0
   carrierID: 0
   busy: 0
   order: 1

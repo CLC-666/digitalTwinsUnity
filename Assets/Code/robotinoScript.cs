@@ -7,6 +7,7 @@ public class robotinoScript : MonoBehaviour
     float startX = -4.964f;
     float startY = -0.014f;
     float startZ = 0.072f;
+    public bool robotinoFirstIsland = false;
 
     // Start is called before the first frame update
     void Start()
@@ -17,11 +18,11 @@ public class robotinoScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //if (robotinoFirstIsland == true)
+        //{
+            
+        //}
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-        
-    }
+    
 }

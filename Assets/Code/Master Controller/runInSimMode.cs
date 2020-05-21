@@ -16,6 +16,11 @@ public class runInSimMode : MonoBehaviour
     public bool camInspectStopInduction = false; //SPAWN LOCATION 3 = follower: 17%.
     public bool camInspectEndInduction = false;
     public bool codesys1StopInduction = false; //SPAWN LOCATION 4 = follower: 36.5%.
+    public bool codesys1ToRobotino = false;
+    public bool codesys1FromRobotino = false;
+    public bool robotinoFirstIsland = false;
+    public bool robotinoCarrierStop = false;
+    public bool firstIslandRobotino = false;
     public bool magFrontStartInduction = false;
     public bool magFrontStopInduction = false; //SPAWN LOCATION 1 = follower: 67%.
     public bool magFrontEndInduction = false;

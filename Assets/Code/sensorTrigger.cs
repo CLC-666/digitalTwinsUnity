@@ -70,6 +70,23 @@ public class sensorTrigger : MonoBehaviour
             case "codesys1StopInduction":
                 GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1StopInduction = true;
                 break;
+            case "codesys1ToRobotino":
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1ToRobotino = true;
+                break;
+            case "codesys1FromRobotino":
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1FromRobotino = true;
+                break;
+
+            case "robotinoFirstIsland":
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().robotinoFirstIsland = true;
+                GameObject.Find("robotino").GetComponent<robotinoScript>().robotinoFirstIsland = true;
+                break;
+            case "robotinoCarrierStop":
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().robotinoCarrierStop = true;
+                break;
+            case "firstIslandRobotino":
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().firstIslandRobotino = true;
+                break;
         }
 
 
@@ -124,6 +141,23 @@ public class sensorTrigger : MonoBehaviour
 
             case "codesys1StopInduction":
                 GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1StopInduction = false;
+                break;
+            case "codesys1ToRobotino":
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1ToRobotino = false;
+                break;
+            case "codesys1FromRobotino":
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1FromRobotino = false;
+                break;
+
+            case "robotinoFirstIsland":
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().robotinoFirstIsland = false;
+                GameObject.Find("robotino").GetComponent<robotinoScript>().robotinoFirstIsland = false;
+                break;
+            case "robotinoCarrierStop":
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().robotinoCarrierStop = false;
+                break;
+            case "firstIslandRobotino":
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().firstIslandRobotino = false;
                 break;
         }
 
