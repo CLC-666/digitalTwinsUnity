@@ -222,10 +222,9 @@ MonoBehaviour:
   magFrontStartInduction: 0
   magFrontStopInduction: 0
   magFrontEndInduction: 0
-  parkedOnRobotino: 0
   firstIsland: {fileID: 3114707824259583203, guid: 0528a67acdec5664c800d93985d005a5,
     type: 3}
-  toRobotino: {fileID: 1008384357824188420, guid: 6e114ee6745cbb045b7837be3b543bd6,
+  toRobotino: {fileID: 2538325520111831602, guid: 6e114ee6745cbb045b7837be3b543bd6,
     type: 3}
   pathMode: 1
   goStop: 0

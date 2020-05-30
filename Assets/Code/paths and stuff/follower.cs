@@ -70,10 +70,11 @@ public class follower : MonoBehaviour
         {
             if (goStop == true && toRobotPercentLap < 100) { toRobotPercentLap += 0.25f; }
 
-            distanceTravelledtoRobot = ((toRobotPercentLap / 100) * 1.174999f);
+            distanceTravelledtoRobot = ((toRobotPercentLap / 100) * 1.8f);
             transform.position = toRobotino.path.GetPointAtDistance(distanceTravelledtoRobot, EndOfPathInstruction.Stop);
             transform.rotation = toRobotino.path.GetRotationAtDistance(distanceTravelledtoRobot, EndOfPathInstruction.Stop);
-            transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y + 270, 0f);          
+            transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y + 270, 0f);
+            
         }
 
         pauseAtStopper();
@@ -317,10 +318,10 @@ public class follower : MonoBehaviour
                 //{
                 //    busy = true;
                 //}
-                if (GameObject.Find("Main Camera").GetComponent<runInSimMode>().robotinoCarrierStop == true)
-                {
-                    Debug.Log(toRobotPercentLap);
-                }
+                //if (GameObject.Find("Main Camera").GetComponent<runInSimMode>().robotinoCarrierStop == true)
+                //{
+                //Debug.Log(toRobotPercentLap);
+                //}
                 break;
 
         } 

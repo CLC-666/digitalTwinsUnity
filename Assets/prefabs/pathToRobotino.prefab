@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1008384357824188421
+--- !u!1 &2538325520111831601
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1008384357824188423}
-  - component: {fileID: 1008384357824188420}
+  - component: {fileID: 2538325520111831603}
+  - component: {fileID: 2538325520111831602}
   m_Layer: 0
   m_Name: pathToRobotino
   m_TagString: Untagged
@@ -17,13 +17,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1008384357824188423
+--- !u!4 &2538325520111831603
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1008384357824188421}
+  m_GameObject: {fileID: 2538325520111831601}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.614, y: 0.984, z: 0.093}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,13 +31,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1008384357824188420
+--- !u!114 &2538325520111831602
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1008384357824188421}
+  m_GameObject: {fileID: 2538325520111831601}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e5ac92bc18f545cc84cd886ece82b4d, type: 3}
@@ -47,21 +47,27 @@ MonoBehaviour:
     _bezierPath:
       points:
       - {x: 0.00029611588, y: 0.000008761883, z: -0.19080606}
-      - {x: -0.009490967, y: -0.005484402, z: -0.06376416}
-      - {x: 0.05458784, y: -0.0006015897, z: -0.08506543}
+      - {x: 0.0010886192, y: 0, z: -0.08506543}
+      - {x: 0.05458784, y: 0, z: -0.08506543}
       - {x: 0.15830278, y: 0, z: -0.08540807}
-      - {x: 0.26201773, y: 0.0006015897, z: -0.08575071}
-      - {x: 0.32198048, y: -0.00036621094, z: -0.086754605}
+      - {x: 0.26201773, y: 0, z: -0.08575071}
+      - {x: 0.32198048, y: 0, z: -0.08535915}
       - {x: 0.41638184, y: 0, z: -0.085359156}
-      - {x: 0.5107832, y: 0.00036621094, z: -0.08396371}
-      - {x: 0.47142553, y: 0.00011330843, z: -0.088200875}
-      - {x: 0.64785147, y: 0, z: -0.086904}
-      - {x: 0.8242774, y: -0.00011330843, z: -0.08560712}
-      - {x: 0.83667517, y: 0.0022060275, z: 0.07609408}
-      - {x: 0.6432781, y: 0, z: 0.075720064}
-      - {x: 0.44988108, y: -0.0022060275, z: 0.075346045}
-      - {x: 0.5903945, y: 0.0023280978, z: 0.07379001}
-      - {x: 0.48865938, y: 0, z: 0.07390682}
+      - {x: 0.5107832, y: 0, z: -0.08535916}
+      - {x: 0.47142553, y: 0, z: -0.08381433}
+      - {x: 0.64785147, y: 0, z: -0.08535916}
+      - {x: 0.8242774, y: 0, z: -0.086904}
+      - {x: 0.8012186, y: 0, z: 0.07003253}
+      - {x: 0.6478515, y: -0.0004184842, z: 0.07003253}
+      - {x: 0.49448442, y: 0, z: 0.07003253}
+      - {x: 0.5381856, y: 0, z: 0.07003253}
+      - {x: 0.41502905, y: 0, z: 0.07003253}
+      - {x: 0.2918725, y: 0, z: 0.07003253}
+      - {x: 0.23514032, y: -0.00016915798, z: 0.07005262}
+      - {x: 0.11811447, y: -0.00016915798, z: 0.07005262}
+      - {x: 0.001088619, y: -0.00016915798, z: 0.07005262}
+      - {x: -0.0030293465, y: 0, z: 0.08104848}
+      - {x: 0.0010886192, y: -0.0021885037, z: 0.20475543}
       isClosed: 0
       space: 0
       controlMode: 1
@@ -77,19 +83,21 @@ MonoBehaviour:
       - 0
       - 0
       - 0
+      - 0
+      - 0
       globalNormalsAngle: 0
       flipNormals: 0
-    vertexPathUpToDate: 0
+    vertexPathUpToDate: 1
     vertexPathMaxAngleError: 0
     vertexPathMinVertexSpacing: 0
-    showTransformTool: 1
+    showTransformTool: 0
     showPathBounds: 0
     showPerSegmentBounds: 0
     displayAnchorPoints: 1
     displayControlPoints: 1
     bezierHandleScale: 1
     globalDisplaySettingsFoldout: 0
-    keepConstantHandleSize: 0
+    keepConstantHandleSize: 1
     showNormalsInVertexMode: 0
     showBezierPathInVertexMode: 0
     showDisplayOptions: 1
