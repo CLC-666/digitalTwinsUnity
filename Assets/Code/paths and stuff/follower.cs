@@ -146,8 +146,8 @@ public class follower : MonoBehaviour
         if (other.gameObject.name.Contains("robotinoC"))
         {
             Debug.Log("collision " + other.gameObject.name);
-            carrier = other.gameObject;
-            gameObject.transform.parent = carrier.transform;
+            //carrier = other.gameObject;
+            gameObject.transform.parent = GameObject.Find("robotino").transform.transform;     //carrier.transform;
             pathMode = 3;
         }
 

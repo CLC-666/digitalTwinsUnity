@@ -87,6 +87,7 @@ public class sensorTrigger : MonoBehaviour
             case "firstIslandRobotino":
                 GameObject.Find("Main Camera").GetComponent<runInSimMode>().firstIslandRobotino = true;
                 break;
+           
         }
 
 
