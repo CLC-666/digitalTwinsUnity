@@ -230,8 +230,9 @@ public class follower : MonoBehaviour
         if (percentLapFirstIsland <= 92.5f && percentLapFirstIsland > 69 && pathMode == 1) { currentLocation = 2; }
         if (percentLapFirstIsland <= 17f || percentLapFirstIsland > 94f && pathMode == 1) { currentLocation = 3; }
         if (percentLapFirstIsland <= 36.5f && percentLapFirstIsland > 19 && pathMode == 1) { currentLocation = 4; }
-        if (toRobotPercentLap <= 20.25 && percentLapFirstIsland > 35 && pathMode == 2) { currentLocation = 5; }
-        //if (toRobotPercentLap) { currentLocation = 6; }
+        if (toRobotPercentLap <= 13.25f && percentLapFirstIsland > 35 && pathMode == 2) { currentLocation = 5; }
+        if (toRobotPercentLap <= 60.75f && toRobotPercentLap > 13.25f && pathMode == 2) { currentLocation = 6; }
+        if (toRobotPercentLap <= 84.25f && toRobotPercentLap > 61f && pathMode == 2) { currentLocation = 7; }
     }
 
     void mainOrderStructure()
@@ -309,19 +310,15 @@ public class follower : MonoBehaviour
                     if (GameObject.Find("robotino").GetComponent<robotinoScript>().robotinoFirstIsland == true)
                     {
                         busy = false;
-                        caseSwitch = 51;
+                        caseSwitch = 60;
                     }
                 }
                 break;
-            case 51:
-                //if (currentLocation == 6 && goStop == false && order == true)
-                //{
-                //    busy = true;
-                //}
-                //if (GameObject.Find("Main Camera").GetComponent<runInSimMode>().robotinoCarrierStop == true)
-                //{
-                //Debug.Log(toRobotPercentLap);
-                //}
+            case 60:
+                if (currentLocation == 6 && goStop == false && order == true)
+                {
+                    busy = true;
+                }
                 break;
 
         } 
