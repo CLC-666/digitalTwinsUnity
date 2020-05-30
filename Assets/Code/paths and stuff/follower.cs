@@ -34,6 +34,7 @@ public class follower : MonoBehaviour
     public int caseSwitch = 0;
     public int spawnLocation;
     public int currentLocation;
+    GameObject carrier;
 
     public int carrierID;
     int productCode;
@@ -141,6 +142,13 @@ public class follower : MonoBehaviour
                 robotinoCarrierStop = true;
                 break;
 
+        }
+        if (other.gameObject.name.Contains("robotinoC"))
+        {
+            Debug.Log("collision " + other.gameObject.name);
+            carrier = other.gameObject;
+            gameObject.transform.parent = carrier.transform;
+            pathMode = 3;
         }
 
 

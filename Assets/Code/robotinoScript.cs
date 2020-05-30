@@ -18,10 +18,10 @@ public class robotinoScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (robotinoFirstIsland == true)
-        //{
-            
-        //}
+        if (GameObject.Find("Main Camera").GetComponent<runInSimMode>().robotinoCarrierStop == true) {
+            //move
+        }
+      
     }
 
     
