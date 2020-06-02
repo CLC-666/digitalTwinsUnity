@@ -37,6 +37,8 @@ public class runInSimMode : MonoBehaviour
     public bool heatingStopInduction2 = false;
     public bool heatingEndInduction2 = false;
     public bool codesys2StopInduction2 = false;
+    public bool codesys2ToRobotino2 = false;
+    public bool codesys2FromRobotino2 = false;
 
     public GameObject carrierPrefab;
     public GameObject[] carriers;
