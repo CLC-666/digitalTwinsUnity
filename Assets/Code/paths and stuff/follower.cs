@@ -70,55 +70,72 @@ public class follower : MonoBehaviour
         if (spawnLocation == 2) { percentLapFirstIsland = 92.5f; }
         if (spawnLocation == 3) { percentLapFirstIsland = 17; }
         if (spawnLocation == 4) { percentLapFirstIsland = 36.5f; }
+        if (spawnLocation == 5) { percentLapSecondIsland = 67.15f; pathMode = 4; }
+        if (spawnLocation == 6) { percentLapSecondIsland = 92.15f; pathMode = 4; }
+        if (spawnLocation == 7) { percentLapSecondIsland = 17.25f; pathMode = 4; }
+        if (spawnLocation == 8) { percentLapSecondIsland = 36.75f; pathMode = 4; }
+
     }
 
     void Update()
     {
-        if (pathMode == 1)
-        {
-            if (percentLapFirstIsland == 100) { percentLapFirstIsland = 0; }
-            if (goStop == true) { percentLapFirstIsland += 0.25f; }
+        switch (pathMode) {
+            case 1:
+                if (percentLapFirstIsland == 100) { percentLapFirstIsland = 0; }
+                if (goStop == true) { percentLapFirstIsland += 0.25f; }
 
-            distanceTravelledFirstIsland = ((percentLapFirstIsland / 100) * -3.753859f);
-            transform.position = firstIsland.path.GetPointAtDistance(distanceTravelledFirstIsland);
-            transform.rotation = firstIsland.path.GetRotationAtDistance(distanceTravelledFirstIsland);
-            transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y + 270, 0f);
-        }
+                distanceTravelledFirstIsland = ((percentLapFirstIsland / 100) * -3.753859f);
+                transform.position = firstIsland.path.GetPointAtDistance(distanceTravelledFirstIsland);
+                transform.rotation = firstIsland.path.GetRotationAtDistance(distanceTravelledFirstIsland);
+                transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y + 270, 0f);
+                break;
 
-        if (pathMode == 2)
-        {
-            if (goStop == true && toRobotPercentLap < 100) { toRobotPercentLap += 0.25f; }
-
-            distanceTravelledFirstRobotinoLap = ((toRobotPercentLap / 100) * 1.8f);
-            transform.position = firstRobotino.path.GetPointAtDistance(distanceTravelledFirstRobotinoLap, EndOfPathInstruction.Stop);
-            transform.rotation = firstRobotino.path.GetRotationAtDistance(distanceTravelledFirstRobotinoLap, EndOfPathInstruction.Stop);
-            transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y + 90, 0f);
-            
-        }
-
-        if (pathMode == 3)
-        {
-            if (initSecondIslandRobotinoLap == false) { percentSecondIslandRobotinoLap = toRobotPercentLap; initSecondIslandRobotinoLap = true; }
-            if (goStop == true && percentSecondIslandRobotinoLap < 100) { percentSecondIslandRobotinoLap += 0.25f; }
-
-            distanceTravelledSecondRobotinoLap = ((percentSecondIslandRobotinoLap / 100) * 1.8f);
-            transform.position = secondRobotino.path.GetPointAtDistance(distanceTravelledSecondRobotinoLap, EndOfPathInstruction.Stop);
-            transform.rotation = secondRobotino.path.GetRotationAtDistance(distanceTravelledSecondRobotinoLap, EndOfPathInstruction.Stop);
-            transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y + 270, 0f);
-
-        }
+            case 2:
         
-        
-        if (pathMode == 4)
-        {
-            //if(initSecondIslandLap == false) { percentLapSecondIsland }
-            if (percentLapSecondIsland == 100) { percentLapSecondIsland = 0; }
-            if (goStop == true) { percentLapSecondIsland += 0.25f; }
+                if (goStop == true && toRobotPercentLap < 100) { toRobotPercentLap += 0.25f; }
 
-            distanceTravelledSecondIsland = ((percentLapSecondIsland / 100) * -3.753859f);
-            transform.position = secondIsland.path.GetPointAtDistance(distanceTravelledSecondIsland);
-            transform.rotation = secondIsland.path.GetRotationAtDistance(distanceTravelledSecondIsland);
-            transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y + 270, 0f);
+                distanceTravelledFirstRobotinoLap = ((toRobotPercentLap / 100) * 1.8f);
+                transform.position = firstRobotino.path.GetPointAtDistance(distanceTravelledFirstRobotinoLap, EndOfPathInstruction.Stop);
+                transform.rotation = firstRobotino.path.GetRotationAtDistance(distanceTravelledFirstRobotinoLap, EndOfPathInstruction.Stop);
+                transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y + 90, 0f);
+                break;
+
+
+            case 3:
+        
+                if (initSecondIslandRobotinoLap == false) { percentSecondIslandRobotinoLap = toRobotPercentLap; initSecondIslandRobotinoLap = true; }
+                if (goStop == true && percentSecondIslandRobotinoLap < 100) { percentSecondIslandRobotinoLap += 0.25f; }
+
+                distanceTravelledSecondRobotinoLap = ((percentSecondIslandRobotinoLap / 100) * 1.8f);
+                transform.position = secondRobotino.path.GetPointAtDistance(distanceTravelledSecondRobotinoLap, EndOfPathInstruction.Stop);
+                transform.rotation = secondRobotino.path.GetRotationAtDistance(distanceTravelledSecondRobotinoLap, EndOfPathInstruction.Stop);
+                transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y + 270, 0f);
+                break;
+
+
+            case 4:
+                if (percentLapSecondIsland == 100.15f) { percentLapSecondIsland = 0; }
+                Debug.Log(percentLapSecondIsland);
+                initSecondIslandRobotinoLap = false;
+                if (codesys2StopInduction2 == true && GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys2ToRobotino2 == false) { pathMode = 5; }
+                if (percentLapSecondIsland == 100) { percentLapSecondIsland = 0; }
+                if (goStop == true) { percentLapSecondIsland += 0.25f; }
+
+                distanceTravelledSecondIsland = ((percentLapSecondIsland / 100) * -3.753859f);
+                transform.position = secondIsland.path.GetPointAtDistance(distanceTravelledSecondIsland);
+                transform.rotation = secondIsland.path.GetRotationAtDistance(distanceTravelledSecondIsland);
+                transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y + 270, 0f);
+                break;
+
+            case 5:
+                if (initSecondIslandRobotinoLap == false) { percentSecondIslandRobotinoLap = 0; initSecondIslandRobotinoLap = true; }
+                if (goStop == true && percentSecondIslandRobotinoLap < 100) { percentSecondIslandRobotinoLap += 0.25f; }
+
+                distanceTravelledSecondRobotinoLap = ((percentSecondIslandRobotinoLap / 100) * 1.8f);
+                transform.position = secondRobotino.path.GetPointAtDistance(distanceTravelledSecondRobotinoLap, EndOfPathInstruction.Stop);
+                transform.rotation = secondRobotino.path.GetRotationAtDistance(distanceTravelledSecondRobotinoLap, EndOfPathInstruction.Stop);
+                transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y + 90, 0f);
+                break;
         }
 
         pauseAtStopper();
