@@ -91,6 +91,15 @@ public class sensorTrigger : MonoBehaviour
                 GameObject.Find("Main Camera").GetComponent<runInSimMode>().secondIslandRobotino = true;
                 break;
 
+            case "magBackStartInduction2":
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().magBackStartInduction2 = true;
+                break;
+            case "magBackStopInduction2":
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().magBackStopInduction2 = true;
+                break;
+            case "magBackEndInduction2":
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().magBackEndInduction2 = true;
+                break;
         }
 
 
@@ -165,6 +174,16 @@ public class sensorTrigger : MonoBehaviour
                 break;
             case "secondIslandRobotino":
                 GameObject.Find("Main Camera").GetComponent<runInSimMode>().secondIslandRobotino = false;
+                break;
+
+            case "magBackStartInduction2":
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().magBackStartInduction2 = false;
+                break;
+            case "magBackStopInduction2":
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().magBackStopInduction2 = false;
+                break;
+            case "magBackEndInduction2":
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().magBackEndInduction2 = false;
                 break;
         }
 

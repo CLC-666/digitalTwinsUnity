@@ -224,7 +224,7 @@ MonoBehaviour:
   magFrontEndInduction: 0
   firstIsland: {fileID: 3114707824259583203, guid: 0528a67acdec5664c800d93985d005a5,
     type: 3}
-  secondIsland: {fileID: 2375714991438587793, guid: 1ea3cd36e9a28e84f8039bbeee145d6f,
+  secondIsland: {fileID: 4776927772889543540, guid: 1ea3cd36e9a28e84f8039bbeee145d6f,
     type: 3}
   firstRobotino: {fileID: 2538325520111831602, guid: 6e114ee6745cbb045b7837be3b543bd6,
     type: 3}
@@ -239,10 +239,12 @@ MonoBehaviour:
   percentLapFirstIsland: 0
   percentLapSecondIsland: 0
   toRobotPercentLap: 0
-  secondIslandRobotinoLap: 0
+  percentSecondIslandRobotinoLap: 0
   caseSwitch: 0
   spawnLocation: 0
   currentLocation: 0
+  initSecondIslandRobotinoLap: 0
+  initSecondIslandLap: 0
   carrierID: 0
   busy: 0
   order: 1

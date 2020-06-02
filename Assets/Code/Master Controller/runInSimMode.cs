@@ -27,6 +27,9 @@ public class runInSimMode : MonoBehaviour
     public bool magFrontEndInduction = false;
     public bool magFrontTop = false;
     public bool magFrontBottom = false;
+    public bool magBackStartInduction2 = false;
+    public bool magBackStopInduction2 = false;
+    public bool magBackEndInduction2 = false;
 
     public GameObject carrierPrefab;
     public GameObject[] carriers;
