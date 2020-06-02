@@ -22,19 +22,26 @@ public class follower : MonoBehaviour
     //A FIRSTISLAND LAP IS THIS LONG 3.753859.
     //A TOROBOTINO LATP IS THIS LONG 1.174999.
     public PathCreator firstIsland;
-    public PathCreator toRobotino;
+    public PathCreator secondIsland;
+    public PathCreator firstRobotino;
+    public PathCreator secondRobotino;
     public int pathMode = 1;
     public bool goStop = false;
     float pauseTime = 50;
     int counter = 0;
     public float distanceTravelledFirstIsland;
-    public float distanceTravelledtoRobot;
+    public float distanceTravelledSecondIsland;
+    public float distanceTravelledFirstRobotinoLap;
+    public float distanceTravelledSecondRobotinoLap;
     public float percentLapFirstIsland;
+    public float percentLapSecondIsland;
     public float toRobotPercentLap;
+    public float percentSecondIslandRobotinoLap;
     public int caseSwitch = 0;
     public int spawnLocation;
     public int currentLocation;
-    GameObject carrier;
+    public bool initSecondIslandRobotinoLap = false;
+    public bool initSecondIslandLap = false;
 
     public int carrierID;
     int productCode;
@@ -71,11 +78,36 @@ public class follower : MonoBehaviour
         {
             if (goStop == true && toRobotPercentLap < 100) { toRobotPercentLap += 0.25f; }
 
-            distanceTravelledtoRobot = ((toRobotPercentLap / 100) * 1.8f);
-            transform.position = toRobotino.path.GetPointAtDistance(distanceTravelledtoRobot, EndOfPathInstruction.Stop);
-            transform.rotation = toRobotino.path.GetRotationAtDistance(distanceTravelledtoRobot, EndOfPathInstruction.Stop);
-            transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y + 270, 0f);
+            distanceTravelledFirstRobotinoLap = ((toRobotPercentLap / 100) * 1.8f);
+            transform.position = firstRobotino.path.GetPointAtDistance(distanceTravelledFirstRobotinoLap, EndOfPathInstruction.Stop);
+            transform.rotation = firstRobotino.path.GetRotationAtDistance(distanceTravelledFirstRobotinoLap, EndOfPathInstruction.Stop);
+            transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y + 90, 0f);
             
+        }
+
+        if (pathMode == 3)
+        {
+            if (initSecondIslandRobotinoLap == false) { percentSecondIslandRobotinoLap = toRobotPercentLap; initSecondIslandRobotinoLap = true; }
+            if (goStop == true && percentSecondIslandRobotinoLap < 100) { percentSecondIslandRobotinoLap += 0.25f; }
+
+            distanceTravelledSecondRobotinoLap = ((percentSecondIslandRobotinoLap / 100) * 1.8f);
+            transform.position = secondRobotino.path.GetPointAtDistance(distanceTravelledSecondRobotinoLap, EndOfPathInstruction.Stop);
+            transform.rotation = secondRobotino.path.GetRotationAtDistance(distanceTravelledSecondRobotinoLap, EndOfPathInstruction.Stop);
+            transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y + 270, 0f);
+
+        }
+        
+        
+        if (pathMode == 4)
+        {
+            //if(initSecondIslandLap == false) { percentLapSecondIsland }
+            if (percentLapSecondIsland == 100) { percentLapSecondIsland = 0; }
+            if (goStop == true) { percentLapSecondIsland += 0.25f; }
+
+            distanceTravelledSecondIsland = ((percentLapSecondIsland / 100) * -3.753859f);
+            transform.position = secondIsland.path.GetPointAtDistance(distanceTravelledSecondIsland);
+            transform.rotation = secondIsland.path.GetRotationAtDistance(distanceTravelledSecondIsland);
+            transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y + 270, 0f);
         }
 
         pauseAtStopper();
@@ -132,7 +164,7 @@ public class follower : MonoBehaviour
                 break;
             case "codesys1ToRobotino":
                 codesys1ToRobotino = true;
-                Debug.Log(distanceTravelledtoRobot);
+                Debug.Log(distanceTravelledFirstRobotinoLap);
                 break;
             case "codesys1FromRobotino":
                 codesys1FromRobotino = true;
@@ -148,7 +180,7 @@ public class follower : MonoBehaviour
             Debug.Log("collision " + other.gameObject.name);
             //carrier = other.gameObject;
             gameObject.transform.parent = GameObject.Find("robotino").transform.transform;     //carrier.transform;
-            pathMode = 3;
+            pathMode = 10;
         }
 
 
@@ -241,6 +273,8 @@ public class follower : MonoBehaviour
         if (toRobotPercentLap <= 13.25f && percentLapFirstIsland > 35 && pathMode == 2) { currentLocation = 5; }
         if (toRobotPercentLap <= 60.75f && toRobotPercentLap > 13.25f && pathMode == 2) { currentLocation = 6; }
         if (toRobotPercentLap <= 84.25f && toRobotPercentLap > 61f && pathMode == 2) { currentLocation = 7; }
+        if (pathMode == 3) { currentLocation = 8; }
+        if (percentSecondIslandRobotinoLap == 100) { currentLocation = 9; }
     }
 
     void mainOrderStructure()
@@ -305,30 +339,62 @@ public class follower : MonoBehaviour
                 break;
 
             case 40:
-                if (currentLocation == 4 && goStop == false && order == true)
+                if (currentLocation == 4 && goStop == true && order == true)
                 {
-                    pathMode = 2;
-                    caseSwitch = 50;
+                    if (percentLapFirstIsland >= 37) { caseSwitch = 41; }
+                    
                 }
                 break;
+
+            case 41:
+                pathMode = 2;
+                caseSwitch = 50;
+                break;
+
             case 50:
                 if (currentLocation == 5 && goStop == false && order == true)
                 {
                     busy = true;
-                    if (GameObject.Find("robotino").GetComponent<robotinoScript>().robotinoFirstIsland == true)
+                    if (GameObject.Find("Main Camera").GetComponent<runInSimMode>().robotinoIslandSensor == true)
                     {
                         busy = false;
                         caseSwitch = 60;
                     }
                 }
                 break;
+            
             case 60:
-                if (currentLocation == 6 && goStop == false && order == true)
+                if (currentLocation == 6 && order == true)
                 {
                     busy = true;
+                    caseSwitch = 61;
                 }
                 break;
 
+            case 61:
+                if (GameObject.Find("Main Camera").GetComponent<runInSimMode>().robotinoIslandSensor == false)
+                {
+                    caseSwitch = 62;
+                }
+                break;
+            
+            case 62:
+                if (GameObject.Find("Main Camera").GetComponent<runInSimMode>().robotinoIslandSensor == true)
+                {
+                    busy = false;
+                    caseSwitch = 70;
+                }
+                break;
+
+            case 70:
+                pathMode = 3;
+                caseSwitch = 80;
+                //if (currentLocation == 9 && order == true)
+                //{
+                //    pathMode = 4;
+                //    percentLapSecondIsland = 48.4f;
+                //}
+                break;
         } 
 
     }

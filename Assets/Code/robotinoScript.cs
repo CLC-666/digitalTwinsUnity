@@ -8,7 +8,7 @@ public class robotinoScript : MonoBehaviour
     float startX = -4.964f;
     float startY = -0.014f;
     float startZ = 0.072f;
-    public bool robotinoFirstIsland = false;
+    public bool robotinoIslandSensor = false;
     public PathCreator robotinoPath;
     public float distanceTravelled;
     public float percentLap = 0;
