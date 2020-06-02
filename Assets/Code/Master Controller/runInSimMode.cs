@@ -30,6 +30,13 @@ public class runInSimMode : MonoBehaviour
     public bool magBackStartInduction2 = false;
     public bool magBackStopInduction2 = false;
     public bool magBackEndInduction2 = false;
+    public bool pressStartInduction2 = false;
+    public bool pressStopInduction2 = false;
+    public bool pressEndInduction2 = false;
+    public bool heatingStartInduction2 = false;
+    public bool heatingStopInduction2 = false;
+    public bool heatingEndInduction2 = false;
+    public bool codesys2StopInduction2 = false;
 
     public GameObject carrierPrefab;
     public GameObject[] carriers;

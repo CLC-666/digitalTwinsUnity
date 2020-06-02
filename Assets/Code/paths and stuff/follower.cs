@@ -21,6 +21,13 @@ public class follower : MonoBehaviour
     public bool magBackStartInduction2 = false;
     public bool magBackStopInduction2 = false;
     public bool magBackEndInduction2 = false;
+    public bool pressStartInduction2 = false;
+    public bool pressStopInduction2 = false;
+    public bool pressEndInduction2 = false;
+    public bool heatingStartInduction2 = false;
+    public bool heatingStopInduction2 = false;
+    public bool heatingEndInduction2 = false;
+    public bool codesys2StopInduction2 = false;
     //A FIRSTISLAND LAP IS THIS LONG 3.753859.
     //A TOROBOTINO LATP IS THIS LONG 1.174999.
     public PathCreator firstIsland;
@@ -186,6 +193,30 @@ public class follower : MonoBehaviour
                 magBackEndInduction2 = true;
                 break;
 
+            case "pressStartInduction2":
+                pressStartInduction2 = true;
+                break;
+            case "pressStopInduction2":
+                pressStopInduction2 = true;
+                break;
+            case "pressEndInduction2":
+                pressEndInduction2 = true;
+                break;
+
+            case "heatingStartInduction2":
+                heatingStartInduction2 = true;
+                break;
+            case "heatingStopInduction2":
+                heatingStopInduction2 = true;
+                break;
+            case "heatingEndInduction2":
+                heatingEndInduction2 = true;
+                break;
+
+            case "codesys2StopInduction2":
+                codesys2StopInduction2 = true;
+                break;
+
         }
         if (other.gameObject.name.Contains("robotinoC"))
         {
@@ -262,6 +293,30 @@ public class follower : MonoBehaviour
             case "magBackEndInduction2":
                 magBackEndInduction2 = false;
                 break;
+
+            case "pressStartInduction2":
+                pressStartInduction2 = false;
+                break;
+            case "pressStopInduction2":
+                pressStopInduction2 = false;
+                break;
+            case "pressEndInduction2":
+                pressEndInduction2 = false;
+                break;
+
+            case "heatingStartInduction2":
+                heatingStartInduction2 = false;
+                break;
+            case "heatingStopInduction2":
+                heatingStopInduction2 = false;
+                break;
+            case "heatingEndInduction2":
+                heatingEndInduction2 = false;
+                break;
+
+            case "codesys2StopInduction2":
+                codesys2StopInduction2 = false;
+                break;
         }
 
 
@@ -270,7 +325,7 @@ public class follower : MonoBehaviour
 
     void pauseAtStopper()
     {
-        if (magFrontStopInduction == true || manualStopInduction == true || camInspectStopInduction == true || codesys1StopInduction == true || codesys1ToRobotino == true || codesys1FromRobotino == true || robotinoCarrierStop == true || magBackStopInduction2 == true)
+        if (magFrontStopInduction == true || manualStopInduction == true || camInspectStopInduction == true || codesys1StopInduction == true || codesys1ToRobotino == true || codesys1FromRobotino == true || robotinoCarrierStop == true || magBackStopInduction2 == true || pressStopInduction2 == true || heatingStopInduction2 == true || codesys2StopInduction2 == true)
         {
             if (counter < pauseTime) { goStop = false; }
             counter++;
@@ -280,7 +335,7 @@ public class follower : MonoBehaviour
             }
         }
 
-        if (magFrontStopInduction == false && manualStopInduction == false && camInspectStopInduction == false && codesys1StopInduction == false && codesys1ToRobotino == false && codesys1FromRobotino == false && robotinoCarrierStop == false && magBackStopInduction2 == false)
+        if (magFrontStopInduction == false && manualStopInduction == false && camInspectStopInduction == false && codesys1StopInduction == false && codesys1ToRobotino == false && codesys1FromRobotino == false && robotinoCarrierStop == false && magBackStopInduction2 == false && pressStopInduction2 == false && heatingStopInduction2 == false && codesys2StopInduction2 == false)
         {
             counter = 0;
         }

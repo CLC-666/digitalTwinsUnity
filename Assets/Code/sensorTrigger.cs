@@ -100,6 +100,30 @@ public class sensorTrigger : MonoBehaviour
             case "magBackEndInduction2":
                 GameObject.Find("Main Camera").GetComponent<runInSimMode>().magBackEndInduction2 = true;
                 break;
+
+            case "pressStartInduction2":
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().pressStartInduction2 = true;
+                break;
+            case "pressStopInduction2":
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().pressStopInduction2 = true;
+                break;
+            case "pressEndInduction2":
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().pressEndInduction2 = true;
+                break;
+
+            case "heatingStartInduction2":
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().heatingStartInduction2 = true;
+                break;
+            case "heatingStopInduction2":
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().heatingStopInduction2 = true;
+                break;
+            case "heatingEndInduction2":
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().heatingEndInduction2 = true;
+                break;
+
+            case "codesys2StopInduction2":
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys2StopInduction2 = true;
+                break;
         }
 
 
@@ -184,6 +208,30 @@ public class sensorTrigger : MonoBehaviour
                 break;
             case "magBackEndInduction2":
                 GameObject.Find("Main Camera").GetComponent<runInSimMode>().magBackEndInduction2 = false;
+                break;
+
+            case "pressStartInduction2":
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().pressStartInduction2 = false;
+                break;
+            case "pressStopInduction2":
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().pressStopInduction2 = false;
+                break;
+            case "pressEndInduction2":
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().pressEndInduction2 = false;
+                break;
+
+            case "heatingStartInduction2":
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().heatingStartInduction2 = false;
+                break;
+            case "heatingStopInduction2":
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().heatingStopInduction2 = false;
+                break;
+            case "heatingEndInduction2":
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().heatingEndInduction2 = false;
+                break;
+
+            case "codesys2StopInduction2":
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys2StopInduction2 = false;
                 break;
         }
 
