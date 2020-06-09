@@ -382,11 +382,11 @@ public class follower : MonoBehaviour
         if (toRobotPercentLap <= 60.75f && toRobotPercentLap > 13.25f && pathMode == 2) { currentLocation = 6; }
         if (toRobotPercentLap <= 84.25f && toRobotPercentLap > 61f && pathMode == 2) { currentLocation = 7; }
         if (pathMode == 3) { currentLocation = 8; }
-        if (percentSecondIslandRobotinoLap == 100) { currentLocation = 9; }
-        if (percentLapSecondIsland <= 67 && percentLapSecondIsland > 38f && pathMode == 5) { currentLocation = 10; }
-        if (percentLapSecondIsland <= 92.5f && percentLapSecondIsland > 69 && pathMode == 5) { currentLocation = 11; }
-        if (percentLapSecondIsland <= 17f || percentLapSecondIsland > 94f) { if (pathMode == 5) { currentLocation = 12; } }
-        if (percentLapSecondIsland <= 36.5f && percentLapSecondIsland > 19 && pathMode == 5) { currentLocation = 13; }
+        if (percentSecondIslandRobotinoLap == 100 && pathMode == 3) { currentLocation = 9; }
+        if (percentLapSecondIsland <= 67 && percentLapSecondIsland > 38f && pathMode == 4) { currentLocation = 10; }
+        if (percentLapSecondIsland <= 92.5f && percentLapSecondIsland > 69 && pathMode == 4) { currentLocation = 11; }
+        if (percentLapSecondIsland <= 17f || percentLapSecondIsland > 94f) { if (pathMode == 4) { currentLocation = 12; } }
+        if (percentLapSecondIsland <= 36.5f && percentLapSecondIsland > 19 && pathMode == 4) { currentLocation = 13; }
     }
 
     void mainOrderStructure()
