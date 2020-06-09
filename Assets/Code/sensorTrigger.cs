@@ -130,6 +130,13 @@ public class sensorTrigger : MonoBehaviour
             case "codesys2FromRobotino2":
                 GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys2FromRobotino2 = true;
                 break;
+
+            case "magBackTop":
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().magBackTop = true;
+                break;
+            case "magBackBottom":
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().magBackBottom = true;
+                break;
         }
 
 
@@ -244,6 +251,13 @@ public class sensorTrigger : MonoBehaviour
                 break;
             case "codesys2FromRobotino2":
                 GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys2FromRobotino2 = false;
+                break;
+
+            case "magBackTop":
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().magBackTop = false;
+                break;
+            case "magBackBottom":
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().magBackBottom = false;
                 break;
         }
 

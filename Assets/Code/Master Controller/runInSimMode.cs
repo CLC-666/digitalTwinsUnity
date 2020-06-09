@@ -30,6 +30,8 @@ public class runInSimMode : MonoBehaviour
     public bool magBackStartInduction2 = false;
     public bool magBackStopInduction2 = false;
     public bool magBackEndInduction2 = false;
+    public bool magBackTop = false;
+    public bool magBackBottom = false;
     public bool pressStartInduction2 = false;
     public bool pressStopInduction2 = false;
     public bool pressEndInduction2 = false;
@@ -62,7 +64,9 @@ public class runInSimMode : MonoBehaviour
         GameObject clone = Instantiate(carrierPrefab) as GameObject;
         carriers[ID] = clone;
         carriers[ID].GetComponent<follower>().carrierID = ID;
-        carriers[ID].GetComponent<follower>().spawnLocation = 4;
+        carriers[ID].GetComponent<follower>().spawnLocation = 5;
+        carriers[ID].GetComponent<follower>().caseSwitch = 80;
+        carriers[ID].GetComponent<follower>().currentLocation = 10;
         carrierArray[ID] = ID;
         //carriers[ID].SetActive(false);
         //}

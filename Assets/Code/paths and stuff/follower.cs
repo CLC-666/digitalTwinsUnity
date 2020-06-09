@@ -513,6 +513,23 @@ public class follower : MonoBehaviour
                     caseSwitch = 80;
                 }
                 break;
+
+            case 80:
+                if (currentLocation == 10 && goStop == false && order == true)
+                {
+                    busy = true;
+                    GameObject.Find("magBackLift").GetComponent<magBackLiftScript>().run = true;
+                    GameObject.Find("magBackLift").GetComponent<magBackLiftScript>().carrierID = carrierID;
+                    caseSwitch = 81;
+                }
+                break;
+            case 81:
+                if (GameObject.Find("magBackLift").GetComponent<magBackLiftScript>().run == false)
+                {
+                    busy = false;
+                    caseSwitch = 90;
+                }
+                break;
         } 
 
     }
