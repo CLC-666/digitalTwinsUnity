@@ -41,6 +41,9 @@ public class runInSimMode : MonoBehaviour
     public bool heatingStartInduction2 = false;
     public bool heatingStopInduction2 = false;
     public bool heatingEndInduction2 = false;
+    public float heatingHeatTime;
+    public float heatingHeatTemp;
+    public float heatingCurrentTemp = 0;
     public bool codesys2StopInduction2 = false;
     public bool codesys2ToRobotino2 = false;
     public bool codesys2FromRobotino2 = false;
@@ -55,6 +58,8 @@ public class runInSimMode : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        sensorInitialisations();
+
         carriers = new GameObject[5];
 
 
@@ -93,4 +98,46 @@ public class runInSimMode : MonoBehaviour
                 break;
         }
     }
+
+    void sensorInitialisations()
+    {
+        manualStartInduction = false;
+        manualStopInduction = false; //SPAWN LOCATION 2 = follower: 92%.
+        manualEndInduction = false;
+        camInspectStartInduction = false;
+        camInspectStopInduction = false; //SPAWN LOCATION 3 = follower: 17%.
+        camInspectEndInduction = false;
+        codesys1StopInduction = false; //SPAWN LOCATION 4 = follower: 36.5%.
+        codesys1ToRobotino = false;
+        codesys1FromRobotino = false;
+        robotinoIslandSensor = false;
+        robotinoCarrierStop = false;
+        firstIslandRobotino = false;
+        secondIslandRobotino = false;
+        magFrontStartInduction = false;
+        magFrontStopInduction = false; //SPAWN LOCATION 1 = follower: 67%.
+        magFrontEndInduction = false;
+        magFrontTop = false;
+        magFrontBottom = false;
+        magBackStartInduction2 = false;
+        magBackStopInduction2 = false;
+        magBackEndInduction2 = false;
+        magBackTop = false;
+        magBackBottom = false;
+        pressStartInduction2 = false;
+        pressStopInduction2 = false;
+        pressEndInduction2 = false;
+        pressPressureN = 0;
+        pressPressTime = 2;
+        pressWorkpieceCheck = false;
+        heatingStartInduction2 = false;
+        heatingStopInduction2 = false;
+        heatingEndInduction2 = false;
+        heatingHeatTime = 5;
+        heatingHeatTemp = 30;
+        heatingCurrentTemp = 0;
+        codesys2StopInduction2 = false;
+        codesys2ToRobotino2 = false;
+        codesys2FromRobotino2 = false;
+}
 }

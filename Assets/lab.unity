@@ -433,6 +433,27 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.2874298, y: 0.06361824, z: 0.14659265}
   m_Center: {x: -0.016842365, y: 0.1477612, z: -0.025731638}
+--- !u!1 &285088789 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100196, guid: d201dba6813a35c41bc36df00597a746,
+    type: 3}
+  m_PrefabInstance: {fileID: 287996567}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &285088791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 285088789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8c582ee648f872479fce91aec0adb1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  run: 0
+  heatingSpeed: 0.5
+  caseSwitch: 0
 --- !u!1001 &287996567
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -442,7 +463,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100196, guid: d201dba6813a35c41bc36df00597a746, type: 3}
       propertyPath: m_Name
-      value: Heating
+      value: heating
       objectReference: {fileID: 0}
     - target: {fileID: 400196, guid: d201dba6813a35c41bc36df00597a746, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2425,8 +2446,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1860901268}
-  m_LocalRotation: {x: 0.051756747, y: -0.81112105, z: 0.07202726, w: 0.57811415}
-  m_LocalPosition: {x: -7.6987453, y: 1.0924679, z: 3.6988525}
+  m_LocalRotation: {x: -0.038772307, y: -0.95731, z: 0.15535323, w: -0.24066503}
+  m_LocalPosition: {x: -9.772206, y: 1.8662817, z: 5.319732}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2494,6 +2515,9 @@ MonoBehaviour:
   heatingStartInduction2: 0
   heatingStopInduction2: 0
   heatingEndInduction2: 0
+  heatingHeatTime: 25
+  heatingHeatTemp: 30
+  heatingCurrentTemp: 0
   codesys2StopInduction2: 0
   codesys2ToRobotino2: 0
   codesys2FromRobotino2: 0

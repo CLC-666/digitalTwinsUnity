@@ -535,14 +535,31 @@ public class follower : MonoBehaviour
                 {
                     busy = true;
                     GameObject.Find("press").GetComponent<pressScript>().run = true;
-                    caseSwitch = 91;
+                    caseSwitch = 95;
                 }
                     break;
 
-            case 91:
+            case 95:
                 if (GameObject.Find("press").GetComponent<pressScript>().run == false)
                 {
                     busy = false;
+                    caseSwitch = 100;
+                }
+                break;
+
+            case 100:
+                if (currentLocation == 12 && goStop == false && order == true)
+                {
+                    busy = true;
+                    GameObject.Find("heating").GetComponent<heatingScript>().run = true;
+                    caseSwitch = 105;
+                }
+                break;
+            case 105:
+                if (GameObject.Find("heating").GetComponent<heatingScript>().run == false)
+                {
+                    busy = false;
+                    caseSwitch = 110;
                 }
                 break;
         } 
