@@ -115,7 +115,6 @@ public class follower : MonoBehaviour
 
             case 4:
                 if (percentLapSecondIsland == 100.15f) { percentLapSecondIsland = 0; }
-                Debug.Log(percentLapSecondIsland);
                 initSecondIslandRobotinoLap = false;
                 if (codesys2StopInduction2 == true && GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys2ToRobotino2 == false) { pathMode = 5; }
                 if (percentLapSecondIsland == 100) { percentLapSecondIsland = 0; }
@@ -528,6 +527,22 @@ public class follower : MonoBehaviour
                 {
                     busy = false;
                     caseSwitch = 90;
+                }
+                break;
+
+            case 90:
+                if (currentLocation == 11 && goStop == false && order == true)
+                {
+                    busy = true;
+                    GameObject.Find("press").GetComponent<pressScript>().run = true;
+                    caseSwitch = 91;
+                }
+                    break;
+
+            case 91:
+                if (GameObject.Find("press").GetComponent<pressScript>().run == false)
+                {
+                    busy = false;
                 }
                 break;
         } 

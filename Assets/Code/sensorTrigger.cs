@@ -110,6 +110,9 @@ public class sensorTrigger : MonoBehaviour
             case "pressEndInduction2":
                 GameObject.Find("Main Camera").GetComponent<runInSimMode>().pressEndInduction2 = true;
                 break;
+            case "pressWorkpieceCheck2":
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().pressWorkpieceCheck = true;
+                break;
 
             case "heatingStartInduction2":
                 GameObject.Find("Main Camera").GetComponent<runInSimMode>().heatingStartInduction2 = true;
@@ -231,6 +234,9 @@ public class sensorTrigger : MonoBehaviour
                 break;
             case "pressEndInduction2":
                 GameObject.Find("Main Camera").GetComponent<runInSimMode>().pressEndInduction2 = false;
+                break;
+            case "pressWorkpieceCheck2":
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().pressWorkpieceCheck = false;
                 break;
 
             case "heatingStartInduction2":

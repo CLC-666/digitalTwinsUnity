@@ -35,6 +35,9 @@ public class runInSimMode : MonoBehaviour
     public bool pressStartInduction2 = false;
     public bool pressStopInduction2 = false;
     public bool pressEndInduction2 = false;
+    public float pressPressureN = 0;
+    public float pressPressTime = 2;
+    public bool pressWorkpieceCheck = false;
     public bool heatingStartInduction2 = false;
     public bool heatingStopInduction2 = false;
     public bool heatingEndInduction2 = false;
