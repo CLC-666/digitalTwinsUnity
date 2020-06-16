@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Text;
+using System.IO;
+using System;
 
 
 
@@ -52,12 +55,30 @@ public class runInSimMode : MonoBehaviour
     public GameObject[] carriers;
     int[] carrierArray = { 0, 0, 0, 0, 0 };
 
+    public List<string> sensorNames = new List<string>();
+    public List<string> values = new List<string>();
+    public bool startRecording = false;
+    string filePath;
+    StreamWriter writer;
+
 
     public int ID; //delete this after.
 
     // Start is called before the first frame update
     void Start()
     {
+        sensorNames = new List<string>() {
+            "manualStartInduction", "manualStopInduction", "manualEndInduction", "camInspectStartInduction",
+            "camInspectStopInduction", "camInspectEndInduction", "codesys1StopInduction", "codesys1ToRobotino",
+            "codesys1FromRobotino", "robotinoIslandSensor", "robotinoCarrierStop", "firstIslandRobotino",
+            "secondIslandRobotino", "magFrontStartInduction", "magFrontStopInduction", "magFrontEndInduction",
+            "magFrontTop", "magFrontBottom", "magBackStartInduction2", "magBackStopInduction2", "magBackEndInduction2",
+            "magBackTop", "magBackBottom", "pressStartInduction2", "pressStopInduction2", "pressEndInduction2",
+            "pressPressureN", "pressPressTime", "pressWorkpieceCheck", "heatingStartInduction2", "heatingStopInduction2",
+            "heatingEndInduction2", "heatingHeatTime", "heatingHeatTemp", "heatingCurrentTemp", "codesys2StopInduction2",
+            "codesys2ToRobotino2", "codesys2FromRobotino2"
+        };
+
         sensorInitialisations();
 
         carriers = new GameObject[5];
@@ -72,32 +93,51 @@ public class runInSimMode : MonoBehaviour
         GameObject clone = Instantiate(carrierPrefab) as GameObject;
         carriers[ID] = clone;
         carriers[ID].GetComponent<follower>().carrierID = ID;
-        carriers[ID].GetComponent<follower>().spawnLocation = 5;
-        carriers[ID].GetComponent<follower>().caseSwitch = 80;
-        carriers[ID].GetComponent<follower>().currentLocation = 10;
+        carriers[ID].GetComponent<follower>().spawnLocation = 4;
+        carriers[ID].GetComponent<follower>().caseSwitch = 0;
+        carriers[ID].GetComponent<follower>().currentLocation = 0;
         carrierArray[ID] = ID;
         //carriers[ID].SetActive(false);
         //}
+        
     }
 
-    // Update is called once per frame
     void Update()
     {
-     
-       Prog();
+        writeToCSV();
     }
 
-    void Prog()
+    void writeToCSV()
     {
-        switch (caseSwitch)
+        if (startRecording == false)
         {
-            case 0:
-
-                
-
-                break;
+            filePath = getPath();
+            writer = new StreamWriter(filePath);
+            writer.WriteLine("Time,Sensor_Name,Value");
+            startRecording = true;
         }
+
+        writer.WriteLine(Time.time + ",");
+
+
+        writer.Flush();
+        writer.Close();
     }
+
+    private string getPath()
+    {
+        #if UNITY_EDITOR
+            return Application.dataPath + "/Data/" + "Saved_Inventory.csv";
+        //"Participant " + "   " + DateTime.Now.ToString("dd-MM-yy   hh-mm-ss") + ".csv";
+        #elif UNITY_ANDROID
+            return Application.persistentDataPath+"Saved_Inventory.csv";
+        #elif UNITY_IPHONE
+            return Application.persistentDataPath+"/"+"Saved_Inventory.csv";
+        #else
+            return Application.dataPath +"/"+"Saved_Inventory.csv";
+        #endif
+    }
+
 
     void sensorInitialisations()
     {

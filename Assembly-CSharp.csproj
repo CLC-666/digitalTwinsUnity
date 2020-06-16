@@ -64,7 +64,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Code\CarrierMove.cs" />
-    <Compile Include="Assets\Code\MPress.cs" />
     <Compile Include="Assets\Code\MagFront.cs" />
     <Compile Include="Assets\Code\Master Controller\runInSimMode.cs" />
     <Compile Include="Assets\Code\MultiThreadServer170520.cs" />
@@ -72,11 +71,14 @@
     <Compile Include="Assets\Code\SpawnCarriage.cs" />
     <Compile Include="Assets\Code\WorkpieceProperties.cs" />
     <Compile Include="Assets\Code\camInspectScript.cs" />
+    <Compile Include="Assets\Code\heatingScript.cs" />
+    <Compile Include="Assets\Code\magBackLiftScript.cs" />
     <Compile Include="Assets\Code\magFrontClient.cs" />
     <Compile Include="Assets\Code\magFrontLiftScript.cs" />
     <Compile Include="Assets\Code\manualClient.cs" />
     <Compile Include="Assets\Code\manualPlaceScript.cs" />
     <Compile Include="Assets\Code\paths and stuff\follower.cs" />
+    <Compile Include="Assets\Code\pressScript.cs" />
     <Compile Include="Assets\Code\robotinoScript.cs" />
     <Compile Include="Assets\Code\sensorTrigger.cs" />
     <Compile Include="Assets\Code\setGameObjectInactive.cs" />

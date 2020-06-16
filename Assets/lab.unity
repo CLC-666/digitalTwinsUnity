@@ -2446,8 +2446,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1860901268}
-  m_LocalRotation: {x: -0.038772307, y: -0.95731, z: 0.15535323, w: -0.24066503}
-  m_LocalPosition: {x: -9.772206, y: 1.8662817, z: 5.319732}
+  m_LocalRotation: {x: -0.041304868, y: -0.9487704, z: 0.14084679, w: -0.27980512}
+  m_LocalPosition: {x: -9.26175, y: 1.4531906, z: 4.3365264}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2524,6 +2524,8 @@ MonoBehaviour:
   carrierPrefab: {fileID: 341124496723201599, guid: 83497a3acb289b64ba3403e082305d3f,
     type: 3}
   carriers: []
+  sensorNames: []
+  values: []
   ID: 0
 --- !u!114 &1861026982
 MonoBehaviour:
