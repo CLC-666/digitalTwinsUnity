@@ -365,7 +365,7 @@ public class follower : MonoBehaviour
             }
         }
 
-        if (magFrontStopInduction == false && manualStopInduction == false && camInspectStopInduction == false && codesys1StopInduction == false && codesys1ToRobotino == false && codesys1FromRobotino == false && robotinoCarrierStop == false && magBackStopInduction2 == false && pressStopInduction2 == false && heatingStopInduction2 == false && codesys2StopInduction2 == false && codesys2FromRobotino2 == false && codesys2FromRobotino2 == false)
+        if (magFrontStopInduction == false && manualStopInduction == false && camInspectStopInduction == false && codesys1StopInduction == false && codesys1ToRobotino == false && codesys1FromRobotino == false && robotinoCarrierStop == false && magBackStopInduction2 == false && pressStopInduction2 == false && heatingStopInduction2 == false && codesys2StopInduction2 == false && codesys2FromRobotino2 == false && codesys2ToRobotino2 == false)
         {
             counter = 0;
         }
@@ -386,6 +386,7 @@ public class follower : MonoBehaviour
         if (percentLapSecondIsland <= 92.5f && percentLapSecondIsland > 69 && pathMode == 4) { currentLocation = 11; }
         if (percentLapSecondIsland <= 17f || percentLapSecondIsland > 94f) { if (pathMode == 4) { currentLocation = 12; } }
         if (percentLapSecondIsland <= 36.5f && percentLapSecondIsland > 19 && pathMode == 4) { currentLocation = 13; }
+        if (percentSecondIslandRobotinoLap >= 60 && robotinoCarrierStop == true) { currentLocation = 14; }
     }
 
     void mainOrderStructure()
@@ -483,6 +484,8 @@ public class follower : MonoBehaviour
                 break;
 
             case 61:
+                GameObject.Find("robotino").GetComponent<robotinoScript>().toIsland2 = true;
+                GameObject.Find("robotino").GetComponent<robotinoScript>().toIsland1 = false;
                 if (GameObject.Find("Main Camera").GetComponent<runInSimMode>().robotinoIslandSensor == false)
                 {
                     caseSwitch = 62;
@@ -517,6 +520,8 @@ public class follower : MonoBehaviour
                 if (currentLocation == 10 && goStop == false && order == true)
                 {
                     busy = true;
+                    GameObject.Find("robotino").GetComponent<robotinoScript>().toIsland2 = false;
+                    GameObject.Find("robotino").GetComponent<robotinoScript>().toIsland1 = false;
                     GameObject.Find("magBackLift").GetComponent<magBackLiftScript>().run = true;
                     GameObject.Find("magBackLift").GetComponent<magBackLiftScript>().carrierID = carrierID;
                     caseSwitch = 81;
@@ -559,8 +564,13 @@ public class follower : MonoBehaviour
                 if (GameObject.Find("heating").GetComponent<heatingScript>().run == false)
                 {
                     busy = false;
-                    caseSwitch = 110;
+                    caseSwitch = 120;
                 }
+                break;
+
+            case 120:
+                GameObject.Find("robotino").GetComponent<robotinoScript>().toIsland1 = true;
+                GameObject.Find("robotino").GetComponent<robotinoScript>().toIsland2 = false;
                 break;
         } 
 

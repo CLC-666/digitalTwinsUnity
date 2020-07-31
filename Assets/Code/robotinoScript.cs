@@ -14,11 +14,14 @@ public class robotinoScript : MonoBehaviour
     public float percentLap = 0;
     public bool goStop = false;
     public string caseSwitch;
-    public bool turningPoint = false;
+    public bool turningPoint1 = false;
+    public bool turningPoint2 = false;
     public float angle = 180;
     public float rotateSpeed = 1;
     public bool rotated = false;
-    bool rotating = false;
+    public bool rotating = false;
+    public bool toIsland2 = false;
+    public bool toIsland1 = false;
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +37,7 @@ public class robotinoScript : MonoBehaviour
             goStop = true;
         }
 
-        if (goStop == true && percentLap < 100)
+        if (goStop == true && percentLap < 100 && toIsland2 == true)
         {
             percentLap += 0.25f;
             distanceTravelled = ((percentLap / 100) * 7.83683f);
@@ -43,9 +46,18 @@ public class robotinoScript : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y + angle, 0f);
         }
 
+        if (goStop == true && percentLap > 0 && toIsland1 == true)
+        {
+            percentLap -= 0.25f;
+            distanceTravelled = ((percentLap / 100) * 7.83683f);
+            transform.position = robotinoPath.path.GetPointAtDistance(distanceTravelled, EndOfPathInstruction.Stop);
+            transform.rotation = robotinoPath.path.GetRotationAtDistance(distanceTravelled, EndOfPathInstruction.Stop);
+            transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y + angle, 0f);
+        }
 
 
-        if (turningPoint == true && rotated == false)
+
+        if (turningPoint1 == true && rotated == false && toIsland2 == true)
         {
             rotating = true;
             goStop = false;
@@ -60,7 +72,22 @@ public class robotinoScript : MonoBehaviour
             }
         }
 
-        if (percentLap > 50)
+        if (turningPoint2 == true && rotated == false && toIsland1 == true)
+        {
+            rotating = true;
+            goStop = false;
+            angle -= rotateSpeed;
+            transform.eulerAngles = new Vector3(0, angle + 90, 0);
+
+            if (angle == 0)
+            {
+                goStop = true;
+                rotated = true;
+                rotating = false;
+            }
+        }
+
+        if (percentLap > 50 && percentLap < 60)
         {
             rotated = false;
         }
@@ -74,8 +101,11 @@ public class robotinoScript : MonoBehaviour
 
         switch (caseSwitch)
         {
-            case "turningPoint":
-                turningPoint = true;
+            case "turningPointToIsland1":
+                turningPoint2 = true;
+                break;
+            case "turningPointToIsland2":
+                turningPoint1 = true;
                 break;
         }
 
@@ -87,8 +117,11 @@ public class robotinoScript : MonoBehaviour
 
         switch (caseSwitch)
         {
-            case "turningPoint":
-                turningPoint = false;
+            case "turningPointToIsland1":
+                turningPoint2 = false;
+                break;
+            case "turningPointToIsland2":
+                turningPoint1 = false;
                 break;
         }
 

@@ -91,6 +91,8 @@
     <Compile Include="Assets\PathCreator\Examples\Scripts\PathSceneTool.cs" />
     <Compile Include="Assets\PathCreator\Examples\Scripts\PathSpawner.cs" />
     <Compile Include="Assets\PathCreator\Examples\Scripts\RoadMeshCreator.cs" />
+    <Compile Include="Assets\Person\mouseLook.cs" />
+    <Compile Include="Assets\Person\playerMovement.cs" />
     <Compile Include="Assets\Scenes\cameraMove.cs" />
     <Compile Include="Assets\Scenes\move.cs" />
     <Compile Include="Assets\Scenes\openTextFile.cs" />
