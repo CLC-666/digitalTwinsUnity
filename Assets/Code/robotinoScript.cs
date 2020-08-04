@@ -77,9 +77,9 @@ public class robotinoScript : MonoBehaviour
             rotating = true;
             goStop = false;
             angle -= rotateSpeed;
-            transform.eulerAngles = new Vector3(0, angle + 90, 0);
+            transform.eulerAngles = new Vector3(0, angle, 0);
 
-            if (angle == 0)
+            if (angle == 180)
             {
                 goStop = true;
                 rotated = true;

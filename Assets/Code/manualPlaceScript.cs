@@ -8,7 +8,7 @@ public class manualPlaceScript : MonoBehaviour
     public GameObject[] workpieces;
     public bool run = false;
     public bool generateWorkpiece = false;
-    int workpieceCounter = 0;
+    public int workpieceCounter = 0;
     public int carrierID = 0;
     int switchCase = 0;
     int pauseTime = 50;
@@ -79,6 +79,7 @@ public class manualPlaceScript : MonoBehaviour
                 {
                     workpieces[workpieceCounter - 1].transform.position = new Vector3(workX, carrierPlate, workZ);
                     run = false;
+                    workpieceCounter++;
                     switchCase = 0;
                 }
 

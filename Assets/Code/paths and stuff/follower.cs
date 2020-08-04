@@ -80,7 +80,7 @@ public class follower : MonoBehaviour
     void Update()
     {
         switch (pathMode) {
-            case 1:
+            case 1: //first island
                 if (percentLapFirstIsland == 100) { percentLapFirstIsland = 0; }
                 if (goStop == true) { percentLapFirstIsland += 0.25f; }
 
@@ -90,7 +90,7 @@ public class follower : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y + 270, 0f);
                 break;
 
-            case 2:
+            case 2: //first island robotino drop off lap
         
                 if (goStop == true && toRobotPercentLap < 100) { toRobotPercentLap += 0.25f; }
 
@@ -101,7 +101,7 @@ public class follower : MonoBehaviour
                 break;
 
 
-            case 3:
+            case 3: //second island robotino drop off lap
         
                 if (initSecondIslandRobotinoLap == false) { percentSecondIslandRobotinoLap = toRobotPercentLap; initSecondIslandRobotinoLap = true; }
                 if (goStop == true && percentSecondIslandRobotinoLap < 100) { percentSecondIslandRobotinoLap += 0.25f; }
@@ -493,14 +493,14 @@ public class follower : MonoBehaviour
                 break;
             
             case 62:
-                if (GameObject.Find("Main Camera").GetComponent<runInSimMode>().robotinoIslandSensor == true)
+                if (GameObject.Find("Main Camera").GetComponent<runInSimMode>().robotinoIslandSensor == true) //drop carrier off
                 {
                     busy = false;
                     caseSwitch = 63;
                 }
                 break;
 
-            case 63:
+            case 63: //removing parent (robotino)
                 transform.parent = null;
                 caseSwitch = 70;
                 break;
@@ -569,8 +569,70 @@ public class follower : MonoBehaviour
                 break;
 
             case 120:
+                GameObject.Find("robotino").GetComponent<robotinoScript>().toIsland1 = false;
+                GameObject.Find("robotino").GetComponent<robotinoScript>().toIsland2 = false;
+
+                if (currentLocation == 14 && robotinoCarrierStop == true)
+                {
+                    caseSwitch = 125;
+                }
+                break;
+
+            case 125:
+                busy = true;
                 GameObject.Find("robotino").GetComponent<robotinoScript>().toIsland1 = true;
                 GameObject.Find("robotino").GetComponent<robotinoScript>().toIsland2 = false;
+
+                if (GameObject.Find("robotino").GetComponent<robotinoScript>().turningPoint2 == true)
+                {
+                    caseSwitch = 127;
+                }
+                break;
+
+            case 127:
+                if (robotinoCarrierStop == true)
+                {
+                    caseSwitch = 130;
+                }
+                break;
+            case 130:
+                if (GameObject.Find("Main Camera").GetComponent<runInSimMode>().robotinoIslandSensor == true) //drop carrier off
+                {
+                    busy = false;
+                    caseSwitch = 135;
+                }
+                break;
+
+            case 135: //removing parent (robotino)
+                transform.parent = null;
+                caseSwitch = 140;
+                break;
+
+            case 140:
+                pathMode = 2;
+                if (toRobotPercentLap == 100)
+                {
+                    percentLapFirstIsland = 47.5f;
+                    pathMode = 1;
+                    caseSwitch = 150;
+                }
+                break;
+
+            case 150: //product finshed
+                if (currentLocation == 2 && goStop == false && order == true)
+                {
+                    busy = true;
+                    Debug.Log("Product finished");
+                    foreach (Transform child in transform)
+                    {
+                        if (!child.name.Contains("Fbx")) {
+                            GameObject.Destroy(child.gameObject);
+                            order = false;
+                            busy = false;
+                            caseSwitch = 0;
+                        }
+                    }
+                }
                 break;
         } 
 
