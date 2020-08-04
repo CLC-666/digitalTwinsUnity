@@ -58,10 +58,10 @@ public class pressScript : MonoBehaviour
                 break;
 
             case 20:
-                GameObject.Find("Main Camera").GetComponent<runInSimMode>().pressPressureN += pressSpeed;
-                Debug.Log(GameObject.Find("Main Camera").GetComponent<runInSimMode>().pressPressureN);
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().pressCurrentPressureN += pressSpeed;
+                Debug.Log(GameObject.Find("Main Camera").GetComponent<runInSimMode>().pressCurrentPressureN);
 
-                if (GameObject.Find("Main Camera").GetComponent<runInSimMode>().pressPressureN == 70)
+                if (GameObject.Find("Main Camera").GetComponent<runInSimMode>().pressCurrentPressureN == GameObject.Find("Main Camera").GetComponent<runInSimMode>().pressTargetPressureN)
                 {
                     caseSwitch = 30;
                 }
@@ -74,7 +74,8 @@ public class pressScript : MonoBehaviour
                 break;
 
             case 31:
-                Debug.Log("Pressing at required pressure for: " + (Time.time - startTime) + " seconds");
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().pressCurrentTime = Time.time - startTime;
+                Debug.Log("Pressing at required pressure for: " + GameObject.Find("Main Camera").GetComponent<runInSimMode>().pressCurrentTime + " seconds");
                 break;
             case 32:
                 y += speed;
@@ -98,7 +99,7 @@ public class pressScript : MonoBehaviour
 
     IEnumerator waitFunction()
     {
-        yield return new WaitForSeconds(GameObject.Find("Main Camera").GetComponent<runInSimMode>().pressPressTime);
+        yield return new WaitForSeconds(GameObject.Find("Main Camera").GetComponent<runInSimMode>().pressTargetTime);
         caseSwitch += 1;
     }
 }

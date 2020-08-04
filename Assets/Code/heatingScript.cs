@@ -32,7 +32,7 @@ public class heatingScript : MonoBehaviour
                 GameObject.Find("Main Camera").GetComponent<runInSimMode>().heatingCurrentTemp += heatingSpeed;
                 Debug.Log("Current Temperature: " + GameObject.Find("Main Camera").GetComponent<runInSimMode>().heatingCurrentTemp);
                 
-                if (GameObject.Find("Main Camera").GetComponent<runInSimMode>().heatingCurrentTemp >= GameObject.Find("Main Camera").GetComponent<runInSimMode>().heatingHeatTemp)
+                if (GameObject.Find("Main Camera").GetComponent<runInSimMode>().heatingCurrentTemp >= GameObject.Find("Main Camera").GetComponent<runInSimMode>().heatingTargetTemp)
                 {
                     caseSwitch = 20;
                 }
@@ -45,7 +45,8 @@ public class heatingScript : MonoBehaviour
                 break;
 
             case 21:
-                Debug.Log("Heating time: " + (Time.time - startTime) + " seconds");
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().heatingCurrentTime = Time.time - startTime;
+                Debug.Log("Heating time: " + GameObject.Find("Main Camera").GetComponent<runInSimMode>().heatingCurrentTime + " seconds");
                 break;
 
             case 22:
@@ -58,7 +59,7 @@ public class heatingScript : MonoBehaviour
     
     IEnumerator waitFunction()
     {
-        yield return new WaitForSeconds(GameObject.Find("Main Camera").GetComponent<runInSimMode>().heatingHeatTime);
+        yield return new WaitForSeconds(GameObject.Find("Main Camera").GetComponent<runInSimMode>().heatingTargetTime);
         caseSwitch += 1;
     }
 }

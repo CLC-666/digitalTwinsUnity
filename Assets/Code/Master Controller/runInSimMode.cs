@@ -38,28 +38,35 @@ public class runInSimMode : MonoBehaviour
     public bool pressStartInduction2 = false;
     public bool pressStopInduction2 = false;
     public bool pressEndInduction2 = false;
-    public float pressPressureN = 0;
-    public float pressPressTime = 2;
+    public float pressTargetPressureN = 70;
+    public float pressCurrentPressureN = 0;
+    public float pressCurrentTime = 2;
+    public float pressTargetTime;
     public bool pressWorkpieceCheck = false;
     public bool heatingStartInduction2 = false;
     public bool heatingStopInduction2 = false;
     public bool heatingEndInduction2 = false;
-    public float heatingHeatTime;
-    public float heatingHeatTemp;
+    public float heatingTargetTime;
+    public float heatingCurrentTime;
+    public float heatingTargetTemp;
     public float heatingCurrentTemp = 0;
     public bool codesys2StopInduction2 = false;
     public bool codesys2ToRobotino2 = false;
     public bool codesys2FromRobotino2 = false;
+    
 
     public GameObject carrierPrefab;
     public GameObject[] carriers;
     int[] carrierArray = { 0, 0, 0, 0, 0 };
 
     public List<string> sensorNames = new List<string>();
-    public List<string> values = new List<string>();
+    public List<object> sensorValues = new List<object>();
     public bool startRecording = false;
     string filePath;
+    string toWrite;
     StreamWriter writer;
+    int counter;
+    int updateCounter;
 
 
     public int ID; //delete this after.
@@ -74,11 +81,12 @@ public class runInSimMode : MonoBehaviour
             "secondIslandRobotino", "magFrontStartInduction", "magFrontStopInduction", "magFrontEndInduction",
             "magFrontTop", "magFrontBottom", "magBackStartInduction2", "magBackStopInduction2", "magBackEndInduction2",
             "magBackTop", "magBackBottom", "pressStartInduction2", "pressStopInduction2", "pressEndInduction2",
-            "pressPressureN", "pressPressTime", "pressWorkpieceCheck", "heatingStartInduction2", "heatingStopInduction2",
-            "heatingEndInduction2", "heatingHeatTime", "heatingHeatTemp", "heatingCurrentTemp", "codesys2StopInduction2",
+            "pressTargetPressureN", "pressCurrentPressureN", "pressTargetTime", "pressCurrentTime", "pressWorkpieceCheck", "heatingStartInduction2", "heatingStopInduction2",
+            "heatingEndInduction2", "heatingCurrentTime", "heatingTargetTime", "heatingCurrentTemp", "heatingTargetTemp", "codesys2StopInduction2",
             "codesys2ToRobotino2", "codesys2FromRobotino2"
         };
 
+        
         sensorInitialisations();
 
         carriers = new GameObject[5];
@@ -102,27 +110,58 @@ public class runInSimMode : MonoBehaviour
         
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        writeToCSV();
+       
+
+            writeToCSV();
+        
+
     }
 
     void writeToCSV()
     {
+        sensorValues = new List<object>(){
+            manualStartInduction, manualStopInduction, manualEndInduction, camInspectStartInduction,
+            camInspectStopInduction, camInspectEndInduction, codesys1StopInduction, codesys1ToRobotino,
+            codesys1FromRobotino, robotinoIslandSensor, robotinoCarrierStop, firstIslandRobotino,
+            secondIslandRobotino, magFrontStartInduction, magFrontStopInduction, magFrontEndInduction,
+            magFrontTop, magFrontBottom, magBackStartInduction2, magBackStopInduction2, magBackEndInduction2,
+            magBackTop, magBackBottom, pressStartInduction2, pressStopInduction2, pressEndInduction2,
+            pressTargetPressureN, pressCurrentPressureN, pressTargetTime, pressCurrentTime, pressWorkpieceCheck, heatingStartInduction2, heatingStopInduction2,
+            heatingEndInduction2, heatingCurrentTime, heatingTargetTime, heatingCurrentTemp, heatingTargetTemp, codesys2StopInduction2,
+            codesys2ToRobotino2, codesys2FromRobotino2
+        };
+
         if (startRecording == false)
         {
             filePath = getPath();
             writer = new StreamWriter(filePath);
-            writer.WriteLine("Time,Sensor_Name,Value");
+            writer.WriteLine("Time,Sensor_and_Value");
             startRecording = true;
         }
 
-        writer.WriteLine(Time.time + ",");
+        if (updateCounter < sensorNames.Count)
+        {
+            toWrite += sensorNames[updateCounter] + " = " + sensorValues[updateCounter] + "|";
+            updateCounter++;
+        }
+
+        if (updateCounter == sensorNames.Count)
+        {
+            writer.WriteLine(Time.time + "," + toWrite);
 
 
-        writer.Flush();
-        writer.Close();
-    }
+            writer.Flush();
+            if (GameObject.Find("carrier without workpiece(Clone)").GetComponent<follower>().order == false)
+            {
+                writer.Close();
+            }
+
+            updateCounter = 0;
+            toWrite = "";
+        }
+}
 
     private string getPath()
     {
@@ -167,14 +206,16 @@ public class runInSimMode : MonoBehaviour
         pressStartInduction2 = false;
         pressStopInduction2 = false;
         pressEndInduction2 = false;
-        pressPressureN = 0;
-        pressPressTime = 2;
+        pressTargetPressureN = 70;
+        pressCurrentPressureN = 0;
+        pressTargetTime = 2;
+        pressCurrentTime = 0;
         pressWorkpieceCheck = false;
         heatingStartInduction2 = false;
         heatingStopInduction2 = false;
         heatingEndInduction2 = false;
-        heatingHeatTime = 5;
-        heatingHeatTemp = 30;
+        heatingTargetTime = 5;
+        heatingTargetTemp = 30;
         heatingCurrentTemp = 0;
         codesys2StopInduction2 = false;
         codesys2ToRobotino2 = false;
