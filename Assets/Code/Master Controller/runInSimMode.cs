@@ -67,6 +67,7 @@ public class runInSimMode : MonoBehaviour
     StreamWriter writer;
     int counter;
     int updateCounter;
+    int dataLogCounter = 0;
 
 
     public int ID; //delete this after.
@@ -133,7 +134,7 @@ public class runInSimMode : MonoBehaviour
             codesys2ToRobotino2, codesys2FromRobotino2
         };
 
-        if (startRecording == false)
+        if (startRecording == false && GameObject.Find("carrier without workpiece(Clone)").GetComponent<follower>().order == true)
         {
             filePath = getPath();
             writer = new StreamWriter(filePath);
@@ -141,13 +142,13 @@ public class runInSimMode : MonoBehaviour
             startRecording = true;
         }
 
-        if (updateCounter < sensorNames.Count)
+        if (updateCounter < sensorNames.Count && startRecording == true)
         {
             toWrite += sensorNames[updateCounter] + " = " + sensorValues[updateCounter] + "|";
             updateCounter++;
         }
 
-        if (updateCounter == sensorNames.Count)
+        if (updateCounter == sensorNames.Count && startRecording == true)
         {
             writer.WriteLine(Time.time + "," + toWrite);
 
@@ -156,6 +157,9 @@ public class runInSimMode : MonoBehaviour
             if (GameObject.Find("carrier without workpiece(Clone)").GetComponent<follower>().order == false)
             {
                 writer.Close();
+                dataLogCounter++;
+                startRecording = false;
+                updateCounter = 0;
             }
 
             updateCounter = 0;
@@ -166,7 +170,7 @@ public class runInSimMode : MonoBehaviour
     private string getPath()
     {
         #if UNITY_EDITOR
-            return Application.dataPath + "/Data/" + "Saved_Inventory.csv";
+            return Application.dataPath + "/Data/" + "Saved_Inventory" + dataLogCounter + ".csv";
         //"Participant " + "   " + DateTime.Now.ToString("dd-MM-yy   hh-mm-ss") + ".csv";
         #elif UNITY_ANDROID
             return Application.persistentDataPath+"Saved_Inventory.csv";

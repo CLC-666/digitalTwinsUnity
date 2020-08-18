@@ -88,6 +88,9 @@ public class pressScript : MonoBehaviour
                 break;
             case 40:
                 run = false;
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().pressCurrentPressureN = 0;
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().pressCurrentTime = 0;
+                startTime = 0;
                 caseSwitch = 0;
                 break;
 

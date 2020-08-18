@@ -259,7 +259,7 @@ MonoBehaviour:
   initSecondIslandLap: 0
   carrierID: 0
   busy: 0
-  order: 1
+  order: 0
 --- !u!65 &2935835130707129008
 BoxCollider:
   m_ObjectHideFlags: 0

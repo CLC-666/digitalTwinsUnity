@@ -61,7 +61,7 @@ public class follower : MonoBehaviour
     float pressure;
 
     public bool busy = false;
-    public bool order = true;
+    public bool order = false;
 
 
     private void Start()
@@ -513,6 +513,7 @@ public class follower : MonoBehaviour
                     pathMode = 4;
                     percentLapSecondIsland = 48.4f;
                     caseSwitch = 80;
+
                 }
                 break;
 
@@ -629,6 +630,7 @@ public class follower : MonoBehaviour
                             GameObject.Destroy(child.gameObject);
                             order = false;
                             busy = false;
+                            toRobotPercentLap = 0;
                             caseSwitch = 0;
                         }
                     }

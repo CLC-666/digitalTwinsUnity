@@ -21,6 +21,8 @@ public class manualPlaceScript : MonoBehaviour
     float workY = 1.0683f;
     float workZ = 0.0358f;
 
+    bool spawned = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,21 +42,19 @@ public class manualPlaceScript : MonoBehaviour
     {
         if (run == true)
         {
-            spawnNewWorkpiece();
+            if (spawned == false) { spawnNewWorkpiece(); spawned = true; }
             lowerWorkpiece();
         }
     }
 
     void spawnNewWorkpiece()
     {
-        if (workpieceCounter < 10 && generateWorkpiece == false)
-        {
-            workpieces[workpieceCounter].GetComponent<WorkpieceProperties>().carrierID = carrierID;
-            workpieces[workpieceCounter].SetActive(true);
-            generateWorkpiece = true;
-            workpieceCounter++;
-        }
-
+       
+        workpieces[workpieceCounter].GetComponent<WorkpieceProperties>().carrierID = carrierID;
+        workpieces[workpieceCounter].SetActive(true);
+        generateWorkpiece = true;
+        workpieceCounter++;
+        
         if (workpieceCounter >= 10) { Debug.LogError("NO MORE WORKPIECES LEFT."); }
     }
 
@@ -79,6 +79,7 @@ public class manualPlaceScript : MonoBehaviour
                 {
                     workpieces[workpieceCounter - 1].transform.position = new Vector3(workX, carrierPlate, workZ);
                     run = false;
+                    spawned = false;
                     workpieceCounter++;
                     switchCase = 0;
                 }
