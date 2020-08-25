@@ -156,6 +156,7 @@ public class sensorTrigger : MonoBehaviour
                 GameObject.Find("Main Camera").GetComponent<runInSimMode>().magFrontStartInduction = false;
                 break;
             case "magFrontStopInduction":
+                Debug.Log(other.name);
                 GameObject.Find("Main Camera").GetComponent<runInSimMode>().magFrontStopInduction = false;
                 break;
             case "magFrontEndInduction":

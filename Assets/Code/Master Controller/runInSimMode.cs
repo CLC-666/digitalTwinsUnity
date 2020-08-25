@@ -93,18 +93,19 @@ public class runInSimMode : MonoBehaviour
         carriers = new GameObject[5];
 
         // Run in sim mode
-        //for (int i = 1; i < 5; i++)
-        //{
-            ID = 2; //just for testing purposes.
+        for (int i = 1; i < 3; i++)
+        {
+            ID = i; //just for testing purposes.
             Debug.Log(carrierArray[ID]);
             Debug.Log("creating a carrier");
             GameObject clone = Instantiate(carrierPrefab) as GameObject;
             carriers[ID] = clone;
             carriers[ID].GetComponent<follower>().carrierID = ID;
-            carriers[ID].GetComponent<follower>().spawnLocation = 4;
+            carriers[ID].GetComponent<follower>().spawnLocation = i;
             carriers[ID].GetComponent<follower>().simMode = true;
+            carriers[ID].GetComponent<follower>().order = true;
             carrierArray[ID] = ID;
-        //}
+        }
 
         //carriers[ID].SetActive(false);
         //}
@@ -133,7 +134,7 @@ public class runInSimMode : MonoBehaviour
     {
        
 
-            writeToCSV();
+           // writeToCSV();
         
 
     }

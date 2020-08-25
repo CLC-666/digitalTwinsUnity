@@ -263,6 +263,7 @@ MonoBehaviour:
   workpieces: []
   run: 0
   generateWorkpiece: 0
+  workpieceCounter: 0
   carrierID: 0
 --- !u!1 &174080026 stripped
 GameObject:
@@ -431,8 +432,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.2874298, y: 0.06361824, z: 0.14659265}
-  m_Center: {x: -0.016842365, y: 0.1477612, z: -0.025731638}
+  m_Size: {x: 0.24094248, y: 0.06361824, z: 0.14659265}
+  m_Center: {x: 0.0064013004, y: 0.1477612, z: -0.025731638}
 --- !u!1 &285088789 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100196, guid: d201dba6813a35c41bc36df00597a746,
@@ -2645,14 +2646,17 @@ MonoBehaviour:
   pressStartInduction2: 0
   pressStopInduction2: 0
   pressEndInduction2: 0
-  pressPressureN: 0
-  pressPressTime: 2
+  pressTargetPressureN: 70
+  pressCurrentPressureN: 0
+  pressCurrentTime: 2
+  pressTargetTime: 0
   pressWorkpieceCheck: 0
   heatingStartInduction2: 0
   heatingStopInduction2: 0
   heatingEndInduction2: 0
-  heatingHeatTime: 25
-  heatingHeatTemp: 30
+  heatingTargetTime: 0
+  heatingCurrentTime: 0
+  heatingTargetTemp: 0
   heatingCurrentTemp: 0
   codesys2StopInduction2: 0
   codesys2ToRobotino2: 0
@@ -2661,7 +2665,6 @@ MonoBehaviour:
     type: 3}
   carriers: []
   sensorNames: []
-  values: []
   startRecording: 0
   ID: 0
 --- !u!114 &1860901274
@@ -2693,6 +2696,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 854722176}
   speed: 12
+  gravity: -9.81
 --- !u!114 &1861026982
 MonoBehaviour:
   m_ObjectHideFlags: 0

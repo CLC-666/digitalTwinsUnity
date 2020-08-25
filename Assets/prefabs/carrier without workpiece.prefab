@@ -209,31 +209,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac7c1c91c03b4a64eab6d5450267a736, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manualStartInduction: 0
-  manualStopInduction: 0
-  manualEndInduction: 0
-  camInspectStartInduction: 0
-  camInspectStopInduction: 0
-  camInspectEndInduction: 0
-  codesys1StopInduction: 0
-  codesys1ToRobotino: 0
-  robotinoCarrierStop: 0
-  codesys1FromRobotino: 0
-  magFrontStartInduction: 0
-  magFrontStopInduction: 0
-  magFrontEndInduction: 0
-  magBackStartInduction2: 0
-  magBackStopInduction2: 0
-  magBackEndInduction2: 0
-  pressStartInduction2: 0
-  pressStopInduction2: 0
-  pressEndInduction2: 0
-  heatingStartInduction2: 0
-  heatingStopInduction2: 0
-  heatingEndInduction2: 0
-  codesys2StopInduction2: 0
-  codesys2ToRobotino2: 0
-  codesys2FromRobotino2: 0
+  simMode: 1
+  varSource: {fileID: 0}
   firstIsland: {fileID: 3114707824259583203, guid: 0528a67acdec5664c800d93985d005a5,
     type: 3}
   secondIsland: {fileID: 2461545161311027194, guid: 1ea3cd36e9a28e84f8039bbeee145d6f,
