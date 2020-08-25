@@ -210,7 +210,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   simMode: 1
-  varSource: {fileID: 0}
   firstIsland: {fileID: 3114707824259583203, guid: 0528a67acdec5664c800d93985d005a5,
     type: 3}
   secondIsland: {fileID: 2461545161311027194, guid: 1ea3cd36e9a28e84f8039bbeee145d6f,
@@ -220,7 +219,8 @@ MonoBehaviour:
   secondRobotino: {fileID: 552126213061182620, guid: 145079084a6b5ae4fb8dd1a67f4625f1,
     type: 3}
   pathMode: 1
-  goStop: 1
+  goStop: 0
+  counter: 0
   distanceTravelledFirstIsland: 0
   distanceTravelledSecondIsland: 0
   distanceTravelledFirstRobotinoLap: 0
