@@ -30,6 +30,11 @@ public class follower : MonoBehaviour
     public bool codesys2StopInduction2 = false;
     public bool codesys2ToRobotino2 = false;
     public bool codesys2FromRobotino2 = false;
+
+
+    public bool simMode = false;
+    public runInSimMode varSource;
+
     //A FIRSTISLAND LAP IS THIS LONG 3.753859.
     //A TOROBOTINO LATP IS THIS LONG 1.174999.
     public PathCreator firstIsland;
@@ -69,7 +74,7 @@ public class follower : MonoBehaviour
         if (spawnLocation == 1) { percentLapFirstIsland = 67; }
         if (spawnLocation == 2) { percentLapFirstIsland = 92.5f; }
         if (spawnLocation == 3) { percentLapFirstIsland = 17; }
-        if (spawnLocation == 4) { percentLapFirstIsland = 36.5f; }
+        if (spawnLocation == 4) { percentLapFirstIsland = 36.5f;}
         if (spawnLocation == 5) { percentLapSecondIsland = 67.15f; pathMode = 4; }
         if (spawnLocation == 6) { percentLapSecondIsland = 92.15f; pathMode = 4; }
         if (spawnLocation == 7) { percentLapSecondIsland = 17.25f; pathMode = 4; }
@@ -79,6 +84,8 @@ public class follower : MonoBehaviour
 
     void Update()
     {
+        varUpdate(); //Get all updated sensor values;
+
         switch (pathMode) {
             case 1: //first island
                 if (percentLapFirstIsland == 100) { percentLapFirstIsland = 0; }
@@ -116,7 +123,7 @@ public class follower : MonoBehaviour
             case 4:
                 if (percentLapSecondIsland == 100.15f) { percentLapSecondIsland = 0; }
                 initSecondIslandRobotinoLap = false;
-                if (codesys2StopInduction2 == true && GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys2ToRobotino2 == false) { pathMode = 5; }
+                if (varSource.codesys2StopInduction2 == true && varSource.codesys2ToRobotino2 == false) { pathMode = 5; }
                 if (percentLapSecondIsland == 100) { percentLapSecondIsland = 0; }
                 if (goStop == true) { percentLapSecondIsland += 0.25f; }
 
@@ -638,6 +645,25 @@ public class follower : MonoBehaviour
                 break;
         } 
 
+    }
+
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    goStop = false;
+    //    Debug.Log("COLLISION");
+    //}
+
+    //private void OnCollisionExit(Collision collision)
+    //{
+    //    goStop = true;
+    //}
+
+    void varUpdate()
+    {
+        if (simMode == true)
+        {
+            varSource = GameObject.Find("Main Camera").GetComponent<runInSimMode>();
+        }
     }
 
 }

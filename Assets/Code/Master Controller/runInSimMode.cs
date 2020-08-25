@@ -57,7 +57,7 @@ public class runInSimMode : MonoBehaviour
 
     public GameObject carrierPrefab;
     public GameObject[] carriers;
-    int[] carrierArray = { 0, 0, 0, 0, 0 };
+    int[] carrierArray = { 0, 1, 2, 3, 4 };
 
     public List<string> sensorNames = new List<string>();
     public List<object> sensorValues = new List<object>();
@@ -92,23 +92,41 @@ public class runInSimMode : MonoBehaviour
 
         carriers = new GameObject[5];
 
+        // Run in sim mode
+        //for (int i = 1; i < 5; i++)
+        //{
+            ID = 2; //just for testing purposes.
+            Debug.Log(carrierArray[ID]);
+            Debug.Log("creating a carrier");
+            GameObject clone = Instantiate(carrierPrefab) as GameObject;
+            carriers[ID] = clone;
+            carriers[ID].GetComponent<follower>().carrierID = ID;
+            carriers[ID].GetComponent<follower>().spawnLocation = 4;
+            carriers[ID].GetComponent<follower>().simMode = true;
+            carrierArray[ID] = ID;
+        //}
+
+        //carriers[ID].SetActive(false);
+        //}
 
         //if (carrierArray[manual["ID"]] == 0 && manual["rel"] == 1)
         //{
-        //int ID = manual["ID"];
-        ID = 2; //just for testing purposes.
-        Debug.Log(carrierArray[ID]);
-        Debug.Log("creating a carrier");
-        GameObject clone = Instantiate(carrierPrefab) as GameObject;
-        carriers[ID] = clone;
-        carriers[ID].GetComponent<follower>().carrierID = ID;
-        carriers[ID].GetComponent<follower>().spawnLocation = 4;
-        carriers[ID].GetComponent<follower>().caseSwitch = 0;
-        carriers[ID].GetComponent<follower>().currentLocation = 0;
-        carrierArray[ID] = ID;
-        //carriers[ID].SetActive(false);
+        //    int ID = manual["ID"];
+        //    Debug.Log(carrierArray[ID]);
+        //    Debug.Log("creating a carrier");
+        //    GameObject clone = Instantiate(carrierPrefab) as GameObject;
+        //    carriers[ID] = clone;
+        //    carriers[ID].GetComponent<CarrierMove>().carrierID = ID;
+
+        //    //carriers[ID].GetComponent<CarrierMove>().x = -6.6214f;
+        //    //carriers[ID].GetComponent<CarrierMove>().y = 0.979f;
+        //    //carriers[ID].GetComponent<CarrierMove>().z = 0.0533f;
+        //    //carriers[ID].GetComponent<CarrierMove>().caseSwitch = 35;
+        //    carrierArray[ID] = ID;
+        //    //carriers[ID].SetActive(false);
+
         //}
-        
+
     }
 
     void FixedUpdate()
@@ -225,4 +243,6 @@ public class runInSimMode : MonoBehaviour
         codesys2ToRobotino2 = false;
         codesys2FromRobotino2 = false;
 }
+
+ 
 }

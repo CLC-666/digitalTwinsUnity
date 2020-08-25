@@ -243,7 +243,7 @@ MonoBehaviour:
   secondRobotino: {fileID: 552126213061182620, guid: 145079084a6b5ae4fb8dd1a67f4625f1,
     type: 3}
   pathMode: 1
-  goStop: 0
+  goStop: 1
   distanceTravelledFirstIsland: 0
   distanceTravelledSecondIsland: 0
   distanceTravelledFirstRobotinoLap: 0
