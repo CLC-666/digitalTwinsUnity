@@ -3,8 +3,8 @@ import socket, sys, time
 socket.setdefaulttimeout(30000)
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 # Then bind() is used to associate the socket with the server address. In this case, the address is localhost, referring to the current server, and the port number is 10000.
-address = '10.3.201.209'
-port = 9999
+address = '172.21.4.150'
+port = 9997
 # Bind the socket to the port
 server_address = (address, port)
 print (sys.stderr, 'starting up on %s port %s' % server_address)

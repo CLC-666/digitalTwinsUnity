@@ -9,8 +9,8 @@ stage = 1
 def magFrontStation():
     global magFrontData
     global stage
-    # address = "172.21.4.152"
-    address = "10.2.153.155"
+    address = "172.21.4.150"
+    #address = "10.2.153.155"
     port = 9997
     # Create a TCP/IP socket
     socket.setdefaulttimeout(30000)
@@ -41,14 +41,9 @@ def magFrontStation():
 
                 # Receive the data in small chunks and retransmit it
                 while True:
-                    data = connection.recv(10)
-                    if '  ' not in data.decode():
-                        # print(data.decode())
-                        var = 0
-                        magFrontData = data.decode()
-                        var = int(magFrontData.split(",")[4])
-                        if var == 1:
-                            stage = 2
+                    data = connection.recv(1024)
+                    
+                    print(data)
 
             except KeyboardInterrupt:
                 # Clean up the connection
@@ -181,14 +176,4 @@ def Unity():
     sock.close()
 
 if __name__ == '__main__':
-    p1 = Thread(target=manualStation, args=())
-    p2 = Thread(target=Unity, args=())
-    # p3 = Thread(target=magFrontStation, args=())
-
-    p1.start()
-    p2.start()
-    # p3.start()
-
-    p1.join()
-    p2.join()
-    # p3.join()
+   magFrontStation()
