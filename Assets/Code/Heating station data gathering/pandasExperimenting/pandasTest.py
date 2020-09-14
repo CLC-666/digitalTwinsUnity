@@ -27,7 +27,7 @@ df_int = df[1600:1800]
 
 from datetime import datetime
 
-datetime.strptime(df.time_power[1600], '%H:%M:%S')
+datetime.strptime(df.time_power[1600], '%M:%S.%S')
 
 
 

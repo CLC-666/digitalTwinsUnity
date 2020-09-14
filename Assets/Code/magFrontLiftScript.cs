@@ -62,6 +62,7 @@ public class magFrontLiftScript : MonoBehaviour
         
         if (run == true)
         {
+            GameObject.Find("Main Camera").GetComponent<runInSimMode>().magFrontConvRunning = false;
             spawnNewWorkpiece();
             lowerWorkpiece();
         }
@@ -125,6 +126,7 @@ public class magFrontLiftScript : MonoBehaviour
                 if (GameObject.Find("Main Camera").GetComponent<runInSimMode>().magFrontTop == true)
                 {
                     run = false;
+                    GameObject.Find("Main Camera").GetComponent<runInSimMode>().magFrontConvRunning = true;
                     switchCase = 0;
                 }
                 break;

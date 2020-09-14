@@ -58,6 +58,16 @@ public class follower : MonoBehaviour
     public bool initSecondIslandRobotinoLap = false;
     public bool initSecondIslandLap = false;
 
+    public bool convStartMagFront = false;
+    public bool convStartManual = false;
+    public bool convStartCamInspec = false;
+    public bool convStartCodesys1 = false;
+
+    public bool magFrontConv = false;
+    public bool manualConv = false;
+    public bool camInspecConv = false;
+    public bool codesys1Conv = false;
+
     public int carrierID;
     int productCode;
     float targetTemp;
@@ -82,8 +92,9 @@ public class follower : MonoBehaviour
     }
 
     void Update()
-    {
-        switch (pathMode) {
+    { 
+        switch (pathMode)
+        {
             case 1: //first island
                 if (percentLapFirstIsland == 100) { percentLapFirstIsland = 0; }
                 if (goStop == true) { percentLapFirstIsland += 0.25f; }
@@ -95,7 +106,7 @@ public class follower : MonoBehaviour
                 break;
 
             case 2: //first island robotino drop off lap
-        
+
                 if (goStop == true && toRobotPercentLap < 100) { toRobotPercentLap += 0.25f; }
 
                 distanceTravelledFirstRobotinoLap = ((toRobotPercentLap / 100) * 1.8f);
@@ -106,7 +117,7 @@ public class follower : MonoBehaviour
 
 
             case 3: //second island robotino drop off lap
-        
+
                 if (initSecondIslandRobotinoLap == false) { percentSecondIslandRobotinoLap = toRobotPercentLap; initSecondIslandRobotinoLap = true; }
                 if (goStop == true && percentSecondIslandRobotinoLap < 100) { percentSecondIslandRobotinoLap += 0.25f; }
 
@@ -140,6 +151,7 @@ public class follower : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y + 90, 0f);
                 break;
         }
+        
 
         pauseAtStopper();
 
@@ -147,6 +159,8 @@ public class follower : MonoBehaviour
 
         mainOrderStructure();
 
+        conveyors();
+        
 
     }
 
@@ -166,7 +180,9 @@ public class follower : MonoBehaviour
             case "magFrontEndInduction":
                 GameObject.Find("Main Camera").GetComponent<runInSimMode>().magFrontEndInduction = true;
                 break;
-
+            case "magFrontConv":
+                magFrontConv = true;
+                break;
 
             case "manualStartInduction":
                 GameObject.Find("Main Camera").GetComponent<runInSimMode>().manualStartInduction = true;
@@ -176,6 +192,9 @@ public class follower : MonoBehaviour
                 break;
             case "manualEndInduction":
                 GameObject.Find("Main Camera").GetComponent<runInSimMode>().manualEndInduction = true;
+                break;
+            case "manualConv":
+                manualConv = true;
                 break;
 
 
@@ -188,7 +207,9 @@ public class follower : MonoBehaviour
             case "camInspectEndInduction":
                 GameObject.Find("Main Camera").GetComponent<runInSimMode>().camInspectEndInduction = true;
                 break;
-
+            case "camInspecConv":
+                camInspecConv = true;
+                break;
 
             case "codesys1StopInduction":
                 GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1StopInduction = true;
@@ -199,6 +220,9 @@ public class follower : MonoBehaviour
                 break;
             case "codesys1FromRobotino":
                 GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1FromRobotino = true;
+                break;
+            case "codesys1Conv":
+                codesys1Conv = true;
                 break;
 
             case "robotinoCarrierStop":
@@ -255,7 +279,6 @@ public class follower : MonoBehaviour
         }
 
 
-
     }
 
     void OnTriggerExit(Collider other)
@@ -274,6 +297,9 @@ public class follower : MonoBehaviour
             case "magFrontEndInduction":
                 GameObject.Find("Main Camera").GetComponent<runInSimMode>().magFrontEndInduction = false;
                 break;
+            case "magFrontConv":
+                magFrontConv = false;
+                break;
 
 
             case "manualStartInduction":
@@ -284,6 +310,9 @@ public class follower : MonoBehaviour
                 break;
             case "manualEndInduction":
                 GameObject.Find("Main Camera").GetComponent<runInSimMode>().manualEndInduction = false;
+                break;
+            case "manualConv":
+                manualConv = false;
                 break;
 
 
@@ -296,7 +325,9 @@ public class follower : MonoBehaviour
             case "camInspectEndInduction":
                 GameObject.Find("Main Camera").GetComponent<runInSimMode>().camInspectEndInduction = false;
                 break;
-
+            case "camInspecConv":
+                camInspecConv = false;
+                break;
 
             case "codesys1StopInduction":
                 GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1StopInduction = false;
@@ -307,6 +338,10 @@ public class follower : MonoBehaviour
             case "codesys1FromRobotino":
                 GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1FromRobotino = false;
                 break;
+            case "codesys1Conv":
+                codesys1Conv = false;
+                break;
+
 
             case "robotinoCarrierStop":
                 GameObject.Find("Main Camera").GetComponent<runInSimMode>().robotinoCarrierStop = false;
@@ -364,8 +399,14 @@ public class follower : MonoBehaviour
         if ((currentLocation == 1 && GameObject.Find("Main Camera").GetComponent<runInSimMode>().magFrontStopInduction == true) 
             || (currentLocation == 2 && GameObject.Find("Main Camera").GetComponent<runInSimMode>().manualStopInduction == true)
             || (currentLocation == 3 && GameObject.Find("Main Camera").GetComponent<runInSimMode>().camInspectStopInduction == true)
-            || (currentLocation == 4 && GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1StopInduction == true))
-          //  || GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1ToRobotino == true || GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1FromRobotino == true || GameObject.Find("Main Camera").GetComponent<runInSimMode>().robotinoCarrierStop == true || GameObject.Find("Main Camera").GetComponent<runInSimMode>().magBackStopInduction2 == true || GameObject.Find("Main Camera").GetComponent<runInSimMode>().pressStopInduction2 == true || GameObject.Find("Main Camera").GetComponent<runInSimMode>().heatingStopInduction2 == true || GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys2StopInduction2 == true || GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys2ToRobotino2 == true || GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys2FromRobotino2 == true)
+            || (currentLocation == 4 && GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1StopInduction == true)
+            || (currentLocation == 5 && GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1ToRobotino == true)
+            || (currentLocation == 8 && GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1FromRobotino == true) 
+            || (currentLocation == 10 && GameObject.Find("Main Camera").GetComponent<runInSimMode>().robotinoCarrierStop == true)
+            || (currentLocation == 11 && GameObject.Find("Main Camera").GetComponent<runInSimMode>().magBackStopInduction2 == true)
+            || (currentLocation == 12 && GameObject.Find("Main Camera").GetComponent<runInSimMode>().pressStopInduction2 == true)
+            || (currentLocation == 13 && GameObject.Find("Main Camera").GetComponent<runInSimMode>().heatingStopInduction2 == true)
+            || (currentLocation == 14 && GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys2StopInduction2 == true))// || GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys2ToRobotino2 == true || GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys2FromRobotino2 == true)
         {
             if (counter < pauseTime) { goStop = false; }
             counter++;
@@ -378,8 +419,14 @@ public class follower : MonoBehaviour
         if ((currentLocation == 1 && GameObject.Find("Main Camera").GetComponent<runInSimMode>().magFrontStopInduction == false)
             || (currentLocation == 2 && GameObject.Find("Main Camera").GetComponent<runInSimMode>().manualStopInduction == false) 
             || (currentLocation == 3 && GameObject.Find("Main Camera").GetComponent<runInSimMode>().camInspectStopInduction == false)
-            || (currentLocation == 4 && GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1StopInduction == false))
-            //|| GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1ToRobotino == false && GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1FromRobotino == false && GameObject.Find("Main Camera").GetComponent<runInSimMode>().robotinoCarrierStop == false && GameObject.Find("Main Camera").GetComponent<runInSimMode>().magBackStopInduction2 == false && GameObject.Find("Main Camera").GetComponent<runInSimMode>().pressStopInduction2 == false && GameObject.Find("Main Camera").GetComponent<runInSimMode>().heatingStopInduction2 == false && GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys2StopInduction2 == false && GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys2FromRobotino2 == false && GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys2ToRobotino2 == false)
+            || (currentLocation == 4 && GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1StopInduction == false)
+            || (currentLocation == 5 && GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1ToRobotino == false)
+            || (currentLocation == 8 && GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1FromRobotino == false)
+            || (currentLocation == 10 && GameObject.Find("Main Camera").GetComponent<runInSimMode>().robotinoCarrierStop == false)
+            || (currentLocation == 11 && GameObject.Find("Main Camera").GetComponent<runInSimMode>().magBackStopInduction2 == false)
+            || (currentLocation == 12 && GameObject.Find("Main Camera").GetComponent<runInSimMode>().pressStopInduction2 == false)
+            || (currentLocation == 13 && GameObject.Find("Main Camera").GetComponent<runInSimMode>().heatingStopInduction2 == false)
+            || (currentLocation == 14 && GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys2StopInduction2 == false))// && GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys2FromRobotino2 == false && GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys2ToRobotino2 == false)
         {
             counter = 0;
         }
@@ -487,6 +534,7 @@ public class follower : MonoBehaviour
                         caseSwitch = 60;
                     }
                 }
+
                 break;
             
             case 60:
@@ -654,6 +702,57 @@ public class follower : MonoBehaviour
 
     }
 
-   
+    
+    void conveyors()
+    {
+        if (magFrontConv == true && GameObject.Find("Main Camera").GetComponent<runInSimMode>().magFrontConvRunning == false) //I am on the conveyor
+        {
+            goStop = false;
+            convStartMagFront = false;
+        }
+
+        if (magFrontConv == true && GameObject.Find("Main Camera").GetComponent<runInSimMode>().magFrontConvRunning == true && convStartMagFront == false) //I am on the conveyor
+        {
+            goStop = true;
+            convStartMagFront = true;
+        }
+
+        if (manualConv == true && GameObject.Find("Main Camera").GetComponent<runInSimMode>().manualConvRunning == false) //I am on the conveyor
+        {
+            goStop = false;
+            convStartManual = false;
+        }
+
+        if (manualConv == true && GameObject.Find("Main Camera").GetComponent<runInSimMode>().manualConvRunning == true && convStartManual == false) //I am on the conveyor
+        {
+            goStop = true;
+            convStartManual = true;
+        }
+
+        if (camInspecConv == true && GameObject.Find("Main Camera").GetComponent<runInSimMode>().camInspecConvRunning == false) //I am on the conveyor
+        {
+            goStop = false;
+            convStartCamInspec = false;
+        }
+
+        if (camInspecConv == true && GameObject.Find("Main Camera").GetComponent<runInSimMode>().camInspecConvRunning == true && convStartCamInspec == false) //I am on the conveyor
+        {
+            goStop = true;
+            convStartCamInspec = true;
+        }
+
+
+        if (codesys1Conv == true && GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1ConvRunning == false) //I am on the conveyor
+        {
+            goStop = false;
+            convStartCodesys1 = false;
+        }
+
+        if (codesys1Conv == true && GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1ConvRunning == true && convStartCodesys1 == false) //I am on the conveyor
+        {
+            goStop = true;
+            convStartCodesys1 = true;
+        }
+    }
 
 }

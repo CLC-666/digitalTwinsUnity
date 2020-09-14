@@ -209,6 +209,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d971aa3ad79c4da40a04527fc47c9a06, type: 3}
+--- !u!1 &71932245 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 101970, guid: 264897e16346467459599c64d4e55474,
+    type: 3}
+  m_PrefabInstance: {fileID: 987054009}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &71932249
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 71932245}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.6979891, y: 0.06957717, z: 0.053181987}
+  m_Center: {x: -7.952018, y: -3.1026282, z: 0.15894325}
 --- !u!1 &87333906 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 101986, guid: 264897e16346467459599c64d4e55474,
@@ -265,6 +284,7 @@ MonoBehaviour:
   generateWorkpiece: 0
   workpieceCounter: 0
   carrierID: 0
+  switchCase: 0
 --- !u!1 &174080026 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100662, guid: 0a6959e01f429344180710b1c5b50e67,
@@ -1299,6 +1319,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77510b60bcd91d24980d21894659d03d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &979858675 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 101964, guid: 264897e16346467459599c64d4e55474,
+    type: 3}
+  m_PrefabInstance: {fileID: 987054009}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &979858679
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979858675}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.6979893, y: 0.0695772, z: 0.060053512}
+  m_Center: {x: -7.9520135, y: -3.102629, z: 0.16237897}
+--- !u!114 &979858680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979858675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77510b60bcd91d24980d21894659d03d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &983181000 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100178, guid: 3d856943e0d77f24fb253459dea9bb3a,
@@ -1349,6 +1400,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: firstIslandRobotino
       objectReference: {fileID: 0}
+    - target: {fileID: 101678, guid: 264897e16346467459599c64d4e55474, type: 3}
+      propertyPath: m_Name
+      value: codesys1Conv
+      objectReference: {fileID: 0}
     - target: {fileID: 101694, guid: 264897e16346467459599c64d4e55474, type: 3}
       propertyPath: m_Name
       value: codesys1ToRobotino
@@ -1361,13 +1416,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: partionSlider
       objectReference: {fileID: 0}
+    - target: {fileID: 101900, guid: 264897e16346467459599c64d4e55474, type: 3}
+      propertyPath: m_Name
+      value: camInspecConv
+      objectReference: {fileID: 0}
     - target: {fileID: 101904, guid: 264897e16346467459599c64d4e55474, type: 3}
       propertyPath: m_Name
       value: manualConveyor
       objectReference: {fileID: 0}
+    - target: {fileID: 101964, guid: 264897e16346467459599c64d4e55474, type: 3}
+      propertyPath: m_Name
+      value: magFrontConv
+      objectReference: {fileID: 0}
     - target: {fileID: 101966, guid: 264897e16346467459599c64d4e55474, type: 3}
       propertyPath: m_Name
       value: camInspectConveyor
+      objectReference: {fileID: 0}
+    - target: {fileID: 101970, guid: 264897e16346467459599c64d4e55474, type: 3}
+      propertyPath: m_Name
+      value: manualConv
       objectReference: {fileID: 0}
     - target: {fileID: 101984, guid: 264897e16346467459599c64d4e55474, type: 3}
       propertyPath: m_Name
@@ -2214,6 +2281,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d480ae4ecf712774d9fe1a6e3fc3a62d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1605733381 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 101678, guid: 264897e16346467459599c64d4e55474,
+    type: 3}
+  m_PrefabInstance: {fileID: 987054009}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1605733382
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1605733381}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.69798815, y: 0.06957717, z: 0.054611634}
+  m_Center: {x: -9.838111, y: -3.089877, z: 0.16745448}
 --- !u!1 &1611688977 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 102092, guid: 264897e16346467459599c64d4e55474,
@@ -2503,6 +2589,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d480ae4ecf712774d9fe1a6e3fc3a62d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1853611336 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 101900, guid: 264897e16346467459599c64d4e55474,
+    type: 3}
+  m_PrefabInstance: {fileID: 987054009}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1853611337
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1853611336}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.6046445, y: 0.08000038, z: 0.056154713}
+  m_Center: {x: -7.952241, y: -3.1026556, z: 0.16278064}
 --- !u!1 &1860901268
 GameObject:
   m_ObjectHideFlags: 0
@@ -2661,6 +2766,10 @@ MonoBehaviour:
   codesys2StopInduction2: 0
   codesys2ToRobotino2: 0
   codesys2FromRobotino2: 0
+  magFrontConvRunning: 1
+  manualConvRunning: 1
+  camInspecConvRunning: 1
+  codesys1ConvRunning: 1
   carrierPrefab: {fileID: 341124496723201599, guid: 83497a3acb289b64ba3403e082305d3f,
     type: 3}
   carriers: []

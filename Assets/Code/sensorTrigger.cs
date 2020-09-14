@@ -72,6 +72,7 @@ public class sensorTrigger : MonoBehaviour
                 break;
             case "codesys1ToRobotino":
                 GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1ToRobotino = true;
+                Debug.Log("triggered!!!!");
                 break;
             case "codesys1FromRobotino":
                 GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1FromRobotino = true;
@@ -96,6 +97,7 @@ public class sensorTrigger : MonoBehaviour
                 break;
             case "magBackStopInduction2":
                 GameObject.Find("Main Camera").GetComponent<runInSimMode>().magBackStopInduction2 = true;
+                Debug.Log("magback stop triggered");
                 break;
             case "magBackEndInduction2":
                 GameObject.Find("Main Camera").GetComponent<runInSimMode>().magBackEndInduction2 = true;
@@ -222,6 +224,7 @@ public class sensorTrigger : MonoBehaviour
                 break;
             case "magBackStopInduction2":
                 GameObject.Find("Main Camera").GetComponent<runInSimMode>().magBackStopInduction2 = false;
+                Debug.Log("magback stop");
                 break;
             case "magBackEndInduction2":
                 GameObject.Find("Main Camera").GetComponent<runInSimMode>().magBackEndInduction2 = false;

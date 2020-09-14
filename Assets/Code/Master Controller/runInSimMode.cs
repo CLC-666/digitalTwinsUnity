@@ -53,7 +53,12 @@ public class runInSimMode : MonoBehaviour
     public bool codesys2StopInduction2 = false;
     public bool codesys2ToRobotino2 = false;
     public bool codesys2FromRobotino2 = false;
-    
+
+    public bool magFrontConvRunning = true;
+    public bool manualConvRunning = true;
+    public bool camInspecConvRunning = true;
+    public bool codesys1ConvRunning = true;
+
 
     public GameObject carrierPrefab;
     public GameObject[] carriers;
@@ -93,7 +98,7 @@ public class runInSimMode : MonoBehaviour
         carriers = new GameObject[5];
 
         // Run in sim mode
-        for (int i = 1; i < 5; i++)
+        for (int i = 1; i < 4; i++)
         {
             ID = i; //just for testing purposes.
             Debug.Log(carrierArray[ID]);
@@ -133,6 +138,8 @@ public class runInSimMode : MonoBehaviour
 
 
     }
+
+
 
     void FixedUpdate()
     {

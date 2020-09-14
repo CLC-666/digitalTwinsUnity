@@ -10,7 +10,7 @@ public class manualPlaceScript : MonoBehaviour
     public bool generateWorkpiece = false;
     public int workpieceCounter = 0;
     public int carrierID = 0;
-    int switchCase = 0;
+    public int switchCase = 0;
     int pauseTime = 50;
     int pauseCounter = 0;
     float speed = 0.0015f;
@@ -44,6 +44,12 @@ public class manualPlaceScript : MonoBehaviour
         {
             if (spawned == false) { spawnNewWorkpiece(); spawned = true; }
             lowerWorkpiece();
+            GameObject.Find("Main Camera").GetComponent<runInSimMode>().manualConvRunning = false;
+        }
+
+        if (run == false)
+        {
+            GameObject.Find("Main Camera").GetComponent<runInSimMode>().manualConvRunning = true;
         }
     }
 
@@ -79,6 +85,7 @@ public class manualPlaceScript : MonoBehaviour
                 {
                     workpieces[workpieceCounter - 1].transform.position = new Vector3(workX, carrierPlate, workZ);
                     run = false;
+                    Debug.Log("After manual conv running set to true");
                     spawned = false;
                     workpieceCounter++;
                     switchCase = 0;
