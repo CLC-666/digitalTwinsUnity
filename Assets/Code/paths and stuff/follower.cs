@@ -269,7 +269,6 @@ public class follower : MonoBehaviour
                 GameObject.Find("Main Camera").GetComponent<runInSimMode>().magFrontStartInduction = false;
                 break;
             case "magFrontStopInduction":
-                Debug.Log("here");
                 GameObject.Find("Main Camera").GetComponent<runInSimMode>().magFrontStopInduction = false;
                 break;
             case "magFrontEndInduction":
@@ -357,6 +356,8 @@ public class follower : MonoBehaviour
 
 
     }
+
+
 
     void pauseAtStopper()
     {
@@ -653,21 +654,6 @@ public class follower : MonoBehaviour
 
     }
 
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    goStop = false;
-    //    Debug.Log(collision.collider.name + " " + gameObject.name);
-    //    if (collision.collider.name.Equals(gameObject.name)) {
-    //        Debug.Log(collision.GetContac);
-    //    }
-    //}
-
-    //private void OnCollisionExit(Collision collision)
-    //{
-    //    goStop = true;
-    //}
-
-
-
+   
 
 }

@@ -105,7 +105,9 @@ public class runInSimMode : MonoBehaviour
             carriers[ID].GetComponent<follower>().simMode = true;
             carriers[ID].GetComponent<follower>().order = false;
             carriers[ID].GetComponent<follower>().goStop = true;
+            carriers[ID].name = carriers[ID].name + " " + i.ToString();
             carrierArray[ID] = ID;
+          
         }
 
         //carriers[ID].SetActive(false);
@@ -128,6 +130,7 @@ public class runInSimMode : MonoBehaviour
         //    //carriers[ID].SetActive(false);
 
         //}
+
 
     }
 
