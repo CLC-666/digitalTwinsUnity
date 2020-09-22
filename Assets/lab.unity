@@ -2287,7 +2287,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 987054009}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &1605733382
+--- !u!65 &1605733385
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2595,7 +2595,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 987054009}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &1853611337
+--- !u!65 &1853611340
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
