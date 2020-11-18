@@ -1,0 +1,8 @@
+anys digital twin builder - have a look
+
+live stream camera in the lab
+	maybe two rpis with cameras in the lab
+
+email adel about rpi4 and camera x 2
+
+work with stefan to host his code on the website

@@ -11,6 +11,7 @@ public class runInSimMode : MonoBehaviour
 {
     public int caseSwitch = 0;
     public float speed = 0.25f;
+    public bool simMode = false;
 
     public bool manualStartInduction = false;
     public bool manualStopInduction = false; //SPAWN LOCATION 2 = follower: 92%.
@@ -107,7 +108,6 @@ public class runInSimMode : MonoBehaviour
             carriers[ID] = clone;
             carriers[ID].GetComponent<follower>().carrierID = ID;
             carriers[ID].GetComponent<follower>().spawnLocation = i;
-            carriers[ID].GetComponent<follower>().simMode = true;
             carriers[ID].GetComponent<follower>().order = false;
             carriers[ID].GetComponent<follower>().goStop = true;
             carriers[ID].name = carriers[ID].name + " " + i.ToString();

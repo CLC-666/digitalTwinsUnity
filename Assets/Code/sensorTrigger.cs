@@ -21,8 +21,10 @@ public class sensorTrigger : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        caseSwtich = gameObject.name;
-
+        if (GameObject.Find("Main Camera").GetComponent<runInSimMode>().simMode == true)
+        {
+            caseSwtich = gameObject.name;
+        }
         
 
         switch (caseSwtich)
@@ -150,7 +152,10 @@ public class sensorTrigger : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        caseSwtich = gameObject.name;
+        if (GameObject.Find("Main Camera").GetComponent<runInSimMode>().simMode == true)
+        {
+            caseSwtich = gameObject.name;
+        }
 
         switch (caseSwtich)
         {
@@ -198,10 +203,10 @@ public class sensorTrigger : MonoBehaviour
             case "codesys1StopInduction":
                 GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1StopInduction = false;
                 break;
-            case "codesys1ToRobotino":
+            case "codesys1ToRobotinoStopInduction":
                 GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1ToRobotino = false;
                 break;
-            case "codesys1FromRobotino":
+            case "codesys1FromRobotinoStopInduction":
                 GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1FromRobotino = false;
                 break;
 

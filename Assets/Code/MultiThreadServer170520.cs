@@ -10,7 +10,8 @@ using System.IO;
 
 public class MultiThreadServer170520 : MonoBehaviour
 {
-
+    Thread manualThread;
+    Thread magFrontThread;
     int counter = 0;
     string IP_ADDRESS;
 
@@ -20,14 +21,14 @@ public class MultiThreadServer170520 : MonoBehaviour
 
         try
         {
-            Thread magFrontThread = new Thread(new ThreadStart(magFront));
-            Thread manualThread = new Thread(new ThreadStart(manual));
+            magFrontThread = new Thread(new ThreadStart(magFront));
+            manualThread = new Thread(new ThreadStart(manual));
             Thread CameraThread = new Thread(new ThreadStart(camInspect));
             Thread codesys1Thread = new Thread(new ThreadStart(codesys1));
-            Thread codesys2Thread = new Thread(new ThreadStart(codesys2));
-            Thread magBackThread = new Thread(new ThreadStart(magBack));
-            Thread pressingThread = new Thread(new ThreadStart(pressing));
-            Thread heatingThread = new Thread(new ThreadStart(heating));
+            //Thread codesys2Thread = new Thread(new ThreadStart(codesys2));
+            //Thread magBackThread = new Thread(new ThreadStart(magBack));
+            //Thread pressingThread = new Thread(new ThreadStart(pressing));
+            //Thread heatingThread = new Thread(new ThreadStart(heating));
 
             magFrontThread.Start();
             magFrontThread.IsBackground = true;
@@ -37,14 +38,14 @@ public class MultiThreadServer170520 : MonoBehaviour
             CameraThread.IsBackground = true;
             codesys1Thread.Start();
             codesys1Thread.IsBackground = true;
-            codesys2Thread.Start();
-            codesys2Thread.IsBackground = true;
-            magBackThread.Start();
-            magBackThread.IsBackground = true;
-            pressingThread.Start();
-            pressingThread.IsBackground = true;
-            heatingThread.Start();
-            heatingThread.IsBackground = true;
+            //codesys2Thread.Start();
+            //codesys2Thread.IsBackground = true;
+            //magBackThread.Start();
+            //magBackThread.IsBackground = true;
+            //pressingThread.Start();
+            //pressingThread.IsBackground = true;
+            //heatingThread.Start();
+            //heatingThread.IsBackground = true;
 
 
         }
@@ -60,587 +61,638 @@ public class MultiThreadServer170520 : MonoBehaviour
     }
 
 
+
+
     public void magFront()
     {
-        bool keepReading = false;
-        int PORT = 9001;
-        string data;
-        Socket listener;
-        Socket handler;
+        while(true) {
+            bool keepReading = false;
+            int PORT = 9001;
+            string data;
+            string old = "";
+            Socket listener;
+            Socket handler;
 
-        // Data buffer for incoming data.
-        byte[] bytes = new Byte[1024];
+            // Data buffer for incoming data.
+            byte[] bytes = new Byte[1024];
 
-        // host running the application.
-        Debug.Log("Ip " + IP_ADDRESS + PORT);
-        IPAddress[] ipArray = Dns.GetHostAddresses(getIPAddress());
-        IPEndPoint localEndPoint = new IPEndPoint(ipArray[0], PORT);
+            // host running the application.
+            Debug.Log("Ip " + IP_ADDRESS + PORT);
+            IPAddress[] ipArray = Dns.GetHostAddresses(getIPAddress());
+            IPEndPoint localEndPoint = new IPEndPoint(ipArray[0], PORT);
 
-        // Create a TCP/IP socket.
-        listener = new Socket(ipArray[0].AddressFamily,
-            SocketType.Stream, ProtocolType.Tcp);
+            // Create a TCP/IP socket.
+            listener = new Socket(ipArray[0].AddressFamily,
+                SocketType.Stream, ProtocolType.Tcp);
 
-        // Bind the socket to the local endpoint and 
-        // listen for incoming connections.
+            // Bind the socket to the local endpoint and 
+            // listen for incoming connections.
 
-        try
-        {
-            listener.Bind(localEndPoint);
-            listener.Listen(10);
-
-            // Start listening for connections.
-            while (true)
+            try
             {
-                keepReading = true;
+                listener.Bind(localEndPoint);
+                listener.Listen(10);
 
-                // Program is suspended while waiting for an incoming connection.
-                Debug.Log("Waiting for Connection on " + PORT.ToString());     //It works
-
-                handler = listener.Accept();
-                Debug.Log("Client Connected");     //It doesn't work
-                data = null;
-
-                // An incoming connection needs to be processed.
-                while (keepReading)
+                // Start listening for connections.
+                while (true)
                 {
-                    bytes = new byte[17];
-                    int bytesRec = handler.Receive(bytes);
-                    Debug.Log("Received from Server");
+                    keepReading = true;
 
-                    if (bytesRec <= 0)
-                    {
-                        keepReading = false;
-                        handler.Disconnect(true);
-                        break;
-                    }
+                    // Program is suspended while waiting for an incoming connection.
+                    Debug.Log("Waiting for Connection on " + PORT.ToString());     //It works
 
-                    data = Encoding.ASCII.GetString(bytes, 0, bytesRec);
-                    Debug.Log(data);
-                    if (data.IndexOf("<EOF>") > -1)
+                    handler = listener.Accept();
+                    Debug.Log("Client Connected");     //It doesn't work
+                    data = null;
+
+                    // An incoming connection needs to be processed.
+                    while (keepReading)
                     {
-                        break;
+                        bytes = new byte[17];
+                        int bytesRec = handler.Receive(bytes);
+                        //Debug.Log("Received from Server");
+
+                        if (bytesRec <= 0)
+                        {
+                            keepReading = false;
+                            handler.Disconnect(true);
+                            break;
+                        }
+
+                        data = Encoding.ASCII.GetString(bytes, 0, bytesRec);
+
+                        if (data.Equals(old) == false)
+                        {
+                            Debug.Log(data);
+                            old = data;
+                        }
+
+                        if (data.IndexOf("<EOF>") > -1)
+                        {
+                            break;
+                        }
+
+                        System.Threading.Thread.Sleep(1);
                     }
 
                     System.Threading.Thread.Sleep(1);
                 }
-
-                System.Threading.Thread.Sleep(1);
             }
-        }
-        catch (Exception e)
-        {
-            Debug.Log(e.ToString());
+            catch (Exception e)
+            {
+                Debug.Log(e.ToString());
+            }
         }
     }
 
+
     public void manual()
     {
-        bool keepReading = false;
-        int PORT = 9002;
-        string data;
-        Socket listener;
-        Socket handler;
-
-        // Data buffer for incoming data.
-        byte[] bytes = new Byte[1024];
-
-        // host running the application.
-        Debug.Log("Ip " + IP_ADDRESS + PORT);
-        IPAddress[] ipArray = Dns.GetHostAddresses(getIPAddress());
-        IPEndPoint localEndPoint = new IPEndPoint(ipArray[0], PORT);
-
-        // Create a TCP/IP socket.
-        listener = new Socket(ipArray[0].AddressFamily,
-            SocketType.Stream, ProtocolType.Tcp);
-
-        // Bind the socket to the local endpoint and 
-        // listen for incoming connections.
-
-        try
+        while (true)
         {
-            listener.Bind(localEndPoint);
-            listener.Listen(10);
+            bool keepReading = false;
+            int PORT = 9002;
+            string old = "";
+            string data;
+            Socket listener;
+            Socket handler;
 
-            // Start listening for connections.
-            while (true)
+            // Data buffer for incoming data.
+            byte[] bytes = new Byte[1024];
+
+            // host running the application.
+            Debug.Log("Ip " + IP_ADDRESS + PORT);
+            IPAddress[] ipArray = Dns.GetHostAddresses(getIPAddress());
+            IPEndPoint localEndPoint = new IPEndPoint(ipArray[0], PORT);
+
+            // Create a TCP/IP socket.
+            listener = new Socket(ipArray[0].AddressFamily,
+                SocketType.Stream, ProtocolType.Tcp);
+
+            // Bind the socket to the local endpoint and 
+            // listen for incoming connections.
+
+            try
             {
-                keepReading = true;
+                listener.Bind(localEndPoint);
+                listener.Listen(10);
 
-                // Program is suspended while waiting for an incoming connection.
-                Debug.Log("Waiting for Connection on " + PORT.ToString());     //It works
-
-                handler = listener.Accept();
-                Debug.Log("Client Connected");     //It doesn't work
-                data = null;
-
-                // An incoming connection needs to be processed.
-                while (keepReading)
+                // Start listening for connections.
+                while (true)
                 {
-                    bytes = new byte[17];
-                    int bytesRec = handler.Receive(bytes);
-                    Debug.Log("Received from Server");
+                    keepReading = true;
 
-                    if (bytesRec <= 0)
-                    {
-                        keepReading = false;
-                        handler.Disconnect(true);
-                        break;
-                    }
+                    // Program is suspended while waiting for an incoming connection.
+                    Debug.Log("Waiting for Connection on " + PORT.ToString());     //It works
 
-                    data = Encoding.ASCII.GetString(bytes, 0, bytesRec);
-                    Debug.Log(data);
-                    if (data.IndexOf("<EOF>") > -1)
+                    handler = listener.Accept();
+                    Debug.Log("Client Connected");     //It doesn't work
+                    data = null;
+
+                    // An incoming connection needs to be processed.
+                    while (keepReading)
                     {
-                        break;
+                        bytes = new byte[17];
+                        int bytesRec = handler.Receive(bytes);
+                        //Debug.Log("Received from Server");
+
+                        if (bytesRec <= 0)
+                        {
+                            keepReading = false;
+                            handler.Disconnect(true);
+                            break;
+                        }
+
+                        data = Encoding.ASCII.GetString(bytes, 0, bytesRec);
+                        if (data.Equals(old) == false)
+                        {
+                            Debug.Log(data);
+                            old = data;
+                        }
+                        if (data.IndexOf("<EOF>") > -1)
+                        {
+                            break;
+                        }
+
+                        System.Threading.Thread.Sleep(1);
                     }
 
                     System.Threading.Thread.Sleep(1);
                 }
-
-                System.Threading.Thread.Sleep(1);
             }
-        }
-        catch (Exception e)
-        {
-            Debug.Log(e.ToString());
+            catch (Exception e)
+            {
+                Debug.Log(e.ToString());
+            }
         }
     }
 
     public void camInspect()
     {
-        bool keepReading = false;
-        int PORT = 9003;
-        string data;
-        Socket listener;
-        Socket handler;
+        while(true) {
+            bool keepReading = false;
+            int PORT = 9003;
+            string data;
+            string old = "";
+            Socket listener;
+            Socket handler;
 
-        // Data buffer for incoming data.
-        byte[] bytes = new Byte[1024];
+            // Data buffer for incoming data.
+            byte[] bytes = new Byte[1024];
 
-        // host running the application.
-        Debug.Log("Ip " + IP_ADDRESS + PORT);
-        IPAddress[] ipArray = Dns.GetHostAddresses(getIPAddress());
-        IPEndPoint localEndPoint = new IPEndPoint(ipArray[0], PORT);
+            // host running the application.
+            Debug.Log("Ip " + IP_ADDRESS + PORT);
+            IPAddress[] ipArray = Dns.GetHostAddresses(getIPAddress());
+            IPEndPoint localEndPoint = new IPEndPoint(ipArray[0], PORT);
 
-        // Create a TCP/IP socket.
-        listener = new Socket(ipArray[0].AddressFamily,
-            SocketType.Stream, ProtocolType.Tcp);
+            // Create a TCP/IP socket.
+            listener = new Socket(ipArray[0].AddressFamily,
+                SocketType.Stream, ProtocolType.Tcp);
 
-        // Bind the socket to the local endpoint and 
-        // listen for incoming connections.
+            // Bind the socket to the local endpoint and 
+            // listen for incoming connections.
 
-        try
-        {
-            listener.Bind(localEndPoint);
-            listener.Listen(10);
-
-            // Start listening for connections.
-            while (true)
+            try
             {
-                keepReading = true;
+                listener.Bind(localEndPoint);
+                listener.Listen(10);
 
-                // Program is suspended while waiting for an incoming connection.
-                Debug.Log("Waiting for Connection on " + PORT.ToString());     //It works
-
-                handler = listener.Accept();
-                Debug.Log("Client Connected");     //It doesn't work
-                data = null;
-
-                // An incoming connection needs to be processed.
-                while (keepReading)
+                // Start listening for connections.
+                while (true)
                 {
-                    bytes = new byte[17];
-                    int bytesRec = handler.Receive(bytes);
-                    Debug.Log("Received from Server");
+                    keepReading = true;
 
-                    if (bytesRec <= 0)
-                    {
-                        keepReading = false;
-                        handler.Disconnect(true);
-                        break;
-                    }
+                    // Program is suspended while waiting for an incoming connection.
+                    Debug.Log("Waiting for Connection on " + PORT.ToString());     //It works
 
-                    data = Encoding.ASCII.GetString(bytes, 0, bytesRec);
-                    Debug.Log(data);
-                    if (data.IndexOf("<EOF>") > -1)
+                    handler = listener.Accept();
+                    Debug.Log("Client Connected");     //It doesn't work
+                    data = null;
+
+                    // An incoming connection needs to be processed.
+                    while (keepReading)
                     {
-                        break;
+                        bytes = new byte[17];
+                        int bytesRec = handler.Receive(bytes);
+                        //Debug.Log("Received from Server");
+
+                        if (bytesRec <= 0)
+                        {
+                            keepReading = false;
+                            handler.Disconnect(true);
+                            break;
+                        }
+
+                        data = Encoding.ASCII.GetString(bytes, 0, bytesRec);
+
+                        if (data.Equals(old) == false)
+                        {
+                            Debug.Log(data);
+                            old = data;
+                        }
+
+                        if (data.IndexOf("<EOF>") > -1)
+                        {
+                            break;
+                        }
+
+                        System.Threading.Thread.Sleep(1);
                     }
 
                     System.Threading.Thread.Sleep(1);
                 }
-
-                System.Threading.Thread.Sleep(1);
             }
-        }
-        catch (Exception e)
-        {
-            Debug.Log(e.ToString());
+            catch (Exception e)
+            {
+                Debug.Log(e.ToString());
+            }
         }
     }
 
     public void codesys1()
     {
-        bool keepReading = false;
-        int PORT = 9004;
-        string data;
-        Socket listener;
-        Socket handler;
-
-        // Data buffer for incoming data.
-        byte[] bytes = new Byte[1024];
-
-        // host running the application.
-        Debug.Log("Ip " + IP_ADDRESS + PORT);
-        IPAddress[] ipArray = Dns.GetHostAddresses(getIPAddress());
-        IPEndPoint localEndPoint = new IPEndPoint(ipArray[0], PORT);
-
-        // Create a TCP/IP socket.
-        listener = new Socket(ipArray[0].AddressFamily,
-            SocketType.Stream, ProtocolType.Tcp);
-
-        // Bind the socket to the local endpoint and 
-        // listen for incoming connections.
-
-        try
+        while (true)
         {
-            listener.Bind(localEndPoint);
-            listener.Listen(10);
+            bool keepReading = false;
+            int PORT = 9997;
+            string data;
+            string old = "";
+            Socket listener;
+            Socket handler;
 
-            // Start listening for connections.
-            while (true)
+            // Data buffer for incoming data.
+            byte[] bytes = new Byte[1024];
+
+            // host running the application.
+            Debug.Log("Ip " + IP_ADDRESS + PORT);
+            IPAddress[] ipArray = Dns.GetHostAddresses(getIPAddress());
+            IPEndPoint localEndPoint = new IPEndPoint(ipArray[0], PORT);
+
+            // Create a TCP/IP socket.
+            listener = new Socket(ipArray[0].AddressFamily,
+                SocketType.Stream, ProtocolType.Tcp);
+
+            // Bind the socket to the local endpoint and 
+            // listen for incoming connections.
+
+            try
             {
-                keepReading = true;
+                listener.Bind(localEndPoint);
+                listener.Listen(10);
 
-                // Program is suspended while waiting for an incoming connection.
-                Debug.Log("Waiting for Connection on " + PORT.ToString());     //It works
-
-                handler = listener.Accept();
-                Debug.Log("Client Connected");     //It doesn't work
-                data = null;
-
-                // An incoming connection needs to be processed.
-                while (keepReading)
+                // Start listening for connections.
+                while (true)
                 {
-                    bytes = new byte[17];
-                    int bytesRec = handler.Receive(bytes);
-                    Debug.Log("Received from Server");
+                    keepReading = true;
 
-                    if (bytesRec <= 0)
-                    {
-                        keepReading = false;
-                        handler.Disconnect(true);
-                        break;
-                    }
+                    // Program is suspended while waiting for an incoming connection.
+                    Debug.Log("Waiting for Connection on " + PORT.ToString());     //It works
 
-                    data = Encoding.ASCII.GetString(bytes, 0, bytesRec);
-                    Debug.Log(data);
-                    if (data.IndexOf("<EOF>") > -1)
+                    handler = listener.Accept();
+                    Debug.Log("Client Connected");     //It doesn't work
+                    data = null;
+
+                    // An incoming connection needs to be processed.
+                    while (keepReading)
                     {
-                        break;
+                        bytes = new byte[17];
+                        int bytesRec = handler.Receive(bytes);
+                        //Debug.Log("Received from Server");
+
+                        if (bytesRec <= 0)
+                        {
+                            keepReading = false;
+                            handler.Disconnect(true);
+                            break;
+                        }
+
+                        data = Encoding.ASCII.GetString(bytes, 0, bytesRec);
+
+                        if (data.Equals(old) == false)
+                        {
+                            Debug.Log(data);
+                            old = data;
+                        }
+
+                        if (data.IndexOf("<EOF>") > -1)
+                        {
+                            break;
+                        }
+
+                        System.Threading.Thread.Sleep(1);
                     }
 
                     System.Threading.Thread.Sleep(1);
                 }
-
-                System.Threading.Thread.Sleep(1);
             }
-        }
-        catch (Exception e)
-        {
-            Debug.Log(e.ToString());
+            catch (Exception e)
+            {
+                Debug.Log(e.ToString());
+            }
         }
     }
 
     public void codesys2()
     {
-        bool keepReading = false;
-        int PORT = 9005;
-        string data;
-        Socket listener;
-        Socket handler;
-
-        // Data buffer for incoming data.
-        byte[] bytes = new Byte[1024];
-
-        // host running the application.
-        Debug.Log("Ip " + IP_ADDRESS + PORT);
-        IPAddress[] ipArray = Dns.GetHostAddresses(getIPAddress());
-        IPEndPoint localEndPoint = new IPEndPoint(ipArray[0], PORT);
-
-        // Create a TCP/IP socket.
-        listener = new Socket(ipArray[0].AddressFamily,
-            SocketType.Stream, ProtocolType.Tcp);
-
-        // Bind the socket to the local endpoint and 
-        // listen for incoming connections.
-
-        try
+        while (true)
         {
-            listener.Bind(localEndPoint);
-            listener.Listen(10);
+            bool keepReading = false;
+            int PORT = 9005;
+            string data;
+            Socket listener;
+            Socket handler;
 
-            // Start listening for connections.
-            while (true)
+            // Data buffer for incoming data.
+            byte[] bytes = new Byte[1024];
+
+            // host running the application.
+            Debug.Log("Ip " + IP_ADDRESS + PORT);
+            IPAddress[] ipArray = Dns.GetHostAddresses(getIPAddress());
+            IPEndPoint localEndPoint = new IPEndPoint(ipArray[0], PORT);
+
+            // Create a TCP/IP socket.
+            listener = new Socket(ipArray[0].AddressFamily,
+                SocketType.Stream, ProtocolType.Tcp);
+
+            // Bind the socket to the local endpoint and 
+            // listen for incoming connections.
+
+            try
             {
-                keepReading = true;
+                listener.Bind(localEndPoint);
+                listener.Listen(10);
 
-                // Program is suspended while waiting for an incoming connection.
-                Debug.Log("Waiting for Connection on " + PORT.ToString());     //It works
-
-                handler = listener.Accept();
-                Debug.Log("Client Connected");     //It doesn't work
-                data = null;
-
-                // An incoming connection needs to be processed.
-                while (keepReading)
+                // Start listening for connections.
+                while (true)
                 {
-                    bytes = new byte[17];
-                    int bytesRec = handler.Receive(bytes);
-                    Debug.Log("Received from Server");
+                    keepReading = true;
 
-                    if (bytesRec <= 0)
-                    {
-                        keepReading = false;
-                        handler.Disconnect(true);
-                        break;
-                    }
+                    // Program is suspended while waiting for an incoming connection.
+                    Debug.Log("Waiting for Connection on " + PORT.ToString());     //It works
 
-                    data = Encoding.ASCII.GetString(bytes, 0, bytesRec);
-                    Debug.Log(data);
-                    if (data.IndexOf("<EOF>") > -1)
+                    handler = listener.Accept();
+                    Debug.Log("Client Connected");     //It doesn't work
+                    data = null;
+
+                    // An incoming connection needs to be processed.
+                    while (keepReading)
                     {
-                        break;
+                        bytes = new byte[17];
+                        int bytesRec = handler.Receive(bytes);
+                        //Debug.Log("Received from Server");
+
+                        if (bytesRec <= 0)
+                        {
+                            keepReading = false;
+                            handler.Disconnect(true);
+                            break;
+                        }
+
+                        data = Encoding.ASCII.GetString(bytes, 0, bytesRec);
+                        Debug.Log(data);
+                        if (data.IndexOf("<EOF>") > -1)
+                        {
+                            break;
+                        }
+
+                        System.Threading.Thread.Sleep(1);
                     }
 
                     System.Threading.Thread.Sleep(1);
                 }
-
-                System.Threading.Thread.Sleep(1);
             }
-        }
-        catch (Exception e)
-        {
-            Debug.Log(e.ToString());
+            catch (Exception e)
+            {
+                Debug.Log(e.ToString());
+            }
         }
     }
 
     public void magBack()
     {
-        bool keepReading = false;
-        int PORT = 9006;
-        string data;
-        Socket listener;
-        Socket handler;
-
-        // Data buffer for incoming data.
-        byte[] bytes = new Byte[1024];
-
-        // host running the application.
-        Debug.Log("Ip " + IP_ADDRESS + PORT);
-        IPAddress[] ipArray = Dns.GetHostAddresses(getIPAddress());
-        IPEndPoint localEndPoint = new IPEndPoint(ipArray[0], PORT);
-
-        // Create a TCP/IP socket.
-        listener = new Socket(ipArray[0].AddressFamily,
-            SocketType.Stream, ProtocolType.Tcp);
-
-        // Bind the socket to the local endpoint and 
-        // listen for incoming connections.
-
-        try
+        while (true)
         {
-            listener.Bind(localEndPoint);
-            listener.Listen(10);
+            bool keepReading = false;
+            int PORT = 9006;
+            string data;
+            Socket listener;
+            Socket handler;
 
-            // Start listening for connections.
-            while (true)
+            // Data buffer for incoming data.
+            byte[] bytes = new Byte[1024];
+
+            // host running the application.
+            Debug.Log("Ip " + IP_ADDRESS + PORT);
+            IPAddress[] ipArray = Dns.GetHostAddresses(getIPAddress());
+            IPEndPoint localEndPoint = new IPEndPoint(ipArray[0], PORT);
+
+            // Create a TCP/IP socket.
+            listener = new Socket(ipArray[0].AddressFamily,
+                SocketType.Stream, ProtocolType.Tcp);
+
+            // Bind the socket to the local endpoint and 
+            // listen for incoming connections.
+
+            try
             {
-                keepReading = true;
+                listener.Bind(localEndPoint);
+                listener.Listen(10);
 
-                // Program is suspended while waiting for an incoming connection.
-                Debug.Log("Waiting for Connection on " + PORT.ToString());     //It works
-
-                handler = listener.Accept();
-                Debug.Log("Client Connected");     //It doesn't work
-                data = null;
-
-                // An incoming connection needs to be processed.
-                while (keepReading)
+                // Start listening for connections.
+                while (true)
                 {
-                    bytes = new byte[17];
-                    int bytesRec = handler.Receive(bytes);
-                    Debug.Log("Received from Server");
+                    keepReading = true;
 
-                    if (bytesRec <= 0)
-                    {
-                        keepReading = false;
-                        handler.Disconnect(true);
-                        break;
-                    }
+                    // Program is suspended while waiting for an incoming connection.
+                    Debug.Log("Waiting for Connection on " + PORT.ToString());     //It works
 
-                    data = Encoding.ASCII.GetString(bytes, 0, bytesRec);
-                    Debug.Log(data);
-                    if (data.IndexOf("<EOF>") > -1)
+                    handler = listener.Accept();
+                    Debug.Log("Client Connected");     //It doesn't work
+                    data = null;
+
+                    // An incoming connection needs to be processed.
+                    while (keepReading)
                     {
-                        break;
+                        bytes = new byte[17];
+                        int bytesRec = handler.Receive(bytes);
+                        //Debug.Log("Received from Server");
+
+                        if (bytesRec <= 0)
+                        {
+                            keepReading = false;
+                            handler.Disconnect(true);
+                            break;
+                        }
+
+                        data = Encoding.ASCII.GetString(bytes, 0, bytesRec);
+                        Debug.Log(data);
+                        if (data.IndexOf("<EOF>") > -1)
+                        {
+                            break;
+                        }
+
+                        System.Threading.Thread.Sleep(1);
                     }
 
                     System.Threading.Thread.Sleep(1);
                 }
-
-                System.Threading.Thread.Sleep(1);
             }
-        }
-        catch (Exception e)
-        {
-            Debug.Log(e.ToString());
+            catch (Exception e)
+            {
+                Debug.Log(e.ToString());
+            }
         }
     }
 
     public void pressing()
     {
-        bool keepReading = false;
-        int PORT = 9007;
-        string data;
-        Socket listener;
-        Socket handler;
-
-        // Data buffer for incoming data.
-        byte[] bytes = new Byte[1024];
-
-        // host running the application.
-        Debug.Log("Ip " + IP_ADDRESS + PORT);
-        IPAddress[] ipArray = Dns.GetHostAddresses(getIPAddress());
-        IPEndPoint localEndPoint = new IPEndPoint(ipArray[0], PORT);
-
-        // Create a TCP/IP socket.
-        listener = new Socket(ipArray[0].AddressFamily,
-            SocketType.Stream, ProtocolType.Tcp);
-
-        // Bind the socket to the local endpoint and 
-        // listen for incoming connections.
-
-        try
+        while (true)
         {
-            listener.Bind(localEndPoint);
-            listener.Listen(10);
+            bool keepReading = false;
+            int PORT = 9007;
+            string data;
+            Socket listener;
+            Socket handler;
 
-            // Start listening for connections.
-            while (true)
+            // Data buffer for incoming data.
+            byte[] bytes = new Byte[1024];
+
+            // host running the application.
+            Debug.Log("Ip " + IP_ADDRESS + PORT);
+            IPAddress[] ipArray = Dns.GetHostAddresses(getIPAddress());
+            IPEndPoint localEndPoint = new IPEndPoint(ipArray[0], PORT);
+
+            // Create a TCP/IP socket.
+            listener = new Socket(ipArray[0].AddressFamily,
+                SocketType.Stream, ProtocolType.Tcp);
+
+            // Bind the socket to the local endpoint and 
+            // listen for incoming connections.
+
+            try
             {
-                keepReading = true;
+                listener.Bind(localEndPoint);
+                listener.Listen(10);
 
-                // Program is suspended while waiting for an incoming connection.
-                Debug.Log("Waiting for Connection on " + PORT.ToString());     //It works
-
-                handler = listener.Accept();
-                Debug.Log("Client Connected");     //It doesn't work
-                data = null;
-
-                // An incoming connection needs to be processed.
-                while (keepReading)
+                // Start listening for connections.
+                while (true)
                 {
-                    bytes = new byte[17];
-                    int bytesRec = handler.Receive(bytes);
-                    Debug.Log("Received from Server");
+                    keepReading = true;
 
-                    if (bytesRec <= 0)
-                    {
-                        keepReading = false;
-                        handler.Disconnect(true);
-                        break;
-                    }
+                    // Program is suspended while waiting for an incoming connection.
+                    Debug.Log("Waiting for Connection on " + PORT.ToString());     //It works
 
-                    data = Encoding.ASCII.GetString(bytes, 0, bytesRec);
-                    Debug.Log(data);
-                    if (data.IndexOf("<EOF>") > -1)
+                    handler = listener.Accept();
+                    Debug.Log("Client Connected");     //It doesn't work
+                    data = null;
+
+                    // An incoming connection needs to be processed.
+                    while (keepReading)
                     {
-                        break;
+                        bytes = new byte[17];
+                        int bytesRec = handler.Receive(bytes);
+                        //Debug.Log("Received from Server");
+
+                        if (bytesRec <= 0)
+                        {
+                            keepReading = false;
+                            handler.Disconnect(true);
+                            break;
+                        }
+
+                        data = Encoding.ASCII.GetString(bytes, 0, bytesRec);
+                        Debug.Log(data);
+                        if (data.IndexOf("<EOF>") > -1)
+                        {
+                            break;
+                        }
+
+                        System.Threading.Thread.Sleep(1);
                     }
 
                     System.Threading.Thread.Sleep(1);
                 }
-
-                System.Threading.Thread.Sleep(1);
             }
-        }
-        catch (Exception e)
-        {
-            Debug.Log(e.ToString());
+            catch (Exception e)
+            {
+                Debug.Log(e.ToString());
+            }
         }
     }
 
     public void heating()
     {
-        bool keepReading = false;
-        int PORT = 9008;
-        string data;
-        Socket listener;
-        Socket handler;
-
-        // Data buffer for incoming data.
-        byte[] bytes = new Byte[1024];
-
-        // host running the application.
-        Debug.Log("Ip " + IP_ADDRESS + PORT);
-        IPAddress[] ipArray = Dns.GetHostAddresses(getIPAddress());
-        IPEndPoint localEndPoint = new IPEndPoint(ipArray[0], PORT);
-
-        // Create a TCP/IP socket.
-        listener = new Socket(ipArray[0].AddressFamily,
-            SocketType.Stream, ProtocolType.Tcp);
-
-        // Bind the socket to the local endpoint and 
-        // listen for incoming connections.
-
-        try
+        while (true)
         {
-            listener.Bind(localEndPoint);
-            listener.Listen(10);
+            bool keepReading = false;
+            int PORT = 9008;
+            string data;
+            Socket listener;
+            Socket handler;
 
-            // Start listening for connections.
-            while (true)
+            // Data buffer for incoming data.
+            byte[] bytes = new Byte[1024];
+
+            // host running the application.
+            Debug.Log("Ip " + IP_ADDRESS + PORT);
+            IPAddress[] ipArray = Dns.GetHostAddresses(getIPAddress());
+            IPEndPoint localEndPoint = new IPEndPoint(ipArray[0], PORT);
+
+            // Create a TCP/IP socket.
+            listener = new Socket(ipArray[0].AddressFamily,
+                SocketType.Stream, ProtocolType.Tcp);
+
+            // Bind the socket to the local endpoint and 
+            // listen for incoming connections.
+
+            try
             {
-                keepReading = true;
+                listener.Bind(localEndPoint);
+                listener.Listen(10);
 
-                // Program is suspended while waiting for an incoming connection.
-                Debug.Log("Waiting for Connection on " + PORT.ToString());     //It works
-
-                handler = listener.Accept();
-                Debug.Log("Client Connected");     //It doesn't work
-                data = null;
-
-                // An incoming connection needs to be processed.
-                while (keepReading)
+                // Start listening for connections.
+                while (true)
                 {
-                    bytes = new byte[17];
-                    int bytesRec = handler.Receive(bytes);
-                    Debug.Log("Received from Server");
+                    keepReading = true;
 
-                    if (bytesRec <= 0)
-                    {
-                        keepReading = false;
-                        handler.Disconnect(true);
-                        break;
-                    }
+                    // Program is suspended while waiting for an incoming connection.
+                    Debug.Log("Waiting for Connection on " + PORT.ToString());     //It works
 
-                    data = Encoding.ASCII.GetString(bytes, 0, bytesRec);
-                    Debug.Log(data);
-                    if (data.IndexOf("<EOF>") > -1)
+                    handler = listener.Accept();
+                    Debug.Log("Client Connected");     //It doesn't work
+                    data = null;
+
+                    // An incoming connection needs to be processed.
+                    while (keepReading)
                     {
-                        break;
+                        bytes = new byte[17];
+                        int bytesRec = handler.Receive(bytes);
+                        //Debug.Log("Received from Server");
+
+                        if (bytesRec <= 0)
+                        {
+                            keepReading = false;
+                            handler.Disconnect(true);
+                            break;
+                        }
+
+                        data = Encoding.ASCII.GetString(bytes, 0, bytesRec);
+                        Debug.Log(data);
+                        if (data.IndexOf("<EOF>") > -1)
+                        {
+                            break;
+                        }
+
+                        System.Threading.Thread.Sleep(1);
                     }
 
                     System.Threading.Thread.Sleep(1);
                 }
-
-                System.Threading.Thread.Sleep(1);
             }
-        }
-        catch (Exception e)
-        {
-            Debug.Log(e.ToString());
+            catch (Exception e)
+            {
+                Debug.Log(e.ToString());
+            }
         }
     }
 

@@ -67,6 +67,8 @@ public class follower : MonoBehaviour
     public bool manualConv = false;
     public bool camInspecConv = false;
     public bool codesys1Conv = false;
+    public bool codesys1OutConv = false;
+    public bool codesys1InConv = false;
     public bool robotinoConv = false;
 
     public int carrierID;
@@ -189,6 +191,14 @@ public class follower : MonoBehaviour
                 codesys1Conv = true;
                 break;
 
+            case "codesys1OutConv":
+                codesys1OutConv = true;
+                break;
+
+            case "codesys1InConv":
+                codesys1InConv = true;
+                break;
+
             case "robotinoConv":
                 robotinoConv = true;
                 break;
@@ -201,6 +211,7 @@ public class follower : MonoBehaviour
         if (other.gameObject.name.Contains("StopInduction"))
         {
             if (counter < pauseTime) { goStop = false; }
+           
         }
 
 
@@ -213,20 +224,6 @@ public class follower : MonoBehaviour
         }
 
 
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.name.Contains("StopInduction"))
-        {
-            //Debug.Log(counter.ToString() + " " + gameObject.name);
-            if (counter < pauseTime) { goStop = false; }
-            counter++;
-            if (counter >= pauseTime && busy == false)
-            {
-                goStop = true;
-            }
-        }
     }
 
     void OnTriggerExit(Collider other)
@@ -253,6 +250,14 @@ public class follower : MonoBehaviour
                 codesys1Conv = false;
                 break;
 
+            case "codesys1OutConv":
+                codesys1OutConv = false;
+                break;
+
+            case "codesys1InConv":
+                codesys1InConv = false;
+                break;
+
             case "robotinoConv":
                 robotinoConv = false;
                 break;
@@ -269,6 +274,22 @@ public class follower : MonoBehaviour
         }
 
     }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.name.Contains("StopInduction"))
+        {
+            //Debug.Log(counter.ToString() + " " + gameObject.name);
+            if (counter < pauseTime) { goStop = false; }
+            counter++;
+            if (counter >= pauseTime && busy == false)
+            {
+                goStop = true;
+            }
+        }
+    }
+
+
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -306,7 +327,7 @@ public class follower : MonoBehaviour
         {
             case 0: //magFront
 
-                if (currentLocation == 1 && goStop == false && order == true)
+                if (magFrontConv == true && goStop == false && order == true)
                 {
                     busy = true;
 
@@ -326,7 +347,7 @@ public class follower : MonoBehaviour
                 break;
 
             case 20: //manual
-                if (currentLocation == 2 && goStop == false && order == true)
+                if (manualConv == true && goStop == false && order == true)
                 {
                     busy = true;
                     GameObject.Find("manualConveyor").GetComponent<manualPlaceScript>().run = true;
@@ -344,7 +365,7 @@ public class follower : MonoBehaviour
                 break;
 
             case 30:
-                if (currentLocation == 3 && goStop == false && order == true)
+                if (camInspecConv == true && goStop == false && order == true)
                 {
                     busy = true;
                     GameObject.Find("camInspectConveyor").GetComponent<camInspectScript>().run = true;
@@ -362,7 +383,7 @@ public class follower : MonoBehaviour
                 break;
 
             case 40:
-                if (currentLocation == 4 && goStop == true && order == true)
+                if (codesys1Conv == true && goStop == true && order == true)
                 {
                     if (percentLapFirstIsland >= 37) { caseSwitch = 41; }
                     
@@ -375,20 +396,24 @@ public class follower : MonoBehaviour
                 break;
 
             case 50:
-                if (currentLocation == 5 && goStop == false && order == true)
+                if (codesys1OutConv == true && goStop == false && order == true)
                 {
                     busy = true;
-                    if (GameObject.Find("Main Camera").GetComponent<runInSimMode>().robotinoIslandSensor == true)
-                    {
-                        busy = false;
-                        caseSwitch = 60;
-                    }
+                    caseSwitch = 55;
                 }
 
                 break;
-            
+
+            case 55:
+                if (GameObject.Find("Main Camera").GetComponent<runInSimMode>().robotinoIslandSensor == true)
+                {
+                    busy = false;
+                    caseSwitch = 60;
+                }
+                break;
+
             case 60:
-                if (currentLocation == 6 && order == true)
+                if (GameObject.Find("Main Camera").GetComponent<runInSimMode>().robotinoCarrierStop == true && order == true)
                 {
                     busy = true;
                     caseSwitch = 61;

@@ -1019,6 +1019,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &670104995 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 101664, guid: 264897e16346467459599c64d4e55474,
+    type: 3}
+  m_PrefabInstance: {fileID: 987054009}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &670104996
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 670104995}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.06957623, y: 0.3044837, z: 0.053353455}
+  m_Center: {x: -9.948888, y: -3.2826414, z: 0.16682546}
 --- !u!1 &690710287 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 102868, guid: 264897e16346467459599c64d4e55474,
@@ -1392,6 +1411,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: fbx 2543654756
       objectReference: {fileID: 0}
+    - target: {fileID: 101470, guid: 264897e16346467459599c64d4e55474, type: 3}
+      propertyPath: m_Name
+      value: codesys1OutConv
+      objectReference: {fileID: 0}
     - target: {fileID: 101474, guid: 264897e16346467459599c64d4e55474, type: 3}
       propertyPath: m_Name
       value: codesys1StopInduction
@@ -1399,6 +1422,10 @@ PrefabInstance:
     - target: {fileID: 101482, guid: 264897e16346467459599c64d4e55474, type: 3}
       propertyPath: m_Name
       value: firstIslandRobotino
+      objectReference: {fileID: 0}
+    - target: {fileID: 101664, guid: 264897e16346467459599c64d4e55474, type: 3}
+      propertyPath: m_Name
+      value: codesys1InConv
       objectReference: {fileID: 0}
     - target: {fileID: 101678, guid: 264897e16346467459599c64d4e55474, type: 3}
       propertyPath: m_Name
@@ -2300,6 +2327,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.69798815, y: 0.06957717, z: 0.054611634}
   m_Center: {x: -9.838111, y: -3.089877, z: 0.16745448}
+--- !u!1 &1610063688 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 101470, guid: 264897e16346467459599c64d4e55474,
+    type: 3}
+  m_PrefabInstance: {fileID: 987054009}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1610063689
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610063688}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.06957623, y: 0.3045109, z: 0.05451707}
+  m_Center: {x: -9.791951, y: -3.2826338, z: 0.16740729}
 --- !u!1 &1611688977 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 102092, guid: 264897e16346467459599c64d4e55474,
@@ -2623,6 +2669,7 @@ GameObject:
   - component: {fileID: 1860901273}
   - component: {fileID: 1860901274}
   - component: {fileID: 1860901275}
+  - component: {fileID: 1860901276}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2806,6 +2853,18 @@ MonoBehaviour:
   controller: {fileID: 854722176}
   speed: 12
   gravity: -9.81
+--- !u!114 &1860901276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860901268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb1238b01b3c810408a97a1a7169a42a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1861026982
 MonoBehaviour:
   m_ObjectHideFlags: 0
