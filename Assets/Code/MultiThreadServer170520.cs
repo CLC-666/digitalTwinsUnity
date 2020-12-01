@@ -15,37 +15,49 @@ public class MultiThreadServer170520 : MonoBehaviour
     int counter = 0;
     string IP_ADDRESS;
 
+    public string magFData;
+    public string manData;
+    public string camData;
+    public string code1Data;
+    public string code2Data;
+    public string magBData;
+    public string pressData;
+    public string heatData;
+
     void Start()
     {
         IP_ADDRESS = getIPAddress().ToString();
 
         try
         {
-            magFrontThread = new Thread(new ThreadStart(magFront));
-            manualThread = new Thread(new ThreadStart(manual));
-            Thread CameraThread = new Thread(new ThreadStart(camInspect));
-            Thread codesys1Thread = new Thread(new ThreadStart(codesys1));
+            //magFrontThread = new Thread(new ThreadStart(magFront));
+            //manualThread = new Thread(new ThreadStart(manual));
+            //Thread CameraThread = new Thread(new ThreadStart(camInspect));
+            //Thread codesys1Thread = new Thread(new ThreadStart(codesys1));
             //Thread codesys2Thread = new Thread(new ThreadStart(codesys2));
-            //Thread magBackThread = new Thread(new ThreadStart(magBack));
-            //Thread pressingThread = new Thread(new ThreadStart(pressing));
-            //Thread heatingThread = new Thread(new ThreadStart(heating));
+            Thread magBackThread = new Thread(new ThreadStart(magBack));
+            Thread pressingThread = new Thread(new ThreadStart(pressing));
+            Thread heatingThread = new Thread(new ThreadStart(heating));
 
-            magFrontThread.Start();
-            magFrontThread.IsBackground = true;
-            manualThread.Start();
-            manualThread.IsBackground = true;
-            CameraThread.Start();
-            CameraThread.IsBackground = true;
-            codesys1Thread.Start();
-            codesys1Thread.IsBackground = true;
+
+            //magFrontThread.Start();
+            //magFrontThread.IsBackground = true;
+            //manualThread.Start();
+            //manualThread.IsBackground = true;
+            //CameraThread.Start();
+            //CameraThread.IsBackground = true;
+            //codesys1Thread.Start();
+            //codesys1Thread.IsBackground = true;
             //codesys2Thread.Start();
             //codesys2Thread.IsBackground = true;
-            //magBackThread.Start();
-            //magBackThread.IsBackground = true;
-            //pressingThread.Start();
-            //pressingThread.IsBackground = true;
-            //heatingThread.Start();
-            //heatingThread.IsBackground = true;
+            magBackThread.Start();
+            magBackThread.IsBackground = true;
+            pressingThread.Start();
+            pressingThread.IsBackground = true;
+            heatingThread.Start();
+            heatingThread.IsBackground = true;
+
+
 
 
         }
@@ -100,7 +112,7 @@ public class MultiThreadServer170520 : MonoBehaviour
 
                     // Program is suspended while waiting for an incoming connection.
                     Debug.Log("Waiting for Connection on " + PORT.ToString());     //It works
-
+                    Debug.Log("Make sure your firewall is turned off LOL");
                     handler = listener.Accept();
                     Debug.Log("Client Connected");     //It doesn't work
                     data = null;
@@ -123,8 +135,9 @@ public class MultiThreadServer170520 : MonoBehaviour
 
                         if (data.Equals(old) == false)
                         {
-                            Debug.Log(data);
+                            //Debug.Log("MagFront" + data);
                             old = data;
+                            magFData = data;
                         }
 
                         if (data.IndexOf("<EOF>") > -1)
@@ -206,8 +219,9 @@ public class MultiThreadServer170520 : MonoBehaviour
                         data = Encoding.ASCII.GetString(bytes, 0, bytesRec);
                         if (data.Equals(old) == false)
                         {
-                            Debug.Log(data);
+                            //Debug.Log("Manual" + data);
                             old = data;
+                            manData = data;
                         }
                         if (data.IndexOf("<EOF>") > -1)
                         {
@@ -287,8 +301,9 @@ public class MultiThreadServer170520 : MonoBehaviour
 
                         if (data.Equals(old) == false)
                         {
-                            Debug.Log(data);
+                            //Debug.Log("camInspect" + data);
                             old = data;
+                            camData = data;
                         }
 
                         if (data.IndexOf("<EOF>") > -1)
@@ -370,8 +385,9 @@ public class MultiThreadServer170520 : MonoBehaviour
 
                         if (data.Equals(old) == false)
                         {
-                            Debug.Log(data);
+                            //Debug.Log("codesys1" + data);
                             old = data;
+                            code1Data = data;
                         }
 
                         if (data.IndexOf("<EOF>") > -1)
@@ -399,6 +415,7 @@ public class MultiThreadServer170520 : MonoBehaviour
             bool keepReading = false;
             int PORT = 9005;
             string data;
+            string old = "";
             Socket listener;
             Socket handler;
 
@@ -449,7 +466,14 @@ public class MultiThreadServer170520 : MonoBehaviour
                         }
 
                         data = Encoding.ASCII.GetString(bytes, 0, bytesRec);
-                        Debug.Log(data);
+
+                        if (data.Equals(old) == false)
+                        {
+                            //Debug.Log("codesys2" + data);
+                            old = data;
+                            code2Data = data;
+                        }
+
                         if (data.IndexOf("<EOF>") > -1)
                         {
                             break;
@@ -475,6 +499,7 @@ public class MultiThreadServer170520 : MonoBehaviour
             bool keepReading = false;
             int PORT = 9006;
             string data;
+            string old = "";
             Socket listener;
             Socket handler;
 
@@ -525,7 +550,13 @@ public class MultiThreadServer170520 : MonoBehaviour
                         }
 
                         data = Encoding.ASCII.GetString(bytes, 0, bytesRec);
-                        Debug.Log(data);
+
+                        if (data.Equals(old) == false)
+                        {
+                            //Debug.Log("magBack" + data);
+                            old = data;
+                            magBData = data;
+                        }
                         if (data.IndexOf("<EOF>") > -1)
                         {
                             break;
@@ -551,6 +582,7 @@ public class MultiThreadServer170520 : MonoBehaviour
             bool keepReading = false;
             int PORT = 9007;
             string data;
+            string old = "";
             Socket listener;
             Socket handler;
 
@@ -601,7 +633,14 @@ public class MultiThreadServer170520 : MonoBehaviour
                         }
 
                         data = Encoding.ASCII.GetString(bytes, 0, bytesRec);
-                        Debug.Log(data);
+
+                        if (data.Equals(old) == false)
+                        {
+                            //Debug.Log("pressing" + data);
+                            old = data;
+                            pressData = data;
+                        }
+
                         if (data.IndexOf("<EOF>") > -1)
                         {
                             break;
@@ -627,6 +666,7 @@ public class MultiThreadServer170520 : MonoBehaviour
             bool keepReading = false;
             int PORT = 9008;
             string data;
+            string old = "";
             Socket listener;
             Socket handler;
 
@@ -657,7 +697,7 @@ public class MultiThreadServer170520 : MonoBehaviour
 
                     // Program is suspended while waiting for an incoming connection.
                     Debug.Log("Waiting for Connection on " + PORT.ToString());     //It works
-
+               
                     handler = listener.Accept();
                     Debug.Log("Client Connected");     //It doesn't work
                     data = null;
@@ -677,7 +717,14 @@ public class MultiThreadServer170520 : MonoBehaviour
                         }
 
                         data = Encoding.ASCII.GetString(bytes, 0, bytesRec);
-                        Debug.Log(data);
+
+                        if (data.Equals(old) == false)
+                        {
+                            //Debug.Log("heating" + data);
+                            old = data;
+                            heatData = data;
+                        }
+
                         if (data.IndexOf("<EOF>") > -1)
                         {
                             break;
