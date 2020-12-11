@@ -1082,6 +1082,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb1238b01b3c810408a97a1a7169a42a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IP_ADDRESS: 
+  magFData: 
+  manData: 
+  camData: 
+  code1Data: 
+  code2Data: 
+  magBData: 
+  pressData: 
+  heatData: 
 --- !u!1 &701165810 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 101966, guid: 264897e16346467459599c64d4e55474,
@@ -2670,6 +2679,7 @@ GameObject:
   - component: {fileID: 1860901274}
   - component: {fileID: 1860901275}
   - component: {fileID: 1860901276}
+  - component: {fileID: 1860901277}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2772,15 +2782,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   caseSwitch: 0
   speed: 0.25
+  simMode: 0
   manualStartInduction: 0
   manualStopInduction: 0
   manualEndInduction: 0
+  manualCarrierRelease: 0
   camInspectStartInduction: 0
   camInspectStopInduction: 0
   camInspectEndInduction: 0
+  camInspectCarrierRelease: 0
+  codesys1StartInduction: 0
   codesys1StopInduction: 0
   codesys1ToRobotino: 0
   codesys1FromRobotino: 0
+  codesys1EndInduction: 0
+  codesys1CarrierRelease: 0
   robotinoIslandSensor: 0
   robotinoCarrierStop: 0
   firstIslandRobotino: 0
@@ -2788,16 +2804,19 @@ MonoBehaviour:
   magFrontStartInduction: 0
   magFrontStopInduction: 0
   magFrontEndInduction: 0
+  magFrontCarrierRelease: 0
   magFrontTop: 0
   magFrontBottom: 0
   magBackStartInduction2: 0
   magBackStopInduction2: 0
   magBackEndInduction2: 0
+  magBackCarrierRelease: 0
   magBackTop: 0
   magBackBottom: 0
   pressStartInduction2: 0
   pressStopInduction2: 0
   pressEndInduction2: 0
+  pressCarrierRelease: 0
   pressTargetPressureN: 70
   pressCurrentPressureN: 0
   pressCurrentTime: 2
@@ -2806,6 +2825,7 @@ MonoBehaviour:
   heatingStartInduction2: 0
   heatingStopInduction2: 0
   heatingEndInduction2: 0
+  heatingCarrierRelease: 0
   heatingTargetTime: 0
   heatingCurrentTime: 0
   heatingTargetTemp: 0
@@ -2813,6 +2833,7 @@ MonoBehaviour:
   codesys2StopInduction2: 0
   codesys2ToRobotino2: 0
   codesys2FromRobotino2: 0
+  codesys2CarrierRelease: 0
   magFrontConvRunning: 1
   manualConvRunning: 1
   camInspecConvRunning: 1
@@ -2860,11 +2881,33 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1860901268}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eb1238b01b3c810408a97a1a7169a42a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IP_ADDRESS: 
+  magFData: 
+  manData: 
+  camData: 
+  code1Data: 
+  code2Data: 
+  magBData: 
+  pressData: 
+  heatData: 
+--- !u!114 &1860901277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860901268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 964f078893657ee47a1f742c3a27f4ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  locationData: 
 --- !u!114 &1861026982
 MonoBehaviour:
   m_ObjectHideFlags: 0

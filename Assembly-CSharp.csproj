@@ -98,6 +98,7 @@
     <Compile Include="Assets\Scenes\openTextFile.cs" />
     <None Include="Assets\to does 17.05.20.txt" />
     <None Include="Assets\requirements.txt" />
+    <None Include="Assets\Code\MultiThreadServerBeforeRemoteAccessDecember2020.txt" />
     <None Include="Assets\Code\Server\old.txt" />
     <None Include="Assets\Scenes\test.txt" />
     <None Include="Assets\Code\initial positions CP Lab.txt" />

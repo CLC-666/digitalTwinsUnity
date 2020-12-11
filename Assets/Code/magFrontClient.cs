@@ -22,7 +22,167 @@ public class magFrontClient : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //************** Transferline Msg Struct **************//
+        //Station Name, start, middle, release, end, carrier ID
 
+        string[] sepData = locationData.Split(',');
+
+        if (sepData[0].Equals("1"))
+        {
+            if (sepData[1].Equals("1"))
+            {
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().magFrontStartInduction = true;
+            }
+            if (sepData[1].Equals("0"))
+            {
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().magFrontStartInduction = false;
+            }
+
+            if (sepData[2].Equals("1"))
+            {
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().magFrontStopInduction = true;
+            }
+            if (sepData[2].Equals("0"))
+            {
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().magFrontStopInduction = false;
+            }
+
+            if (sepData[3].Equals("1"))
+            {
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().magFrontCarrierRelease = true;
+            }
+            if (sepData[3].Equals("0"))
+            {
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().magFrontCarrierRelease = false;
+            }
+
+            if (sepData[4].Equals("1"))
+            {
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().magFrontEndInduction = true;
+            }
+            if (sepData[4].Equals("0"))
+            {
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().magFrontEndInduction = false;
+            }
+        }
+
+        if (sepData[0].Equals("2"))
+        {
+            if (sepData[1].Equals("1"))
+            {
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().manualStartInduction = true;
+            }
+            if (sepData[1].Equals("0"))
+            {
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().manualStartInduction = false;
+            }
+
+            if (sepData[2].Equals("1"))
+            {
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().manualStopInduction = true;
+            }
+            if (sepData[2].Equals("0"))
+            {
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().manualStopInduction = false;
+            }
+
+            if (sepData[3].Equals("1"))
+            {
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().manualCarrierRelease = true;
+            }
+            if (sepData[3].Equals("0"))
+            {
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().manualCarrierRelease = false;
+            }
+
+            if (sepData[4].Equals("1"))
+            {
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().manualEndInduction = true;
+            }
+            if (sepData[4].Equals("0"))
+            {
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().manualEndInduction = false;
+            }
+        }
+
+        if (sepData[0].Equals("3"))
+        {
+            if (sepData[1].Equals("1"))
+            {
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().camInspectStartInduction = true;
+            }
+            if (sepData[1].Equals("0"))
+            {
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().camInspectStartInduction = false;
+            }
+
+            if (sepData[2].Equals("1"))
+            {
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().camInspectStopInduction = true;
+            }
+            if (sepData[2].Equals("0"))
+            {
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().camInspectStopInduction = false;
+            }
+
+            if (sepData[3].Equals("1"))
+            {
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().camInspectCarrierRelease = true;
+            }
+            if (sepData[3].Equals("0"))
+            {
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().camInspectCarrierRelease = false;
+            }
+
+            if (sepData[4].Equals("1"))
+            {
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().camInspectEndInduction = true;
+            }
+            if (sepData[4].Equals("0"))
+            {
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().camInspectEndInduction = false;
+            }
+        }
+
+
+        if (sepData[0].Equals("7"))
+        {
+            if (sepData[1].Equals("1"))
+            {
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1StartInduction = true;
+            }
+            if (sepData[1].Equals("0"))
+            {
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1StartInduction = false;
+            }
+
+            if (sepData[2].Equals("1"))
+            {
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1StopInduction = true;
+            }
+            if (sepData[2].Equals("0"))
+            {
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1StopInduction = false;
+            }
+
+            if (sepData[3].Equals("1"))
+            {
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1CarrierRelease = true;
+            }
+            if (sepData[3].Equals("0"))
+            {
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1CarrierRelease = false;
+            }
+
+            if (sepData[4].Equals("1"))
+            {
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1EndInduction = true;
+            }
+            if (sepData[4].Equals("0"))
+            {
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1EndInduction = false;
+            }
+        }
     }
     /// <summary> 	
     /// Setup socket connection. 	
@@ -45,10 +205,11 @@ public class magFrontClient : MonoBehaviour
     /// </summary>     
     private void ListenForData()
     {
+        string old = "";
         try
         {
-            socketConnection = new TcpClient("172.21.4.151", 9998);
-            Byte[] bytes = new Byte[12];
+            socketConnection = new TcpClient("10.14.129.55", 5555);
+            Byte[] bytes = new Byte[11];
             while (true)
             {
                 // Get a stream object for reading 				
@@ -63,7 +224,13 @@ public class magFrontClient : MonoBehaviour
                         // Convert byte array to string message. 						
                         string serverMessage = Encoding.ASCII.GetString(incommingData);
                         locationData = serverMessage;
-                        //Debug.Log(locationData);
+
+                        if (locationData.Equals(old) == false)
+                        {
+                            Debug.Log(locationData);
+                            old = locationData;
+                            //Debug.Log(locationData);
+                        }
                     }
                 }
             }

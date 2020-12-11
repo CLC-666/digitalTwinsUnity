@@ -16,12 +16,17 @@ public class runInSimMode : MonoBehaviour
     public bool manualStartInduction = false;
     public bool manualStopInduction = false; //SPAWN LOCATION 2 = follower: 92%.
     public bool manualEndInduction = false;
+    public bool manualCarrierRelease = false;
     public bool camInspectStartInduction = false;
     public bool camInspectStopInduction = false; //SPAWN LOCATION 3 = follower: 17%.
     public bool camInspectEndInduction = false;
+    public bool camInspectCarrierRelease = false;
+    public bool codesys1StartInduction = false;
     public bool codesys1StopInduction = false; //SPAWN LOCATION 4 = follower: 36.5%.
     public bool codesys1ToRobotino = false;
     public bool codesys1FromRobotino = false;
+    public bool codesys1EndInduction = false;
+    public bool codesys1CarrierRelease = false;
     public bool robotinoIslandSensor = false;
     public bool robotinoCarrierStop = false;
     public bool firstIslandRobotino = false;
@@ -29,16 +34,19 @@ public class runInSimMode : MonoBehaviour
     public bool magFrontStartInduction = false;
     public bool magFrontStopInduction = false; //SPAWN LOCATION 1 = follower: 67%.
     public bool magFrontEndInduction = false;
+    public bool magFrontCarrierRelease = false;
     public bool magFrontTop = false;
     public bool magFrontBottom = false;
     public bool magBackStartInduction2 = false;
     public bool magBackStopInduction2 = false;
     public bool magBackEndInduction2 = false;
+    public bool magBackCarrierRelease = false;
     public bool magBackTop = false;
     public bool magBackBottom = false;
     public bool pressStartInduction2 = false;
     public bool pressStopInduction2 = false;
     public bool pressEndInduction2 = false;
+    public bool pressCarrierRelease = false;
     public float pressTargetPressureN = 70;
     public float pressCurrentPressureN = 0;
     public float pressCurrentTime = 2;
@@ -47,6 +55,7 @@ public class runInSimMode : MonoBehaviour
     public bool heatingStartInduction2 = false;
     public bool heatingStopInduction2 = false;
     public bool heatingEndInduction2 = false;
+    public bool heatingCarrierRelease = false;
     public float heatingTargetTime;
     public float heatingCurrentTime;
     public float heatingTargetTemp;
@@ -54,6 +63,7 @@ public class runInSimMode : MonoBehaviour
     public bool codesys2StopInduction2 = false;
     public bool codesys2ToRobotino2 = false;
     public bool codesys2FromRobotino2 = false;
+    public bool codesys2CarrierRelease = false;
 
     public bool magFrontConvRunning = true;
     public bool manualConvRunning = true;
@@ -74,6 +84,7 @@ public class runInSimMode : MonoBehaviour
     int counter;
     int updateCounter;
     int dataLogCounter = 0;
+
 
 
     public int ID; //delete this after.
@@ -98,21 +109,24 @@ public class runInSimMode : MonoBehaviour
 
         carriers = new GameObject[5];
 
-        // Run in sim mode
-        for (int i = 1; i < 4; i++)
+        if (simMode == true)
         {
-            ID = i; //just for testing purposes.
-            Debug.Log(carrierArray[ID]);
-            Debug.Log("creating a carrier");
-            GameObject clone = Instantiate(carrierPrefab) as GameObject;
-            carriers[ID] = clone;
-            carriers[ID].GetComponent<follower>().carrierID = ID;
-            carriers[ID].GetComponent<follower>().spawnLocation = i;
-            carriers[ID].GetComponent<follower>().order = false;
-            carriers[ID].GetComponent<follower>().goStop = true;
-            carriers[ID].name = carriers[ID].name + " " + i.ToString();
-            carrierArray[ID] = ID;
-          
+            // Run in sim mode
+            for (int i = 1; i < 4; i++)
+            {
+                ID = i; //just for testing purposes.
+                Debug.Log(carrierArray[ID]);
+                Debug.Log("creating a carrier");
+                GameObject clone = Instantiate(carrierPrefab) as GameObject;
+                carriers[ID] = clone;
+                carriers[ID].GetComponent<follower>().carrierID = ID;
+                carriers[ID].GetComponent<follower>().spawnLocation = i;
+                carriers[ID].GetComponent<follower>().order = false;
+                carriers[ID].GetComponent<follower>().goStop = true;
+                carriers[ID].name = carriers[ID].name + " " + i.ToString();
+                carrierArray[ID] = ID;
+
+            }
         }
 
         //carriers[ID].SetActive(false);
