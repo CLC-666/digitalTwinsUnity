@@ -10,12 +10,13 @@ using System;
 public class runInSimMode : MonoBehaviour
 {
     public int caseSwitch = 0;
-    public float speed = 0.25f;
-    public bool simMode = false;
+    public float speed = 25f;
+    public bool simMode = true;
 
     public bool manualStartInduction = false;
     public bool manualStopInduction = false; //SPAWN LOCATION 2 = follower: 92%.
     public bool manualEndInduction = false;
+    public int manualRFID = 0;
     public bool manualCarrierRelease = false;
     public bool camInspectStartInduction = false;
     public bool camInspectStopInduction = false; //SPAWN LOCATION 3 = follower: 17%.
@@ -112,7 +113,7 @@ public class runInSimMode : MonoBehaviour
         if (simMode == true)
         {
             // Run in sim mode
-            for (int i = 1; i < 4; i++)
+            for (int i = 1; i < 2; i++)
             {
                 ID = i; //just for testing purposes.
                 Debug.Log(carrierArray[ID]);
@@ -123,32 +124,27 @@ public class runInSimMode : MonoBehaviour
                 carriers[ID].GetComponent<follower>().spawnLocation = i;
                 carriers[ID].GetComponent<follower>().order = false;
                 carriers[ID].GetComponent<follower>().goStop = true;
+                carriers[ID].GetComponent<follower>().speed = speed;
                 carriers[ID].name = carriers[ID].name + " " + i.ToString();
                 carrierArray[ID] = ID;
 
             }
         }
 
-        //carriers[ID].SetActive(false);
-        //}
-
-        //if (carrierArray[manual["ID"]] == 0 && manual["rel"] == 1)
-        //{
-        //    int ID = manual["ID"];
-        //    Debug.Log(carrierArray[ID]);
-        //    Debug.Log("creating a carrier");
-        //    GameObject clone = Instantiate(carrierPrefab) as GameObject;
-        //    carriers[ID] = clone;
-        //    carriers[ID].GetComponent<CarrierMove>().carrierID = ID;
-
-        //    //carriers[ID].GetComponent<CarrierMove>().x = -6.6214f;
-        //    //carriers[ID].GetComponent<CarrierMove>().y = 0.979f;
-        //    //carriers[ID].GetComponent<CarrierMove>().z = 0.0533f;
-        //    //carriers[ID].GetComponent<CarrierMove>().caseSwitch = 35;
-        //    carrierArray[ID] = ID;
-        //    //carriers[ID].SetActive(false);
-
-        //}
+       if (simMode == false) {
+            if (manualStopInduction == true && manualCarrierRelease == true)
+            {
+                ID = manualRFID;
+                GameObject clone = Instantiate(carrierPrefab) as GameObject;
+                carriers[ID] = clone;
+                carriers[ID].GetComponent<follower>().carrierID = ID;
+                carriers[ID].GetComponent<follower>().spawnLocation = 2;
+                carriers[ID].GetComponent<follower>().order = false;
+                carriers[ID].GetComponent<follower>().goStop = true;
+                carriers[ID].name = carriers[ID].name + ID.ToString();
+                carrierArray[ID] = ID;
+            }
+        }
 
 
     }

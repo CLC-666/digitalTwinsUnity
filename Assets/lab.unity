@@ -2782,10 +2782,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   caseSwitch: 0
   speed: 0.25
-  simMode: 0
+  simMode: 1
   manualStartInduction: 0
   manualStopInduction: 0
   manualEndInduction: 0
+  manualRFID: 0
   manualCarrierRelease: 0
   camInspectStartInduction: 0
   camInspectStopInduction: 0
@@ -2908,6 +2909,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   locationData: 
+  sepData: []
 --- !u!114 &1861026982
 MonoBehaviour:
   m_ObjectHideFlags: 0

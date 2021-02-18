@@ -1,0 +1,8 @@
+- get outline of paper for digital twin software
+- finish blockchain paper
+- menu swapper
+- live demo on website
+- live data feed
+
+
+- talk with ciren about mindsphere

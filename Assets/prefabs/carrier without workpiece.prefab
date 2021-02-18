@@ -234,6 +234,17 @@ MonoBehaviour:
   currentLocation: 0
   initSecondIslandRobotinoLap: 0
   initSecondIslandLap: 0
+  convStartMagFront: 0
+  convStartManual: 0
+  convStartCamInspec: 0
+  convStartCodesys1: 0
+  magFrontConv: 0
+  manualConv: 0
+  camInspecConv: 0
+  codesys1Conv: 0
+  codesys1OutConv: 0
+  codesys1InConv: 0
+  robotinoConv: 0
   carrierID: 0
   busy: 0
   order: 0

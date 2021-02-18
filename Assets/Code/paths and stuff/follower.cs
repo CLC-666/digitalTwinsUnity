@@ -33,6 +33,7 @@ public class follower : MonoBehaviour
 
 
     public bool simMode = false;
+    public float speed;
 
     //A FIRSTISLAND LAP IS THIS LONG 3.753859.
     //A TOROBOTINO LATP IS THIS LONG 1.174999.
@@ -100,7 +101,7 @@ public class follower : MonoBehaviour
         {
             case 1: //first island
                 if (percentLapFirstIsland == 100) { percentLapFirstIsland = 0; }
-                if (goStop == true) { percentLapFirstIsland += 0.25f; }
+                if (goStop == true) { percentLapFirstIsland += speed * Time.deltaTime; }
 
                 distanceTravelledFirstIsland = ((percentLapFirstIsland / 100) * -3.753859f);
                 transform.position = firstIsland.path.GetPointAtDistance(distanceTravelledFirstIsland);
@@ -110,7 +111,7 @@ public class follower : MonoBehaviour
 
             case 2: //first island robotino drop off lap
 
-                if (goStop == true && toRobotPercentLap < 100) { toRobotPercentLap += 0.25f; }
+                if (goStop == true && toRobotPercentLap < 100) { toRobotPercentLap += speed * Time.deltaTime; }
 
                 distanceTravelledFirstRobotinoLap = ((toRobotPercentLap / 100) * 1.8f);
                 transform.position = firstRobotino.path.GetPointAtDistance(distanceTravelledFirstRobotinoLap, EndOfPathInstruction.Stop);
@@ -122,7 +123,7 @@ public class follower : MonoBehaviour
             case 3: //second island robotino drop off lap
 
                 if (initSecondIslandRobotinoLap == false) { percentSecondIslandRobotinoLap = toRobotPercentLap; initSecondIslandRobotinoLap = true; }
-                if (goStop == true && percentSecondIslandRobotinoLap < 100) { percentSecondIslandRobotinoLap += 0.25f; }
+                if (goStop == true && percentSecondIslandRobotinoLap < 100) { percentSecondIslandRobotinoLap += speed * Time.deltaTime; }
 
                 distanceTravelledSecondRobotinoLap = ((percentSecondIslandRobotinoLap / 100) * 1.8f);
                 transform.position = secondRobotino.path.GetPointAtDistance(distanceTravelledSecondRobotinoLap, EndOfPathInstruction.Stop);
@@ -136,7 +137,7 @@ public class follower : MonoBehaviour
                 initSecondIslandRobotinoLap = false;
                 if (GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys2StopInduction2 == true && GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys2ToRobotino2 == false) { pathMode = 5; }
                 if (percentLapSecondIsland == 100) { percentLapSecondIsland = 0; }
-                if (goStop == true) { percentLapSecondIsland += 0.25f; }
+                if (goStop == true) { percentLapSecondIsland += speed * Time.deltaTime; }
 
                 distanceTravelledSecondIsland = ((percentLapSecondIsland / 100) * -3.753859f);
                 transform.position = secondIsland.path.GetPointAtDistance(distanceTravelledSecondIsland);
@@ -146,7 +147,7 @@ public class follower : MonoBehaviour
 
             case 5:
                 if (initSecondIslandRobotinoLap == false) { percentSecondIslandRobotinoLap = 0; initSecondIslandRobotinoLap = true; }
-                if (goStop == true && percentSecondIslandRobotinoLap < 100) { percentSecondIslandRobotinoLap += 0.25f; }
+                if (goStop == true && percentSecondIslandRobotinoLap < 100) { percentSecondIslandRobotinoLap += speed * Time.deltaTime; }
 
                 distanceTravelledSecondRobotinoLap = ((percentSecondIslandRobotinoLap / 100) * 1.8f);
                 transform.position = secondRobotino.path.GetPointAtDistance(distanceTravelledSecondRobotinoLap, EndOfPathInstruction.Stop);
@@ -396,6 +397,8 @@ public class follower : MonoBehaviour
                 break;
 
             case 50:
+                codesys1OutConv = true; //THIS IS A BODGEEEEEEEEEEEEEEEEEEEEE REMOVEEEEEEEEEEEEEEEEE
+                goStop = false; //AND THIS
                 if (codesys1OutConv == true && goStop == false && order == true)
                 {
                     busy = true;
@@ -445,6 +448,7 @@ public class follower : MonoBehaviour
 
             case 70:
                 pathMode = 3;
+                goStop = true; // THIS IS ALSO A BODGEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
                 if (currentLocation == 9 && order == true)
                 {
                     pathMode = 4;

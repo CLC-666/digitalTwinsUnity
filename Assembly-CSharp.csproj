@@ -106,6 +106,7 @@
     <None Include="Assets\Code\Server\beforetryingtomakemanythreads.txt" />
     <None Include="Assets\Code\sensorLocations.txt" />
     <None Include="Assets\Code\oldSpawnCarriage.txt" />
+    <None Include="Assets\12.01.21 to does.txt" />
     <None Include="Assets\Code\Sensor locations manual station.txt" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/Will/OneDrive - Middlesex University/digitalTwinsUnity/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
