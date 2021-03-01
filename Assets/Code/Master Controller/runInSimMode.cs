@@ -38,6 +38,7 @@ public class runInSimMode : MonoBehaviour
     public bool magFrontCarrierRelease = false;
     public bool magFrontTop = false;
     public bool magFrontBottom = false;
+    public int magFrontRFID = 0;
     public bool magBackStartInduction2 = false;
     public bool magBackStopInduction2 = false;
     public bool magBackEndInduction2 = false;
@@ -152,8 +153,8 @@ public class runInSimMode : MonoBehaviour
     public void Update()
     {
         // station name, start induct, stop induct, carrier released, end induct, carrier number
-        string data = GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().manData;
-        dataDist(data);
+        dataDist(GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().manData);
+        dataDist(GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().magFData);
     }
 
     public void dataDist(string data)
@@ -161,6 +162,15 @@ public class runInSimMode : MonoBehaviour
 
         string[] splitData = data.Split(',');
         //Debug.Log(splitData[0] + " splitdata");
+
+        if (splitData[0].Equals("1"))
+        {
+            magFrontStartInduction = splitData[1].Equals("1");
+            magFrontStopInduction = splitData[2].Equals("1");
+            magFrontCarrierRelease = splitData[3].Equals("1");
+            magFrontEndInduction = splitData[4].Equals("1");
+            magFrontRFID = Int32.Parse(splitData[5]);
+        }
 
         if (splitData[0].Equals("2"))
         {
@@ -170,7 +180,6 @@ public class runInSimMode : MonoBehaviour
             manualEndInduction = splitData[4].Equals("1");
             manualRFID = Int32.Parse(splitData[5]);
         }
-
     }
 
 
