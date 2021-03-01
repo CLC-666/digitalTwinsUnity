@@ -22,6 +22,7 @@ public class runInSimMode : MonoBehaviour
     public bool camInspectStopInduction = false; //SPAWN LOCATION 3 = follower: 17%.
     public bool camInspectEndInduction = false;
     public bool camInspectCarrierRelease = false;
+    public int camInspectRFID = 0;
     public bool codesys1StartInduction = false;
     public bool codesys1StopInduction = false; //SPAWN LOCATION 4 = follower: 36.5%.
     public bool codesys1ToRobotino = false;
@@ -155,6 +156,7 @@ public class runInSimMode : MonoBehaviour
         // station name, start induct, stop induct, carrier released, end induct, carrier number
         dataDist(GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().manData);
         dataDist(GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().magFData);
+        dataDist(GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().camData);
     }
 
     public void dataDist(string data)
@@ -179,6 +181,15 @@ public class runInSimMode : MonoBehaviour
             manualCarrierRelease = splitData[3].Equals("1");
             manualEndInduction = splitData[4].Equals("1");
             manualRFID = Int32.Parse(splitData[5]);
+        }
+
+        if (splitData[0].Equals("3"))
+        {
+            camInspectStartInduction = splitData[1].Equals("1");
+            camInspectStopInduction = splitData[2].Equals("1");
+            camInspectCarrierRelease = splitData[3].Equals("1");
+            camInspectEndInduction = splitData[4].Equals("1");
+            camInspectRFID = Int32.Parse(splitData[5]);
         }
     }
 

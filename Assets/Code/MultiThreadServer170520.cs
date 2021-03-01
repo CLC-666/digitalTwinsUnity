@@ -12,6 +12,7 @@ public class MultiThreadServer170520 : MonoBehaviour
 {
     Thread manualThread;
     Thread magFrontThread;
+    Thread cameraThread;
     Thread REMOTEOFFCAMPUS;
     int counter = 0;
     public string IP_ADDRESS;
@@ -36,7 +37,7 @@ public class MultiThreadServer170520 : MonoBehaviour
             //REMOTEOFFCAMPUS = new Thread(new ThreadStart(REMOTEOFFCAMPUSFUNC));
             magFrontThread = new Thread(new ThreadStart(magFront));
             manualThread = new Thread(new ThreadStart(manual));
-            //Thread CameraThread = new Thread(new ThreadStart(camInspect));
+            cameraThread = new Thread(new ThreadStart(camInspect));
             //Thread codesys1Thread = new Thread(new ThreadStart(codesys1));
             //Thread codesys2Thread = new Thread(new ThreadStart(codesys2));
             //Thread magBackThread = new Thread(new ThreadStart(magBack));
@@ -49,8 +50,8 @@ public class MultiThreadServer170520 : MonoBehaviour
             magFrontThread.IsBackground = true;
             manualThread.Start();
             manualThread.IsBackground = true;
-            //CameraThread.Start();
-            //CameraThread.IsBackground = true;
+            cameraThread.Start();
+            cameraThread.IsBackground = true;
             //codesys1Thread.Start();
             //codesys1Thread.IsBackground = true;
             //codesys2Thread.Start();
