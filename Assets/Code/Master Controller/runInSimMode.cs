@@ -11,7 +11,7 @@ public class runInSimMode : MonoBehaviour
 {
     public int caseSwitch = 0;
     public float speed = 25f;
-    public bool simMode = true;
+    public bool simMode = false;
 
     public bool manualStartInduction = false;
     public bool manualStopInduction = false; //SPAWN LOCATION 2 = follower: 92%.
@@ -146,6 +146,30 @@ public class runInSimMode : MonoBehaviour
             }
         }
 
+
+    }
+
+    public void Update()
+    {
+        // station name, start induct, stop induct, carrier released, end induct, carrier number
+        string data = GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().manData;
+        dataDist(data);
+    }
+
+    public void dataDist(string data)
+    {
+
+        string[] splitData = data.Split(',');
+        //Debug.Log(splitData[0] + " splitdata");
+
+        if (splitData[0].Equals("2"))
+        {
+            manualStartInduction = splitData[1].Equals("1");
+            manualStopInduction = splitData[2].Equals("1");
+            manualCarrierRelease = splitData[3].Equals("1");
+            manualEndInduction = splitData[4].Equals("1");
+            manualRFID = Int32.Parse(splitData[5]);
+        }
 
     }
 

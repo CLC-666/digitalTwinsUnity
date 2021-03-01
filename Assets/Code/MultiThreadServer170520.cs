@@ -15,7 +15,7 @@ public class MultiThreadServer170520 : MonoBehaviour
     Thread REMOTEOFFCAMPUS;
     int counter = 0;
     public string IP_ADDRESS;
-
+    public string[] splitData;
     public string magFData;
     public string manData;
     public string camData;
@@ -25,15 +25,17 @@ public class MultiThreadServer170520 : MonoBehaviour
     public string pressData;
     public string heatData;
 
+  
+
     void Start()
     {
         IP_ADDRESS = getIPAddress().ToString();
 
         try
         {
-            REMOTEOFFCAMPUS = new Thread(new ThreadStart(REMOTEOFFCAMPUSFUNC));
-            //magFrontThread = new Thread(new ThreadStart(magFront));
-            //manualThread = new Thread(new ThreadStart(manual));
+            //REMOTEOFFCAMPUS = new Thread(new ThreadStart(REMOTEOFFCAMPUSFUNC));
+            magFrontThread = new Thread(new ThreadStart(magFront));
+            manualThread = new Thread(new ThreadStart(manual));
             //Thread CameraThread = new Thread(new ThreadStart(camInspect));
             //Thread codesys1Thread = new Thread(new ThreadStart(codesys1));
             //Thread codesys2Thread = new Thread(new ThreadStart(codesys2));
@@ -41,12 +43,12 @@ public class MultiThreadServer170520 : MonoBehaviour
             //Thread pressingThread = new Thread(new ThreadStart(pressing));
             //Thread heatingThread = new Thread(new ThreadStart(heating));
 
-            REMOTEOFFCAMPUS.Start();
-            REMOTEOFFCAMPUS.IsBackground = true;
-            //magFrontThread.Start();
-            //magFrontThread.IsBackground = true;
-            //manualThread.Start();
-            //manualThread.IsBackground = true;
+            //REMOTEOFFCAMPUS.Start();
+            //REMOTEOFFCAMPUS.IsBackground = true;
+            magFrontThread.Start();
+            magFrontThread.IsBackground = true;
+            manualThread.Start();
+            manualThread.IsBackground = true;
             //CameraThread.Start();
             //CameraThread.IsBackground = true;
             //codesys1Thread.Start();
@@ -74,6 +76,8 @@ public class MultiThreadServer170520 : MonoBehaviour
     {
 
     }
+
+ 
 
     public void REMOTEOFFCAMPUSFUNC()
     {
@@ -115,7 +119,7 @@ public class MultiThreadServer170520 : MonoBehaviour
                     Debug.Log("Waiting for Connection on " + PORT.ToString());     //It works
                     Debug.Log("Make sure your firewall is turned off LOL");
                     handler = listener.Accept();
-                    Debug.Log("Client Connected");     //It doesn't work
+                    Debug.Log("Client Connected remote off campus");     //It doesn't work
                     data = null;
 
                     // An incoming connection needs to be processed.
@@ -201,7 +205,7 @@ public class MultiThreadServer170520 : MonoBehaviour
                     Debug.Log("Waiting for Connection on " + PORT.ToString());     //It works
                     Debug.Log("Make sure your firewall is turned off LOL");
                     handler = listener.Accept();
-                    Debug.Log("Client Connected");     //It doesn't work
+                    Debug.Log("MagFront Connected");     //It doesn't work
                     data = null;
 
                     // An incoming connection needs to be processed.
@@ -288,7 +292,7 @@ public class MultiThreadServer170520 : MonoBehaviour
                     Debug.Log("Waiting for Connection on " + PORT.ToString());     //It works
 
                     handler = listener.Accept();
-                    Debug.Log("Client Connected");     //It doesn't work
+                    Debug.Log("Manual Connected");     //It doesn't work
                     data = null;
 
                     // An incoming connection needs to be processed.
@@ -369,7 +373,7 @@ public class MultiThreadServer170520 : MonoBehaviour
                     Debug.Log("Waiting for Connection on " + PORT.ToString());     //It works
 
                     handler = listener.Accept();
-                    Debug.Log("Client Connected");     //It doesn't work
+                    Debug.Log("Camera Inspection Connected");     //It doesn't work
                     data = null;
 
                     // An incoming connection needs to be processed.
@@ -453,7 +457,7 @@ public class MultiThreadServer170520 : MonoBehaviour
                     Debug.Log("Waiting for Connection on " + PORT.ToString());     //It works
 
                     handler = listener.Accept();
-                    Debug.Log("Client Connected");     //It doesn't work
+                    Debug.Log("Codesys 1 Connected");     //It doesn't work
                     data = null;
 
                     // An incoming connection needs to be processed.
@@ -537,7 +541,7 @@ public class MultiThreadServer170520 : MonoBehaviour
                     Debug.Log("Waiting for Connection on " + PORT.ToString());     //It works
 
                     handler = listener.Accept();
-                    Debug.Log("Client Connected");     //It doesn't work
+                    Debug.Log("Codesys 2 Connected");     //It doesn't work
                     data = null;
 
                     // An incoming connection needs to be processed.
@@ -621,7 +625,7 @@ public class MultiThreadServer170520 : MonoBehaviour
                     Debug.Log("Waiting for Connection on " + PORT.ToString());     //It works
 
                     handler = listener.Accept();
-                    Debug.Log("Client Connected");     //It doesn't work
+                    Debug.Log("MagBack Connected");     //It doesn't work
                     data = null;
 
                     // An incoming connection needs to be processed.
@@ -705,7 +709,7 @@ public class MultiThreadServer170520 : MonoBehaviour
                     
 
                     handler = listener.Accept();
-                    Debug.Log("Client Connected");     //It doesn't work
+                    Debug.Log("Pressing Connected");     //It doesn't work
                     data = null;
 
                     // An incoming connection needs to be processed.
@@ -797,7 +801,7 @@ public class MultiThreadServer170520 : MonoBehaviour
                     Debug.Log("Waiting for Connection on " + PORT.ToString());     //It works
                
                     handler = listener.Accept();
-                    Debug.Log("Client Connected");     //It doesn't work
+                    Debug.Log("Heating Connected");     //It doesn't work
                     data = null;
 
                     // An incoming connection needs to be processed.
@@ -850,8 +854,8 @@ public class MultiThreadServer170520 : MonoBehaviour
         {
             if (ip.AddressFamily == AddressFamily.InterNetwork)
             {
-                localIP = ip.ToString();
-                //localIP = "10.54.63.134";
+                //localIP = ip.ToString();
+                localIP = "172.21.4.151";
             }
 
         }

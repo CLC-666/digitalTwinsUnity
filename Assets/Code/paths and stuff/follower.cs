@@ -32,7 +32,7 @@ public class follower : MonoBehaviour
     //public bool codesys2FromRobotino2 = false;
 
 
-    public bool simMode = false;
+    public bool simMode = true;
     public float speed;
 
     //A FIRSTISLAND LAP IS THIS LONG 3.753859.
@@ -635,3 +635,5 @@ public class follower : MonoBehaviour
     }
 
 }
+
+

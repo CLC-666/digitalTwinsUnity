@@ -1083,6 +1083,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IP_ADDRESS: 
+  splitData: []
   magFData: 
   manData: 
   camData: 
@@ -2782,7 +2783,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   caseSwitch: 0
   speed: 0.25
-  simMode: 1
+  simMode: 0
   manualStartInduction: 0
   manualStopInduction: 0
   manualEndInduction: 0
@@ -2882,12 +2883,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1860901268}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eb1238b01b3c810408a97a1a7169a42a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   IP_ADDRESS: 
+  splitData: []
   magFData: 
   manData: 
   camData: 
@@ -2903,7 +2905,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1860901268}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 964f078893657ee47a1f742c3a27f4ee, type: 3}
   m_Name: 
