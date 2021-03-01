@@ -13,6 +13,7 @@ public class MultiThreadServer170520 : MonoBehaviour
     Thread manualThread;
     Thread magFrontThread;
     Thread cameraThread;
+    Thread codesys1Thread;
     Thread REMOTEOFFCAMPUS;
     int counter = 0;
     public string IP_ADDRESS;
@@ -20,8 +21,8 @@ public class MultiThreadServer170520 : MonoBehaviour
     public string magFData;
     public string manData;
     public string camData;
-    public string code1Data;
-    public string code2Data;
+    public string codesys1Data;
+    public string codesys2Data;
     public string magBData;
     public string pressData;
     public string heatData;
@@ -38,7 +39,7 @@ public class MultiThreadServer170520 : MonoBehaviour
             magFrontThread = new Thread(new ThreadStart(magFront));
             manualThread = new Thread(new ThreadStart(manual));
             cameraThread = new Thread(new ThreadStart(camInspect));
-            //Thread codesys1Thread = new Thread(new ThreadStart(codesys1));
+            codesys1Thread = new Thread(new ThreadStart(codesys1));
             //Thread codesys2Thread = new Thread(new ThreadStart(codesys2));
             //Thread magBackThread = new Thread(new ThreadStart(magBack));
             //Thread pressingThread = new Thread(new ThreadStart(pressing));
@@ -52,8 +53,8 @@ public class MultiThreadServer170520 : MonoBehaviour
             manualThread.IsBackground = true;
             cameraThread.Start();
             cameraThread.IsBackground = true;
-            //codesys1Thread.Start();
-            //codesys1Thread.IsBackground = true;
+            codesys1Thread.Start();
+            codesys1Thread.IsBackground = true;
             //codesys2Thread.Start();
             //codesys2Thread.IsBackground = true;
             //magBackThread.Start();
@@ -481,7 +482,7 @@ public class MultiThreadServer170520 : MonoBehaviour
                         {
                             //Debug.Log("codesys1" + data);
                             old = data;
-                            code1Data = data;
+                            codesys1Data = data;
                         }
 
                         if (data.IndexOf("<EOF>") > -1)
@@ -565,7 +566,7 @@ public class MultiThreadServer170520 : MonoBehaviour
                         {
                             //Debug.Log("codesys2" + data);
                             old = data;
-                            code2Data = data;
+                            codesys2Data = data;
                         }
 
                         if (data.IndexOf("<EOF>") > -1)

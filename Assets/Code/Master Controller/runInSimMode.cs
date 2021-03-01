@@ -29,6 +29,7 @@ public class runInSimMode : MonoBehaviour
     public bool codesys1FromRobotino = false;
     public bool codesys1EndInduction = false;
     public bool codesys1CarrierRelease = false;
+    public int codesys1RFID = 0;
     public bool robotinoIslandSensor = false;
     public bool robotinoCarrierStop = false;
     public bool firstIslandRobotino = false;
@@ -157,6 +158,7 @@ public class runInSimMode : MonoBehaviour
         dataDist(GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().manData);
         dataDist(GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().magFData);
         dataDist(GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().camData);
+        dataDist(GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().codesys1Data);
     }
 
     public void dataDist(string data)
@@ -190,6 +192,15 @@ public class runInSimMode : MonoBehaviour
             camInspectCarrierRelease = splitData[3].Equals("1");
             camInspectEndInduction = splitData[4].Equals("1");
             camInspectRFID = Int32.Parse(splitData[5]);
+        }
+
+        if (splitData[0].Equals("7"))
+        {
+            codesys1StartInduction = splitData[1].Equals("1");
+            codesys1StopInduction = splitData[2].Equals("1");
+            codesys1CarrierRelease = splitData[3].Equals("1");
+            codesys1EndInduction = splitData[4].Equals("1");
+            codesys1RFID = Int32.Parse(splitData[5]);
         }
     }
 
