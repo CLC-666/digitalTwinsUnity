@@ -44,18 +44,20 @@ public class runInSimMode : MonoBehaviour
     public bool magBackStartInduction2 = false;
     public bool magBackStopInduction2 = false;
     public bool magBackEndInduction2 = false;
-    public bool magBackCarrierRelease = false;
+    public bool magBackCarrierRelease2 = false;
     public bool magBackTop = false;
     public bool magBackBottom = false;
+    public int magBackRFID2 = 0;
     public bool pressStartInduction2 = false;
     public bool pressStopInduction2 = false;
     public bool pressEndInduction2 = false;
-    public bool pressCarrierRelease = false;
+    public bool pressCarrierRelease2 = false;
     public float pressTargetPressureN = 70;
     public float pressCurrentPressureN = 0;
     public float pressCurrentTime = 2;
     public float pressTargetTime;
     public bool pressWorkpieceCheck = false;
+    public int pressRFID2 = 0;
     public bool heatingStartInduction2 = false;
     public bool heatingStopInduction2 = false;
     public bool heatingEndInduction2 = false;
@@ -64,10 +66,13 @@ public class runInSimMode : MonoBehaviour
     public float heatingCurrentTime;
     public float heatingTargetTemp;
     public float heatingCurrentTemp = 0;
+    public bool codesys2StartInduction2 = false;
     public bool codesys2StopInduction2 = false;
     public bool codesys2ToRobotino2 = false;
     public bool codesys2FromRobotino2 = false;
-    public bool codesys2CarrierRelease = false;
+    public bool codesys2CarrierRelease2 = false;
+    public bool codesys2EndInduction2 = false;
+    public int codesys2RFID2 = 0;
 
     public bool magFrontConvRunning = true;
     public bool manualConvRunning = true;
@@ -154,11 +159,14 @@ public class runInSimMode : MonoBehaviour
 
     public void Update()
     {
-        // station name, start induct, stop induct, carrier released, end induct, carrier number
+        //station name, start induct, stop induct, carrier released, end induct, carrier number
         dataDist(GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().manData);
         dataDist(GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().magFData);
         dataDist(GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().camData);
         dataDist(GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().codesys1Data);
+        dataDist(GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().codesys2Data);
+        dataDist(GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().magBData);
+        dataDist(GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().pressData);
     }
 
     public void dataDist(string data)
@@ -194,7 +202,7 @@ public class runInSimMode : MonoBehaviour
             camInspectRFID = Int32.Parse(splitData[5]);
         }
 
-        if (splitData[0].Equals("7"))
+        if (splitData[0].Equals("4")) 
         {
             codesys1StartInduction = splitData[1].Equals("1");
             codesys1StopInduction = splitData[2].Equals("1");
@@ -202,8 +210,38 @@ public class runInSimMode : MonoBehaviour
             codesys1EndInduction = splitData[4].Equals("1");
             codesys1RFID = Int32.Parse(splitData[5]);
         }
+
+        if (splitData[0].Equals("5"))
+        {
+            codesys2StartInduction2 = splitData[1].Equals("1");
+            codesys2StopInduction2 = splitData[2].Equals("1");
+            codesys2CarrierRelease2 = splitData[3].Equals("1");
+            codesys2EndInduction2 = splitData[4].Equals("1");
+            codesys2RFID2 = Int32.Parse(splitData[5]);
+        }
+
+        if (splitData[0].Equals("6"))
+        {
+            magBackStartInduction2 = splitData[1].Equals("1");
+            magBackStopInduction2 = splitData[2].Equals("1");
+            magBackCarrierRelease2 = splitData[3].Equals("1");
+            magBackEndInduction2 = splitData[4].Equals("1");
+            magBackRFID2 = Int32.Parse(splitData[5]);
+        }
+
+        if (splitData[0].Equals("7"))
+        {
+            pressStartInduction2 = splitData[1].Equals("1");
+            pressStopInduction2 = splitData[2].Equals("1");
+            pressCarrierRelease2 = splitData[3].Equals("1");
+            pressEndInduction2 = splitData[4].Equals("1");
+            pressRFID2 = Int32.Parse(splitData[5]);
+        }
+
     }
 
+
+    
 
 
 
