@@ -61,11 +61,12 @@ public class runInSimMode : MonoBehaviour
     public bool heatingStartInduction2 = false;
     public bool heatingStopInduction2 = false;
     public bool heatingEndInduction2 = false;
-    public bool heatingCarrierRelease = false;
+    public bool heatingCarrierRelease2 = false;
     public float heatingTargetTime;
     public float heatingCurrentTime;
     public float heatingTargetTemp;
     public float heatingCurrentTemp = 0;
+    public int heatingRFID2 = 0;
     public bool codesys2StartInduction2 = false;
     public bool codesys2StopInduction2 = false;
     public bool codesys2ToRobotino2 = false;
@@ -167,6 +168,7 @@ public class runInSimMode : MonoBehaviour
         dataDist(GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().codesys2Data);
         dataDist(GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().magBData);
         dataDist(GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().pressData);
+        dataDist(GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().heatData);
     }
 
     public void dataDist(string data)
@@ -236,6 +238,15 @@ public class runInSimMode : MonoBehaviour
             pressCarrierRelease2 = splitData[3].Equals("1");
             pressEndInduction2 = splitData[4].Equals("1");
             pressRFID2 = Int32.Parse(splitData[5]);
+        }
+
+        if (splitData[0].Equals("8"))
+        {
+            heatingStartInduction2 = splitData[1].Equals("1");
+            heatingStopInduction2 = splitData[2].Equals("1");
+            heatingCarrierRelease2 = splitData[3].Equals("1");
+            heatingEndInduction2 = splitData[4].Equals("1");
+            heatingRFID2 = Int32.Parse(splitData[5]);
         }
 
     }

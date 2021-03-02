@@ -18,6 +18,7 @@ public class MultiThreadServer170520 : MonoBehaviour
     Thread magBackThread;
     Thread pressingThread;
     Thread REMOTEOFFCAMPUS;
+    Thread heatingThread;
     int counter = 0;
     public string IP_ADDRESS;
     public string[] splitData;
@@ -46,7 +47,7 @@ public class MultiThreadServer170520 : MonoBehaviour
             codesys2Thread = new Thread(new ThreadStart(codesys2));
             magBackThread = new Thread(new ThreadStart(magBack));
             pressingThread = new Thread(new ThreadStart(pressing));
-            //Thread heatingThread = new Thread(new ThreadStart(heating));
+            heatingThread = new Thread(new ThreadStart(heating));
 
             //REMOTEOFFCAMPUS.Start();
             //REMOTEOFFCAMPUS.IsBackground = true;
@@ -64,8 +65,8 @@ public class MultiThreadServer170520 : MonoBehaviour
             magBackThread.IsBackground = true;
             pressingThread.Start();
             pressingThread.IsBackground = true;
-            //heatingThread.Start();
-            //heatingThread.IsBackground = true;
+            heatingThread.Start();
+            heatingThread.IsBackground = true;
 
 
 
@@ -760,8 +761,8 @@ public class MultiThreadServer170520 : MonoBehaviour
         {
             bool keepReading = false;
             int PORT = 9008;
-            string data;
             string old = "";
+            string data;
             Socket listener;
             Socket handler;
 
@@ -792,7 +793,7 @@ public class MultiThreadServer170520 : MonoBehaviour
 
                     // Program is suspended while waiting for an incoming connection.
                     Debug.Log("Waiting for Connection on " + PORT.ToString());     //It works
-               
+
                     handler = listener.Accept();
                     Debug.Log("Heating Connected");     //It doesn't work
                     data = null;
@@ -812,14 +813,12 @@ public class MultiThreadServer170520 : MonoBehaviour
                         }
 
                         data = Encoding.ASCII.GetString(bytes, 0, bytesRec);
-
                         if (data.Equals(old) == false)
                         {
-                            //Debug.Log("heating" + data);
+                            //Debug.Log("Heating" + data);
                             old = data;
                             heatData = data;
                         }
-
                         if (data.IndexOf("<EOF>") > -1)
                         {
                             break;
