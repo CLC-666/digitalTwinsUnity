@@ -31,50 +31,55 @@ public class MultiThreadServer170520 : MonoBehaviour
     public string pressData;
     public string heatData;
 
+    public bool simMode = false;
+
   
 
     void Start()
     {
         IP_ADDRESS = getIPAddress().ToString();
 
-        try
+        if (simMode == false)
         {
-            //REMOTEOFFCAMPUS = new Thread(new ThreadStart(REMOTEOFFCAMPUSFUNC));
-            magFrontThread = new Thread(new ThreadStart(magFront));
-            manualThread = new Thread(new ThreadStart(manual));
-            cameraThread = new Thread(new ThreadStart(camInspect));
-            codesys1Thread = new Thread(new ThreadStart(codesys1));
-            codesys2Thread = new Thread(new ThreadStart(codesys2));
-            magBackThread = new Thread(new ThreadStart(magBack));
-            pressingThread = new Thread(new ThreadStart(pressing));
-            heatingThread = new Thread(new ThreadStart(heating));
+            try
+            {
+                //REMOTEOFFCAMPUS = new Thread(new ThreadStart(REMOTEOFFCAMPUSFUNC));
+                magFrontThread = new Thread(new ThreadStart(magFront));
+                manualThread = new Thread(new ThreadStart(manual));
+                cameraThread = new Thread(new ThreadStart(camInspect));
+                codesys1Thread = new Thread(new ThreadStart(codesys1));
+                codesys2Thread = new Thread(new ThreadStart(codesys2));
+                magBackThread = new Thread(new ThreadStart(magBack));
+                pressingThread = new Thread(new ThreadStart(pressing));
+                heatingThread = new Thread(new ThreadStart(heating));
 
-            //REMOTEOFFCAMPUS.Start();
-            //REMOTEOFFCAMPUS.IsBackground = true;
-            magFrontThread.Start();
-            magFrontThread.IsBackground = true;
-            manualThread.Start();
-            manualThread.IsBackground = true;
-            cameraThread.Start();
-            cameraThread.IsBackground = true;
-            codesys1Thread.Start();
-            codesys1Thread.IsBackground = true;
-            codesys2Thread.Start();
-            codesys2Thread.IsBackground = true;
-            magBackThread.Start();
-            magBackThread.IsBackground = true;
-            pressingThread.Start();
-            pressingThread.IsBackground = true;
-            heatingThread.Start();
-            heatingThread.IsBackground = true;
+                //REMOTEOFFCAMPUS.Start();
+                //REMOTEOFFCAMPUS.IsBackground = true;
+                magFrontThread.Start();
+                magFrontThread.IsBackground = true;
+                manualThread.Start();
+                manualThread.IsBackground = true;
+                cameraThread.Start();
+                cameraThread.IsBackground = true;
+                codesys1Thread.Start();
+                codesys1Thread.IsBackground = true;
+                codesys2Thread.Start();
+                codesys2Thread.IsBackground = true;
+                magBackThread.Start();
+                magBackThread.IsBackground = true;
+                pressingThread.Start();
+                pressingThread.IsBackground = true;
+                heatingThread.Start();
+                heatingThread.IsBackground = true;
 
 
 
 
-        }
-        catch (Exception e)
-        {
-            Debug.Log("On client connect exception " + e);
+            }
+            catch (Exception e)
+            {
+                Debug.Log("On client connect exception " + e);
+            }
         }
     }
 

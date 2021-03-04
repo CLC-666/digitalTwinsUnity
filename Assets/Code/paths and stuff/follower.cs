@@ -33,7 +33,7 @@ public class follower : MonoBehaviour
 
 
     public bool simMode = true;
-    public float speed;
+    public float speed = 4.5f; //speedy mode 25, real speed 4.5
 
     //A FIRSTISLAND LAP IS THIS LONG 3.753859.
     //A TOROBOTINO LATP IS THIS LONG 1.174999.
@@ -43,7 +43,7 @@ public class follower : MonoBehaviour
     public PathCreator secondRobotino;
     public int pathMode = 1;
     public bool goStop = false;
-    float pauseTime = 600;
+    public float pauseTime = 5500; //speedy mode 600, real speed 5500
     public int counter = 0;
     public float distanceTravelledFirstIsland;
     public float distanceTravelledSecondIsland;
@@ -314,7 +314,7 @@ public class follower : MonoBehaviour
         if (toRobotPercentLap <= 60.75f && toRobotPercentLap > 13.25f && pathMode == 2) { currentLocation = 6; }
         if (toRobotPercentLap <= 84.25f && toRobotPercentLap > 61f && pathMode == 2) { currentLocation = 7; }
         if (pathMode == 3) { currentLocation = 8; }
-        if (percentSecondIslandRobotinoLap == 100 && pathMode == 3) { currentLocation = 9; }
+        if (percentSecondIslandRobotinoLap >= 100 && pathMode == 3) { currentLocation = 9; }
         if (percentLapSecondIsland <= 67 && percentLapSecondIsland > 38f && pathMode == 4) { currentLocation = 10; }
         if (percentLapSecondIsland <= 92.5f && percentLapSecondIsland > 69 && pathMode == 4) { currentLocation = 11; }
         if (percentLapSecondIsland <= 17f || percentLapSecondIsland > 94f) { if (pathMode == 4) { currentLocation = 12; } }
@@ -449,6 +449,7 @@ public class follower : MonoBehaviour
             case 70:
                 pathMode = 3;
                 goStop = true; // THIS IS ALSO A BODGEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+
                 if (currentLocation == 9 && order == true)
                 {
                     pathMode = 4;
@@ -552,7 +553,7 @@ public class follower : MonoBehaviour
 
             case 140:
                 pathMode = 2;
-                if (toRobotPercentLap == 100)
+                if (toRobotPercentLap >= 100)
                 {
                     percentLapFirstIsland = 47.5f;
                     pathMode = 1;

@@ -121,6 +121,7 @@ public class runInSimMode : MonoBehaviour
 
         if (simMode == true)
         {
+            GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().simMode = true;
             // Run in sim mode
             for (int i = 1; i < 2; i++)
             {
@@ -141,6 +142,7 @@ public class runInSimMode : MonoBehaviour
         }
 
        if (simMode == false) {
+            GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().simMode = false;
             if (manualStopInduction == true && manualCarrierRelease == true)
             {
                 ID = manualRFID;
@@ -160,15 +162,18 @@ public class runInSimMode : MonoBehaviour
 
     public void Update()
     {
-        //station name, start induct, stop induct, carrier released, end induct, carrier number
-        dataDist(GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().manData);
-        dataDist(GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().magFData);
-        dataDist(GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().camData);
-        dataDist(GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().codesys1Data);
-        dataDist(GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().codesys2Data);
-        dataDist(GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().magBData);
-        dataDist(GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().pressData);
-        dataDist(GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().heatData);
+        if (simMode == false)
+        {
+            //station name, start induct, stop induct, carrier released, end induct, carrier number
+            dataDist(GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().manData);
+            dataDist(GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().magFData);
+            dataDist(GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().camData);
+            dataDist(GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().codesys1Data);
+            dataDist(GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().codesys2Data);
+            dataDist(GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().magBData);
+            dataDist(GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().pressData);
+            dataDist(GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().heatData);
+        }
     }
 
     public void dataDist(string data)
@@ -176,78 +181,82 @@ public class runInSimMode : MonoBehaviour
 
         string[] splitData = data.Split(',');
         //Debug.Log(splitData[0] + " splitdata");
-
-        if (splitData[0].Equals("1"))
+        try
         {
-            magFrontStartInduction = splitData[1].Equals("1");
-            magFrontStopInduction = splitData[2].Equals("1");
-            magFrontCarrierRelease = splitData[3].Equals("1");
-            magFrontEndInduction = splitData[4].Equals("1");
-            magFrontRFID = Int32.Parse(splitData[5]);
-        }
 
-        if (splitData[0].Equals("2"))
-        {
-            manualStartInduction = splitData[1].Equals("1");
-            manualStopInduction = splitData[2].Equals("1");
-            manualCarrierRelease = splitData[3].Equals("1");
-            manualEndInduction = splitData[4].Equals("1");
-            manualRFID = Int32.Parse(splitData[5]);
-        }
+            if (splitData[0].Equals("1"))
+            {
+                magFrontStartInduction = splitData[1].Equals("1");
+                magFrontStopInduction = splitData[2].Equals("1");
+                magFrontCarrierRelease = splitData[3].Equals("1");
+                magFrontEndInduction = splitData[4].Equals("1");
+                magFrontRFID = Int32.Parse(splitData[5]);
+            }
 
-        if (splitData[0].Equals("3"))
-        {
-            camInspectStartInduction = splitData[1].Equals("1");
-            camInspectStopInduction = splitData[2].Equals("1");
-            camInspectCarrierRelease = splitData[3].Equals("1");
-            camInspectEndInduction = splitData[4].Equals("1");
-            camInspectRFID = Int32.Parse(splitData[5]);
-        }
+            if (splitData[0].Equals("2"))
+            {
+                manualStartInduction = splitData[1].Equals("1");
+                manualStopInduction = splitData[2].Equals("1");
+                manualCarrierRelease = splitData[3].Equals("1");
+                manualEndInduction = splitData[4].Equals("1");
+                manualRFID = Int32.Parse(splitData[5]);
+            }
 
-        if (splitData[0].Equals("4")) 
-        {
-            codesys1StartInduction = splitData[1].Equals("1");
-            codesys1StopInduction = splitData[2].Equals("1");
-            codesys1CarrierRelease = splitData[3].Equals("1");
-            codesys1EndInduction = splitData[4].Equals("1");
-            codesys1RFID = Int32.Parse(splitData[5]);
-        }
+            if (splitData[0].Equals("3"))
+            {
+                camInspectStartInduction = splitData[1].Equals("1");
+                camInspectStopInduction = splitData[2].Equals("1");
+                camInspectCarrierRelease = splitData[3].Equals("1");
+                camInspectEndInduction = splitData[4].Equals("1");
+                camInspectRFID = Int32.Parse(splitData[5]);
+            }
 
-        if (splitData[0].Equals("5"))
-        {
-            codesys2StartInduction2 = splitData[1].Equals("1");
-            codesys2StopInduction2 = splitData[2].Equals("1");
-            codesys2CarrierRelease2 = splitData[3].Equals("1");
-            codesys2EndInduction2 = splitData[4].Equals("1");
-            codesys2RFID2 = Int32.Parse(splitData[5]);
-        }
+            if (splitData[0].Equals("4"))
+            {
+                codesys1StartInduction = splitData[1].Equals("1");
+                codesys1StopInduction = splitData[2].Equals("1");
+                codesys1CarrierRelease = splitData[3].Equals("1");
+                codesys1EndInduction = splitData[4].Equals("1");
+                codesys1RFID = Int32.Parse(splitData[5]);
+            }
 
-        if (splitData[0].Equals("6"))
-        {
-            magBackStartInduction2 = splitData[1].Equals("1");
-            magBackStopInduction2 = splitData[2].Equals("1");
-            magBackCarrierRelease2 = splitData[3].Equals("1");
-            magBackEndInduction2 = splitData[4].Equals("1");
-            magBackRFID2 = Int32.Parse(splitData[5]);
-        }
+            if (splitData[0].Equals("5"))
+            {
+                codesys2StartInduction2 = splitData[1].Equals("1");
+                codesys2StopInduction2 = splitData[2].Equals("1");
+                codesys2CarrierRelease2 = splitData[3].Equals("1");
+                codesys2EndInduction2 = splitData[4].Equals("1");
+                codesys2RFID2 = Int32.Parse(splitData[5]);
+            }
 
-        if (splitData[0].Equals("7"))
-        {
-            pressStartInduction2 = splitData[1].Equals("1");
-            pressStopInduction2 = splitData[2].Equals("1");
-            pressCarrierRelease2 = splitData[3].Equals("1");
-            pressEndInduction2 = splitData[4].Equals("1");
-            pressRFID2 = Int32.Parse(splitData[5]);
-        }
+            if (splitData[0].Equals("6"))
+            {
+                magBackStartInduction2 = splitData[1].Equals("1");
+                magBackStopInduction2 = splitData[2].Equals("1");
+                magBackCarrierRelease2 = splitData[3].Equals("1");
+                magBackEndInduction2 = splitData[4].Equals("1");
+                magBackRFID2 = Int32.Parse(splitData[5]);
+            }
 
-        if (splitData[0].Equals("8"))
-        {
-            heatingStartInduction2 = splitData[1].Equals("1");
-            heatingStopInduction2 = splitData[2].Equals("1");
-            heatingCarrierRelease2 = splitData[3].Equals("1");
-            heatingEndInduction2 = splitData[4].Equals("1");
-            heatingRFID2 = Int32.Parse(splitData[5]);
+            if (splitData[0].Equals("7"))
+            {
+                pressStartInduction2 = splitData[1].Equals("1");
+                pressStopInduction2 = splitData[2].Equals("1");
+                pressCarrierRelease2 = splitData[3].Equals("1");
+                pressEndInduction2 = splitData[4].Equals("1");
+                pressRFID2 = Int32.Parse(splitData[5]);
+            }
+
+            if (splitData[0].Equals("8"))
+            {
+                heatingStartInduction2 = splitData[1].Equals("1");
+                heatingStopInduction2 = splitData[2].Equals("1");
+                heatingCarrierRelease2 = splitData[3].Equals("1");
+                heatingEndInduction2 = splitData[4].Equals("1");
+                heatingRFID2 = Int32.Parse(splitData[5]);
+            }
         }
+        catch (Exception e) { }
 
     }
 

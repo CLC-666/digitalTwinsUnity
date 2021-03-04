@@ -1087,11 +1087,12 @@ MonoBehaviour:
   magFData: 
   manData: 
   camData: 
-  code1Data: 
-  code2Data: 
+  codesys1Data: 
+  codesys2Data: 
   magBData: 
   pressData: 
   heatData: 
+  simMode: 0
 --- !u!1 &701165810 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 101966, guid: 264897e16346467459599c64d4e55474,
@@ -2782,8 +2783,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caseSwitch: 0
-  speed: 0.25
-  simMode: 0
+  speed: 4.5
+  simMode: 1
   manualStartInduction: 0
   manualStopInduction: 0
   manualEndInduction: 0
@@ -2793,12 +2794,14 @@ MonoBehaviour:
   camInspectStopInduction: 0
   camInspectEndInduction: 0
   camInspectCarrierRelease: 0
+  camInspectRFID: 0
   codesys1StartInduction: 0
   codesys1StopInduction: 0
   codesys1ToRobotino: 0
   codesys1FromRobotino: 0
   codesys1EndInduction: 0
   codesys1CarrierRelease: 0
+  codesys1RFID: 0
   robotinoIslandSensor: 0
   robotinoCarrierStop: 0
   firstIslandRobotino: 0
@@ -2809,33 +2812,40 @@ MonoBehaviour:
   magFrontCarrierRelease: 0
   magFrontTop: 0
   magFrontBottom: 0
+  magFrontRFID: 0
   magBackStartInduction2: 0
   magBackStopInduction2: 0
   magBackEndInduction2: 0
-  magBackCarrierRelease: 0
+  magBackCarrierRelease2: 0
   magBackTop: 0
   magBackBottom: 0
+  magBackRFID2: 0
   pressStartInduction2: 0
   pressStopInduction2: 0
   pressEndInduction2: 0
-  pressCarrierRelease: 0
+  pressCarrierRelease2: 0
   pressTargetPressureN: 70
   pressCurrentPressureN: 0
   pressCurrentTime: 2
   pressTargetTime: 0
   pressWorkpieceCheck: 0
+  pressRFID2: 0
   heatingStartInduction2: 0
   heatingStopInduction2: 0
   heatingEndInduction2: 0
-  heatingCarrierRelease: 0
+  heatingCarrierRelease2: 0
   heatingTargetTime: 0
   heatingCurrentTime: 0
   heatingTargetTemp: 0
   heatingCurrentTemp: 0
+  heatingRFID2: 0
+  codesys2StartInduction2: 0
   codesys2StopInduction2: 0
   codesys2ToRobotino2: 0
   codesys2FromRobotino2: 0
-  codesys2CarrierRelease: 0
+  codesys2CarrierRelease2: 0
+  codesys2EndInduction2: 0
+  codesys2RFID2: 0
   magFrontConvRunning: 1
   manualConvRunning: 1
   camInspecConvRunning: 1
@@ -2893,11 +2903,12 @@ MonoBehaviour:
   magFData: 
   manData: 
   camData: 
-  code1Data: 
-  code2Data: 
+  codesys1Data: 
+  codesys2Data: 
   magBData: 
   pressData: 
   heatData: 
+  simMode: 0
 --- !u!114 &1860901277
 MonoBehaviour:
   m_ObjectHideFlags: 0
