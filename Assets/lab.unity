@@ -2784,7 +2784,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   caseSwitch: 0
   speed: 4.5
-  simMode: 1
+  simMode: 0
   manualStartInduction: 0
   manualStopInduction: 0
   manualEndInduction: 0

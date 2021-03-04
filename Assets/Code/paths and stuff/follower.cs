@@ -43,7 +43,7 @@ public class follower : MonoBehaviour
     public PathCreator secondRobotino;
     public int pathMode = 1;
     public bool goStop = false;
-    public float pauseTime = 5500; //speedy mode 600, real speed 5500
+    public int pauseTime = 5500; //speedy mode 600, real speed 5500
     public int counter = 0;
     public float distanceTravelledFirstIsland;
     public float distanceTravelledSecondIsland;
@@ -80,6 +80,8 @@ public class follower : MonoBehaviour
 
     public bool busy = false;
     public bool order = false;
+
+    public bool manualSpawnInit = false;
 
 
     private void Start()
@@ -212,7 +214,7 @@ public class follower : MonoBehaviour
         if (other.gameObject.name.Contains("StopInduction"))
         {
             if (counter < pauseTime) { goStop = false; }
-           
+            if (manualSpawnInit == true) { counter = pauseTime; manualSpawnInit = false; }
         }
 
 
@@ -287,6 +289,7 @@ public class follower : MonoBehaviour
             {
                 goStop = true;
             }
+  
         }
     }
 

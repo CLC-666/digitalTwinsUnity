@@ -80,6 +80,8 @@ public class runInSimMode : MonoBehaviour
     public bool camInspecConvRunning = true;
     public bool codesys1ConvRunning = true;
 
+    bool manualSpawnRunOnce = false;
+
 
     public GameObject carrierPrefab;
     public GameObject[] carriers;
@@ -168,7 +170,7 @@ public class runInSimMode : MonoBehaviour
             dataDist(GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().heatData);
         }
 
-        if (manualCarrierRelease == true)
+        if (manualCarrierRelease == true && manualSpawnRunOnce == false)
         {
             ID = manualRFID;
             GameObject clone = Instantiate(carrierPrefab) as GameObject;
@@ -177,8 +179,17 @@ public class runInSimMode : MonoBehaviour
             carriers[ID].GetComponent<follower>().spawnLocation = 2;
             carriers[ID].GetComponent<follower>().order = false;
             carriers[ID].GetComponent<follower>().goStop = true;
+            carriers[ID].GetComponent<follower>().speed = 4.5f;
+            carriers[ID].GetComponent<follower>().pauseTime = 5500;
+            carriers[ID].GetComponent<follower>().manualSpawnInit = true;
             carriers[ID].name = carriers[ID].name + ID.ToString();
             carrierArray[ID] = ID;
+            manualSpawnRunOnce = true;
+        }
+
+        if (manualCarrierRelease == false && manualSpawnRunOnce == true)
+        {
+            manualSpawnRunOnce = false;
         }
     }
 
