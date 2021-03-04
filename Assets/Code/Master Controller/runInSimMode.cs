@@ -141,21 +141,14 @@ public class runInSimMode : MonoBehaviour
             }
         }
 
-       if (simMode == false) {
+
+
+        if (simMode == false)
+        {
             GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().simMode = false;
-            if (manualStopInduction == true && manualCarrierRelease == true)
-            {
-                ID = manualRFID;
-                GameObject clone = Instantiate(carrierPrefab) as GameObject;
-                carriers[ID] = clone;
-                carriers[ID].GetComponent<follower>().carrierID = ID;
-                carriers[ID].GetComponent<follower>().spawnLocation = 2;
-                carriers[ID].GetComponent<follower>().order = false;
-                carriers[ID].GetComponent<follower>().goStop = true;
-                carriers[ID].name = carriers[ID].name + ID.ToString();
-                carrierArray[ID] = ID;
-            }
         }
+            
+        
 
 
     }
@@ -173,6 +166,19 @@ public class runInSimMode : MonoBehaviour
             dataDist(GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().magBData);
             dataDist(GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().pressData);
             dataDist(GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().heatData);
+        }
+
+        if (manualCarrierRelease == true)
+        {
+            ID = manualRFID;
+            GameObject clone = Instantiate(carrierPrefab) as GameObject;
+            carriers[ID] = clone;
+            carriers[ID].GetComponent<follower>().carrierID = ID;
+            carriers[ID].GetComponent<follower>().spawnLocation = 2;
+            carriers[ID].GetComponent<follower>().order = false;
+            carriers[ID].GetComponent<follower>().goStop = true;
+            carriers[ID].name = carriers[ID].name + ID.ToString();
+            carrierArray[ID] = ID;
         }
     }
 

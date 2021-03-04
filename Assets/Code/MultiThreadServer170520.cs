@@ -88,6 +88,21 @@ public class MultiThreadServer170520 : MonoBehaviour
 
     }
 
+    void threadRestart(string station)
+    {
+        if (station.Equals("magFront"))
+        {
+            Debug.Log("magFront Thread is rebooting");
+            try { magFrontThread.Abort(); }
+            catch (Exception e) { };
+            try
+            {
+                magFrontThread.Start();
+                magFrontThread.IsBackground = true;
+            }
+            catch (Exception e) { };
+        }
+    }
  
 
     public void REMOTEOFFCAMPUSFUNC()
@@ -257,7 +272,7 @@ public class MultiThreadServer170520 : MonoBehaviour
             }
             catch (Exception e)
             {
-                Debug.Log(e.ToString());
+                threadRestart("magFront");
             }
         }
     }
