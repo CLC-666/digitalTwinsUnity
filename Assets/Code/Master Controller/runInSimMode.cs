@@ -17,12 +17,14 @@ public class runInSimMode : MonoBehaviour
     public bool manualStopInduction = false; //SPAWN LOCATION 2 = follower: 92%.
     public bool manualEndInduction = false;
     public int manualRFID = 0;
+    public int manualConveyorSpeed = 0;
     public bool manualCarrierRelease = false;
     public bool camInspectStartInduction = false;
     public bool camInspectStopInduction = false; //SPAWN LOCATION 3 = follower: 17%.
     public bool camInspectEndInduction = false;
     public bool camInspectCarrierRelease = false;
     public int camInspectRFID = 0;
+    public int camInspectConveyorSpeed = 0;
     public bool codesys1StartInduction = false;
     public bool codesys1StopInduction = false; //SPAWN LOCATION 4 = follower: 36.5%.
     public bool codesys1ToRobotino = false;
@@ -41,6 +43,7 @@ public class runInSimMode : MonoBehaviour
     public bool magFrontTop = false;
     public bool magFrontBottom = false;
     public int magFrontRFID = 0;
+    public int magFrontConveyorSpeed = 0;
     public bool magBackStartInduction2 = false;
     public bool magBackStopInduction2 = false;
     public bool magBackEndInduction2 = false;
@@ -48,6 +51,7 @@ public class runInSimMode : MonoBehaviour
     public bool magBackTop = false;
     public bool magBackBottom = false;
     public int magBackRFID2 = 0;
+    public int magBackConveyorSpeed2 = 0;
     public bool pressStartInduction2 = false;
     public bool pressStopInduction2 = false;
     public bool pressEndInduction2 = false;
@@ -58,6 +62,7 @@ public class runInSimMode : MonoBehaviour
     public float pressTargetTime;
     public bool pressWorkpieceCheck = false;
     public int pressRFID2 = 0;
+    public int pressConveyorSpeed2 = 0;
     public bool heatingStartInduction2 = false;
     public bool heatingStopInduction2 = false;
     public bool heatingEndInduction2 = false;
@@ -67,6 +72,7 @@ public class runInSimMode : MonoBehaviour
     public float heatingTargetTemp;
     public float heatingCurrentTemp = 0;
     public int heatingRFID2 = 0;
+    public int heatingConveyorSpeed2 = 0;
     public bool codesys2StartInduction2 = false;
     public bool codesys2StopInduction2 = false;
     public bool codesys2ToRobotino2 = false;
@@ -208,6 +214,8 @@ public class runInSimMode : MonoBehaviour
                 magFrontCarrierRelease = splitData[3].Equals("1");
                 magFrontEndInduction = splitData[4].Equals("1");
                 magFrontRFID = Int32.Parse(splitData[5]);
+                magFrontConveyorSpeed = Int32.Parse(splitData[6]);
+
             }
 
             if (splitData[0].Equals("2"))
@@ -217,6 +225,7 @@ public class runInSimMode : MonoBehaviour
                 manualCarrierRelease = splitData[3].Equals("1");
                 manualEndInduction = splitData[4].Equals("1");
                 manualRFID = Int32.Parse(splitData[5]);
+                manualConveyorSpeed = Int32.Parse(splitData[6]);
             }
 
             if (splitData[0].Equals("3"))
@@ -226,6 +235,7 @@ public class runInSimMode : MonoBehaviour
                 camInspectCarrierRelease = splitData[3].Equals("1");
                 camInspectEndInduction = splitData[4].Equals("1");
                 camInspectRFID = Int32.Parse(splitData[5]);
+                camInspectConveyorSpeed = Int32.Parse(splitData[6]);
             }
 
             if (splitData[0].Equals("4"))
@@ -253,6 +263,7 @@ public class runInSimMode : MonoBehaviour
                 magBackCarrierRelease2 = splitData[3].Equals("1");
                 magBackEndInduction2 = splitData[4].Equals("1");
                 magBackRFID2 = Int32.Parse(splitData[5]);
+                magBackConveyorSpeed2 = Int32.Parse(splitData[6]);
             }
 
             if (splitData[0].Equals("7"))
@@ -262,6 +273,7 @@ public class runInSimMode : MonoBehaviour
                 pressCarrierRelease2 = splitData[3].Equals("1");
                 pressEndInduction2 = splitData[4].Equals("1");
                 pressRFID2 = Int32.Parse(splitData[5]);
+                pressConveyorSpeed2 = Int32.Parse(splitData[6]);
             }
 
             if (splitData[0].Equals("8"))
@@ -271,6 +283,7 @@ public class runInSimMode : MonoBehaviour
                 heatingCarrierRelease2 = splitData[3].Equals("1");
                 heatingEndInduction2 = splitData[4].Equals("1");
                 heatingRFID2 = Int32.Parse(splitData[5]);
+                heatingConveyorSpeed2 = Int32.Parse(splitData[6]);
             }
         }
         catch (Exception e) { }
