@@ -4,13 +4,14 @@ using UnityEngine;
 using System.Text;
 using System.IO;
 using System;
+using System.Linq;
 
 
 
 public class runInSimMode : MonoBehaviour
 {
     public int caseSwitch = 0;
-    public float speed = 25f;
+    public float speed = 3.8f;
     public bool simMode = false;
 
     public bool manualStartInduction = false;
@@ -27,9 +28,9 @@ public class runInSimMode : MonoBehaviour
     public int camInspectConveyorSpeed = 0;
     public bool codesys1StartInduction = false;
     public bool codesys1StopInduction = false; //SPAWN LOCATION 4 = follower: 36.5%.
+    public bool codesys1EndInduction = false;
     public bool codesys1ToRobotino = false;
     public bool codesys1FromRobotino = false;
-    public bool codesys1EndInduction = false;
     public bool codesys1CarrierRelease = false;
     public int codesys1RFID = 0;
     public bool robotinoIslandSensor = false;
@@ -91,7 +92,7 @@ public class runInSimMode : MonoBehaviour
 
     public GameObject carrierPrefab;
     public GameObject[] carriers;
-    int[] carrierArray = { 0, 1, 2, 3, 4 };
+    int[] carrierArray = { 0, 0,0,0,0,0,0,0 };
 
     public List<string> sensorNames = new List<string>();
     public List<object> sensorValues = new List<object>();
@@ -112,7 +113,7 @@ public class runInSimMode : MonoBehaviour
     {
         sensorNames = new List<string>() {
             "manualStartInduction", "manualStopInduction", "manualEndInduction", "camInspectStartInduction",
-            "camInspectStopInduction", "camInspectEndInduction", "codesys1StopInduction", "codesys1ToRobotino",
+            "camInspectStopInduction", "camInspectEndInduction", "codesys1StartInduction", "codesys1StopInduction", "codesys1EndInduction", "codesys1ToRobotino",
             "codesys1FromRobotino", "robotinoIslandSensor", "robotinoCarrierStop", "firstIslandRobotino",
             "secondIslandRobotino", "magFrontStartInduction", "magFrontStopInduction", "magFrontEndInduction",
             "magFrontTop", "magFrontBottom", "magBackStartInduction2", "magBackStopInduction2", "magBackEndInduction2",
@@ -176,7 +177,7 @@ public class runInSimMode : MonoBehaviour
             dataDist(GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().heatData);
         }
 
-        if (manualCarrierRelease == true && manualSpawnRunOnce == false && carrierArray[ID] != manualRFID)
+        if (manualCarrierRelease == true && manualSpawnRunOnce == false && carrierArray.Contains(manualRFID) == false)
         {
             ID = manualRFID;
             GameObject clone = Instantiate(carrierPrefab) as GameObject;
@@ -185,8 +186,9 @@ public class runInSimMode : MonoBehaviour
             carriers[ID].GetComponent<follower>().spawnLocation = 2;
             carriers[ID].GetComponent<follower>().order = false;
             carriers[ID].GetComponent<follower>().goStop = true;
-            carriers[ID].GetComponent<follower>().speed = 4.5f;
+            carriers[ID].GetComponent<follower>().speed = speed;
             carriers[ID].GetComponent<follower>().pauseTime = 5000;
+            carriers[ID].GetComponent<follower>().manualConvCase = 10;
             carriers[ID].GetComponent<follower>().manualSpawnInit = true;
             carriers[ID].name = carriers[ID].name + ID.ToString();
             carrierArray[ID] = ID;
@@ -374,7 +376,9 @@ public class runInSimMode : MonoBehaviour
         camInspectStartInduction = false;
         camInspectStopInduction = false; //SPAWN LOCATION 3 = follower: 17%.
         camInspectEndInduction = false;
+        codesys1StartInduction = false;
         codesys1StopInduction = false; //SPAWN LOCATION 4 = follower: 36.5%.
+        codesys1EndInduction = false;
         codesys1ToRobotino = false;
         codesys1FromRobotino = false;
         robotinoIslandSensor = false;

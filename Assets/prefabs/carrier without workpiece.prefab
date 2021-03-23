@@ -210,6 +210,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   simMode: 1
+  speed: 3.8
+  magFrontConvCase: 0
+  manualConvCase: 0
+  camInspectConvCase: 0
+  codesys1ConvCase: 0
   firstIsland: {fileID: 3114707824259583203, guid: 0528a67acdec5664c800d93985d005a5,
     type: 3}
   secondIsland: {fileID: 2461545161311027194, guid: 1ea3cd36e9a28e84f8039bbeee145d6f,
@@ -220,6 +225,7 @@ MonoBehaviour:
     type: 3}
   pathMode: 1
   goStop: 0
+  pauseTime: 5000
   counter: 0
   distanceTravelledFirstIsland: 0
   distanceTravelledSecondIsland: 0
@@ -236,11 +242,11 @@ MonoBehaviour:
   initSecondIslandLap: 0
   convStartMagFront: 0
   convStartManual: 0
-  convStartCamInspec: 0
+  convStartCamInspect: 0
   convStartCodesys1: 0
   magFrontConv: 0
   manualConv: 0
-  camInspecConv: 0
+  camInspectConv: 0
   codesys1Conv: 0
   codesys1OutConv: 0
   codesys1InConv: 0
@@ -248,6 +254,15 @@ MonoBehaviour:
   carrierID: 0
   busy: 0
   order: 0
+  manualSpawnInit: 0
+  tmf1: 0
+  tmf2: 0
+  tm1: 0
+  tm2: 0
+  tci1: 0
+  tci2: 0
+  tc1: 0
+  tc2: 0
 --- !u!65 &2935835130707129008
 BoxCollider:
   m_ObjectHideFlags: 0

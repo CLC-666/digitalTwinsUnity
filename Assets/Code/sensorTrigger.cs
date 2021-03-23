@@ -69,8 +69,14 @@ public class sensorTrigger : MonoBehaviour
                 break;
 
 
+            case "codesys1StartInduction":
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1StartInduction = true;
+                break;
             case "codesys1StopInduction":
                 GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1StopInduction = true;
+                break;
+            case "codesys1EndInduction":
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1EndInduction = true;
                 break;
             case "codesys1ToRobotino":
                 GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1ToRobotino = true;
@@ -200,8 +206,14 @@ public class sensorTrigger : MonoBehaviour
                 break;
 
 
+            case "codesys1StartInduction":
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1StartInduction = false;
+                break;
             case "codesys1StopInduction":
                 GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1StopInduction = false;
+                break;
+            case "codesys1EndInduction":
+                GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1EndInduction = false;
                 break;
             case "codesys1ToRobotinoStopInduction":
                 GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1ToRobotino = false;
