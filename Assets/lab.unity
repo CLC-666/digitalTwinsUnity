@@ -1456,7 +1456,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 101900, guid: 264897e16346467459599c64d4e55474, type: 3}
       propertyPath: m_Name
-      value: camInspecConv
+      value: camInspectConv
       objectReference: {fileID: 0}
     - target: {fileID: 101904, guid: 264897e16346467459599c64d4e55474, type: 3}
       propertyPath: m_Name
@@ -2783,18 +2783,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caseSwitch: 0
-  speed: 4.5
+  speed: 4
   simMode: 0
   manualStartInduction: 0
   manualStopInduction: 0
   manualEndInduction: 0
   manualRFID: 0
+  manualConveyorSpeed: 0
   manualCarrierRelease: 0
   camInspectStartInduction: 0
   camInspectStopInduction: 0
   camInspectEndInduction: 0
   camInspectCarrierRelease: 0
   camInspectRFID: 0
+  camInspectConveyorSpeed: 0
   codesys1StartInduction: 0
   codesys1StopInduction: 0
   codesys1ToRobotino: 0
@@ -2813,6 +2815,7 @@ MonoBehaviour:
   magFrontTop: 0
   magFrontBottom: 0
   magFrontRFID: 0
+  magFrontConveyorSpeed: 0
   magBackStartInduction2: 0
   magBackStopInduction2: 0
   magBackEndInduction2: 0
@@ -2820,6 +2823,7 @@ MonoBehaviour:
   magBackTop: 0
   magBackBottom: 0
   magBackRFID2: 0
+  magBackConveyorSpeed2: 0
   pressStartInduction2: 0
   pressStopInduction2: 0
   pressEndInduction2: 0
@@ -2830,6 +2834,7 @@ MonoBehaviour:
   pressTargetTime: 0
   pressWorkpieceCheck: 0
   pressRFID2: 0
+  pressConveyorSpeed2: 0
   heatingStartInduction2: 0
   heatingStopInduction2: 0
   heatingEndInduction2: 0
@@ -2839,6 +2844,7 @@ MonoBehaviour:
   heatingTargetTemp: 0
   heatingCurrentTemp: 0
   heatingRFID2: 0
+  heatingConveyorSpeed2: 0
   codesys2StartInduction2: 0
   codesys2StopInduction2: 0
   codesys2ToRobotino2: 0
@@ -2848,7 +2854,7 @@ MonoBehaviour:
   codesys2RFID2: 0
   magFrontConvRunning: 1
   manualConvRunning: 1
-  camInspecConvRunning: 1
+  camInspectConvRunning: 1
   codesys1ConvRunning: 1
   carrierPrefab: {fileID: 341124496723201599, guid: 83497a3acb289b64ba3403e082305d3f,
     type: 3}

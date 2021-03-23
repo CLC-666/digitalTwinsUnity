@@ -83,7 +83,7 @@ public class runInSimMode : MonoBehaviour
 
     public bool magFrontConvRunning = true;
     public bool manualConvRunning = true;
-    public bool camInspecConvRunning = true;
+    public bool camInspectConvRunning = true;
     public bool codesys1ConvRunning = true;
 
     bool manualSpawnRunOnce = false;
@@ -176,7 +176,7 @@ public class runInSimMode : MonoBehaviour
             dataDist(GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().heatData);
         }
 
-        if (manualCarrierRelease == true && manualSpawnRunOnce == false)
+        if (manualCarrierRelease == true && manualSpawnRunOnce == false && carrierArray[ID] != manualRFID)
         {
             ID = manualRFID;
             GameObject clone = Instantiate(carrierPrefab) as GameObject;
@@ -186,7 +186,7 @@ public class runInSimMode : MonoBehaviour
             carriers[ID].GetComponent<follower>().order = false;
             carriers[ID].GetComponent<follower>().goStop = true;
             carriers[ID].GetComponent<follower>().speed = 4.5f;
-            carriers[ID].GetComponent<follower>().pauseTime = 5500;
+            carriers[ID].GetComponent<follower>().pauseTime = 5000;
             carriers[ID].GetComponent<follower>().manualSpawnInit = true;
             carriers[ID].name = carriers[ID].name + ID.ToString();
             carrierArray[ID] = ID;
@@ -410,5 +410,6 @@ public class runInSimMode : MonoBehaviour
         codesys2FromRobotino2 = false;
 }
 
- 
+
+
 }
