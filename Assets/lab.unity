@@ -3175,9 +3175,9 @@ MonoBehaviour:
   camInspectConveyorSpeed: 0
   codesys1StartInduction: 0
   codesys1StopInduction: 0
+  codesys1EndInduction: 0
   codesys1ToRobotino: 0
   codesys1FromRobotino: 0
-  codesys1EndInduction: 0
   codesys1CarrierRelease: 0
   codesys1RFID: 0
   robotinoIslandSensor: 0

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using PathCreation;
 
+
 public class follower : MonoBehaviour
 {
     //public bool manualStartInduction = false;
@@ -95,6 +96,32 @@ public class follower : MonoBehaviour
     public bool tci2 = false;
     public bool tc1 = false;
     public bool tc2 = false;
+
+    public float Counter5 = 0;
+    public float oldTime = 0;
+    public float scaler = 0.03733f;
+    public float convSpeed = 67;
+    public float fps;
+    public float convertedSpeed = 0;
+
+
+    //Sensor Locations
+    public float magFrontStartLoc = 155.5841f;
+    public float magFrontStopLoc = 67;
+    public float magFrontEndLoc = 74.05742f;
+
+    public float manualStartLoc = 80.47764f;
+    public float manualStopLoc = 91.8778f;
+    public float manualEndLoc = 98.03284f;
+
+    public float camInspectStartLoc = 106.4509f;
+    public float camInspectStopLoc = 116.8613f;
+    public float camInspectEndLoc = 122.9403f;
+
+    public float codesys1StartLoc = 131.1676f;
+    public float codesys1StopLoc = 136.4246f;
+    public float codesys1EndLoc = 148.0858f;
+
     private void Start()
     {
         if (spawnLocation == 1) { percentLapFirstIsland = 67; }
@@ -106,10 +133,20 @@ public class follower : MonoBehaviour
         if (spawnLocation == 7) { percentLapSecondIsland = 17.25f; pathMode = 4; }
         if (spawnLocation == 8) { percentLapSecondIsland = 36.75f; pathMode = 4; }
 
+        fps = 50;
+
     }
+
 
     void Update()
     {
+        Counter5 += 1;
+        if (Counter5 % 10 == 0)
+        {
+            fps = 100 / (10 * (Time.time - oldTime));
+            oldTime = Time.time;
+        }
+
         if (GameObject.Find("Main Camera").GetComponent<runInSimMode>().magFrontStartInduction == true && tmf1 == false) { Debug.Log(percentLapFirstIsland); tmf1 = true; }
         if (GameObject.Find("Main Camera").GetComponent<runInSimMode>().magFrontEndInduction == true && tmf2 == false) { Debug.Log(percentLapFirstIsland); tmf2 = true; }
         if (GameObject.Find("Main Camera").GetComponent<runInSimMode>().manualStartInduction == true && tm1 == false) { Debug.Log(percentLapFirstIsland); tm1 = true; }
@@ -119,12 +156,20 @@ public class follower : MonoBehaviour
         if (GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1StartInduction == true && tc1 == false) { Debug.Log(percentLapFirstIsland); tc1 = true; }
         if (GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1EndInduction == true && tc2 == false) { Debug.Log(percentLapFirstIsland); tc2 = true; }
 
-     
 
+        convSpeed = 83.5f;
+        convertedSpeed = ((((convSpeed / 10) / 60) / scaler) / fps) / Time.deltaTime;
+
+        if (convertedSpeed > 0 && convertedSpeed < 1000000000 && Counter5 > 30)
+        {
+            speed = convertedSpeed;
+        }
+
+        
         switch (pathMode)
         {
             case 1: //first island
-                if (percentLapFirstIsland == 100) { percentLapFirstIsland = 0; }
+                //if (percentLapFirstIsland == 100) { percentLapFirstIsland = 0; }
                 if (goStop == true) { percentLapFirstIsland += speed * Time.deltaTime; }
 
                 distanceTravelledFirstIsland = ((percentLapFirstIsland / 100) * -3.753859f);
@@ -635,7 +680,7 @@ public class follower : MonoBehaviour
                 case 0:
                     if (magFrontConv == true && GameObject.Find("Main Camera").GetComponent<runInSimMode>().magFrontStartInduction == true)
                     {
-                        percentLapFirstIsland = 155.5841f;
+                        percentLapFirstIsland = magFrontStartLoc;
                         magFrontConvCase = 10;
                     }
                     break;
@@ -643,7 +688,7 @@ public class follower : MonoBehaviour
                 case 10:
                     if (magFrontConv == true && GameObject.Find("Main Camera").GetComponent<runInSimMode>().magFrontStopInduction == true)
                     {
-                        percentLapFirstIsland = 67;
+                        percentLapFirstIsland = magFrontStopLoc;
                         magFrontConvCase = 20;
                     }
                     break;
@@ -660,7 +705,7 @@ public class follower : MonoBehaviour
                     goStop = true;
                     if (magFrontConv == true && GameObject.Find("Main Camera").GetComponent<runInSimMode>().magFrontEndInduction == true)
                     {
-                        percentLapFirstIsland = 73.05742f;
+                        percentLapFirstIsland = magFrontEndLoc;
                         magFrontConvCase = 0;
                     }
                     break;
@@ -679,7 +724,7 @@ public class follower : MonoBehaviour
                 case 0:
                     if (manualConv == true && GameObject.Find("Main Camera").GetComponent<runInSimMode>().manualStartInduction == true)
                     {
-                        percentLapFirstIsland = 80.47764f;
+                        percentLapFirstIsland = manualStartLoc;
                         manualConvCase = 10;
                     }
                     break;
@@ -687,7 +732,7 @@ public class follower : MonoBehaviour
                 case 10:
                     if (manualConv == true && GameObject.Find("Main Camera").GetComponent<runInSimMode>().manualStopInduction == true)
                     {
-                        percentLapFirstIsland = 91.8778f;
+                        percentLapFirstIsland = manualStopLoc;
                         manualConvCase = 20;
                     }
                     break;
@@ -704,7 +749,7 @@ public class follower : MonoBehaviour
                     goStop = true;
                     if (manualConv == true && GameObject.Find("Main Camera").GetComponent<runInSimMode>().manualEndInduction == true)
                     {
-                        percentLapFirstIsland = 98.03284f;
+                        percentLapFirstIsland = manualEndLoc;
                         manualConvCase = 0;
                     }
                     break;
@@ -723,7 +768,7 @@ public class follower : MonoBehaviour
                 case 0:
                     if (camInspectConv == true && GameObject.Find("Main Camera").GetComponent<runInSimMode>().camInspectStartInduction == true)
                     {
-                        percentLapFirstIsland = 105.4509f;
+                        percentLapFirstIsland = camInspectStartLoc;
                         camInspectConvCase = 10;
                     }
                     break;
@@ -731,7 +776,7 @@ public class follower : MonoBehaviour
                 case 10:
                     if (camInspectConv == true && GameObject.Find("Main Camera").GetComponent<runInSimMode>().camInspectStopInduction == true)
                     {
-                        percentLapFirstIsland = 116.8613f;
+                        percentLapFirstIsland = camInspectStopLoc;
                         camInspectConvCase = 20;
                     }
                     break;
@@ -748,7 +793,7 @@ public class follower : MonoBehaviour
                     goStop = true;
                     if (camInspectConv == true && GameObject.Find("Main Camera").GetComponent<runInSimMode>().camInspectEndInduction == true)
                     {
-                        percentLapFirstIsland = 122.9403f;
+                        percentLapFirstIsland = camInspectEndLoc;
                         camInspectConvCase = 0;
                     }
                     break;
@@ -767,7 +812,7 @@ public class follower : MonoBehaviour
                 case 0:
                     if (codesys1Conv == true && GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1StartInduction == true)
                     {
-                        percentLapFirstIsland = 130.1676f;
+                        percentLapFirstIsland = codesys1StartLoc;
                         codesys1ConvCase = 10;
                     }
                     break;
@@ -775,7 +820,7 @@ public class follower : MonoBehaviour
                 case 10:
                     if (codesys1Conv == true && GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1StopInduction == true)
                     {
-                        percentLapFirstIsland = 136.4246f;
+                        percentLapFirstIsland = codesys1StopLoc;
                         codesys1ConvCase = 20;
                     }
                     break;
@@ -792,7 +837,7 @@ public class follower : MonoBehaviour
                     goStop = true;
                     if (codesys1Conv == true && GameObject.Find("Main Camera").GetComponent<runInSimMode>().codesys1EndInduction == true)
                     {
-                        percentLapFirstIsland = 148.0858f;
+                        percentLapFirstIsland = codesys1EndLoc;
                         codesys1ConvCase = 40;
                     }
                     break;
