@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -360,10 +360,12 @@ MonoBehaviour:
     type: 3}
   workpieces: []
   run: 0
+  runPhysical: 0
   generateWorkpiece: 0
   workpieceCounter: 0
   carrierID: 0
   switchCase: 0
+  runPhysicalComplete: 0
 --- !u!1 &174080026 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100662, guid: 0a6959e01f429344180710b1c5b50e67,
@@ -643,6 +645,10 @@ MonoBehaviour:
   rotating: 0
   toIsland2: 0
   toIsland1: 0
+  robotinoOdo: 
+  zCalib: 1.8
+  xCalib: -7.6
+  rotationCalib: 0
 --- !u!65 &317806431
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3167,6 +3173,7 @@ MonoBehaviour:
   manualRFID: 0
   manualConveyorSpeed: 0
   manualCarrierRelease: 0
+  manualHMIScreenDisplay: 0
   camInspectStartInduction: 0
   camInspectStopInduction: 0
   camInspectEndInduction: 0
@@ -3188,6 +3195,11 @@ MonoBehaviour:
   magFrontStopInduction: 0
   magFrontEndInduction: 0
   magFrontCarrierRelease: 0
+  magFrontLiftUpS: 0
+  magFrontLiftDownS: 0
+  magFrontLiftUpQ: 0
+  magFrontLiftDownQ: 0
+  magFrontCylinderClamp: 0
   magFrontTop: 0
   magFrontBottom: 0
   magFrontRFID: 0

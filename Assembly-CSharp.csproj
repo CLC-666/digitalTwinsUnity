@@ -102,6 +102,7 @@
     <None Include="Assets\Code\Server\old.txt" />
     <None Include="Assets\Scenes\test.txt" />
     <None Include="Assets\Code\initial positions CP Lab.txt" />
+    <None Include="Assets\Code\Experiments with ThingSpeak\thingspeakCred.txt" />
     <None Include="Assets\Code\important design ideas.txt" />
     <None Include="Assets\Code\Server\beforetryingtomakemanythreads.txt" />
     <None Include="Assets\Code\sensorLocations.txt" />

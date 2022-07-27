@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Net;
+using UnityEngine.Networking;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
@@ -37,6 +39,8 @@ public class MultiThreadServer170520 : MonoBehaviour
 
     void Start()
     {
+
+
         IP_ADDRESS = getIPAddress().ToString();
 
         if (simMode == false)
@@ -86,6 +90,21 @@ public class MultiThreadServer170520 : MonoBehaviour
     void Update()
     {
 
+    }
+
+    IEnumerator GetRequest(string uri)
+    {
+        UnityWebRequest uwr = UnityWebRequest.Get(uri);
+        yield return uwr.SendWebRequest();
+
+        if (uwr.isNetworkError)
+        {
+            Debug.Log("Error While Sending: " + uwr.error);
+        }
+        else
+        {
+            Debug.Log("Received: " + uwr.downloadHandler.text);
+        }
     }
 
     void threadRestart(string station)
@@ -166,6 +185,7 @@ public class MultiThreadServer170520 : MonoBehaviour
                        
                         if (data.Equals(old) == false)
                         {
+                            
                             Debug.Log(data);
                             old = data;
                             //magFData = data;
@@ -237,7 +257,7 @@ public class MultiThreadServer170520 : MonoBehaviour
                     // An incoming connection needs to be processed.
                     while (keepReading)
                     {
-                        bytes = new byte[17];
+                        bytes = new byte[24];
                         int bytesRec = handler.Receive(bytes);
                         //Debug.Log("Received from Server");
 
@@ -252,7 +272,7 @@ public class MultiThreadServer170520 : MonoBehaviour
 
                         if (data.Equals(old) == false)
                         {
-                            //Debug.Log("MagFront" + data);
+                            Debug.Log(data);
                             old = data;
                             magFData = data;
 
@@ -324,7 +344,7 @@ public class MultiThreadServer170520 : MonoBehaviour
                     // An incoming connection needs to be processed.
                     while (keepReading)
                     {
-                        bytes = new byte[17];
+                        bytes = new byte[16];
                         int bytesRec = handler.Receive(bytes);
                         //Debug.Log("Received from Server");
 
@@ -338,7 +358,7 @@ public class MultiThreadServer170520 : MonoBehaviour
                         data = Encoding.ASCII.GetString(bytes, 0, bytesRec);
                         if (data.Equals(old) == false)
                         {
-                            //Debug.Log("Manual" + data);
+                            Debug.Log(data);
                             old = data;
                             manData = data;
                         }
@@ -420,7 +440,7 @@ public class MultiThreadServer170520 : MonoBehaviour
 
                         if (data.Equals(old) == false)
                         {
-                            //Debug.Log("camInspect" + data);
+                            Debug.Log(data);
                             old = data;
                             camData = data;
                         }
@@ -504,7 +524,7 @@ public class MultiThreadServer170520 : MonoBehaviour
 
                         if (data.Equals(old) == false)
                         {
-                            //Debug.Log("codesys1" + data);
+                            Debug.Log("codesys1" + data);
                             old = data;
                             codesys1Data = data;
                         }
@@ -867,7 +887,7 @@ public class MultiThreadServer170520 : MonoBehaviour
             if (ip.AddressFamily == AddressFamily.InterNetwork)
             {
                 //localIP = ip.ToString();
-                localIP = "172.21.4.151";
+                localIP = "172.21.4.152";
             }
 
         }

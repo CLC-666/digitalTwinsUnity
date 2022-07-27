@@ -20,6 +20,7 @@ public class runInSimMode : MonoBehaviour
     public int manualRFID = 0;
     public int manualConveyorSpeed = 0;
     public bool manualCarrierRelease = false;
+    public bool manualHMIScreenDisplay = false;
     public bool camInspectStartInduction = false;
     public bool camInspectStopInduction = false; //SPAWN LOCATION 3 = follower: 17%.
     public bool camInspectEndInduction = false;
@@ -41,6 +42,11 @@ public class runInSimMode : MonoBehaviour
     public bool magFrontStopInduction = false; //SPAWN LOCATION 1 = follower: 67%.
     public bool magFrontEndInduction = false;
     public bool magFrontCarrierRelease = false;
+    public bool magFrontLiftUpS = false;
+    public bool magFrontLiftDownS = false;
+    public bool magFrontLiftUpQ = false;
+    public bool magFrontLiftDownQ = false;
+    public bool magFrontCylinderClamp = false;
     public bool magFrontTop = false;
     public bool magFrontBottom = false;
     public int magFrontRFID = 0;
@@ -92,7 +98,7 @@ public class runInSimMode : MonoBehaviour
 
     public GameObject carrierPrefab;
     public GameObject[] carriers;
-    int[] carrierArray = { 0, 0,0,0,0,0,0,0 };
+    int[] carrierArray = { 0, 0, 0, 0, 0, 0, 0, 0 };
 
     public List<string> sensorNames = new List<string>();
     public List<object> sensorValues = new List<object>();
@@ -123,7 +129,7 @@ public class runInSimMode : MonoBehaviour
             "codesys2ToRobotino2", "codesys2FromRobotino2"
         };
 
-        
+
         sensorInitialisations();
 
         carriers = new GameObject[5];
@@ -132,7 +138,7 @@ public class runInSimMode : MonoBehaviour
         {
             GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().simMode = true;
             // Run in sim mode
-            for (int i = 1; i < 2; i++)
+            for (int i = 1; i <2 ; i++)
             {
                 ID = i; //just for testing purposes.
                 Debug.Log(carrierArray[ID]);
@@ -156,8 +162,8 @@ public class runInSimMode : MonoBehaviour
         {
             GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().simMode = false;
         }
-            
-        
+
+
 
 
     }
@@ -166,8 +172,14 @@ public class runInSimMode : MonoBehaviour
     {
         if (simMode == false)
         {
+            mainOrderStucturePhysical();
+
+            // a bodge, will probs fix later
+            magFrontTop = magFrontLiftUpS;
+            magFrontBottom = magFrontLiftDownS;
+
             //station name, start induct, stop induct, carrier released, end induct, carrier number
-            dataDist(GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().manData);
+            dataDist(GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().manData); //dataDist is data distribution.
             dataDist(GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().magFData);
             dataDist(GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().camData);
             dataDist(GameObject.Find("Main Camera").GetComponent<MultiThreadServer170520>().codesys1Data);
@@ -199,6 +211,8 @@ public class runInSimMode : MonoBehaviour
         {
             manualSpawnRunOnce = false;
         }
+
+
     }
 
     public void dataDist(string data)
@@ -218,6 +232,12 @@ public class runInSimMode : MonoBehaviour
                 magFrontRFID = Int32.Parse(splitData[5]);
                 magFrontConveyorSpeed = Int32.Parse(splitData[6]);
 
+                magFrontLiftUpS = splitData[7].Equals("1");
+                magFrontLiftDownS = splitData[8].Equals("1");
+                magFrontLiftUpQ = splitData[9].Equals("1");
+                magFrontLiftDownQ = splitData[10].Equals("1");
+                magFrontCylinderClamp = splitData[11].Equals("1");
+
             }
 
             if (splitData[0].Equals("2"))
@@ -228,6 +248,7 @@ public class runInSimMode : MonoBehaviour
                 manualEndInduction = splitData[4].Equals("1");
                 manualRFID = Int32.Parse(splitData[5]);
                 manualConveyorSpeed = Int32.Parse(splitData[6]);
+                manualHMIScreenDisplay = splitData[7].Equals("1");
             }
 
             if (splitData[0].Equals("3"))
@@ -293,16 +314,29 @@ public class runInSimMode : MonoBehaviour
     }
 
 
-    
+    void mainOrderStucturePhysical()
+    {
+        GameObject.Find("magFrontLift").GetComponent<magFrontLiftScript>().run = true;
+
+        if (manualHMIScreenDisplay == true) //SHOULD PROBABLY SWAP THIS TO A CONFIRM BUTTON, BUT IT WILL DO FOR NOW 04.06.21
+        {
+            GameObject.Find("manualConveyor").GetComponent<manualPlaceScript>().runPhysical = true;
+        }
+
+        if (manualHMIScreenDisplay == false) //SHOULD PROBABLY SWAP THIS TO A CONFIRM BUTTON, BUT IT WILL DO FOR NOW 04.06.21
+        {
+            GameObject.Find("manualConveyor").GetComponent<manualPlaceScript>().runPhysical = false;
+        }
+    }
 
 
 
     void FixedUpdate()
     {
-       
 
-           // writeToCSV();
-        
+
+        //writeToCSV();
+
 
     }
 
@@ -351,20 +385,20 @@ public class runInSimMode : MonoBehaviour
             updateCounter = 0;
             toWrite = "";
         }
-}
+    }
 
     private string getPath()
     {
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
             return Application.dataPath + "/Data/" + "Saved_Inventory" + dataLogCounter + ".csv";
         //"Participant " + "   " + DateTime.Now.ToString("dd-MM-yy   hh-mm-ss") + ".csv";
-        #elif UNITY_ANDROID
+#elif UNITY_ANDROID
             return Application.persistentDataPath+"Saved_Inventory.csv";
-        #elif UNITY_IPHONE
+#elif UNITY_IPHONE
             return Application.persistentDataPath+"/"+"Saved_Inventory.csv";
-        #else
-            return Application.dataPath +"/"+"Saved_Inventory.csv";
-        #endif
+#else
+        return Application.dataPath + "/" + "Saved_Inventory.csv";
+#endif
     }
 
 
@@ -412,7 +446,7 @@ public class runInSimMode : MonoBehaviour
         codesys2StopInduction2 = false;
         codesys2ToRobotino2 = false;
         codesys2FromRobotino2 = false;
-}
+    }
 
 
 

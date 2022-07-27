@@ -7,6 +7,7 @@ public class manualPlaceScript : MonoBehaviour
     public GameObject workpiecePrefab;
     public GameObject[] workpieces;
     public bool run = false;
+    public bool runPhysical = false;
     public bool generateWorkpiece = false;
     public int workpieceCounter = 0;
     public int carrierID = 0;
@@ -16,6 +17,7 @@ public class manualPlaceScript : MonoBehaviour
     float speed = 0.0015f;
     float currentPos;
     float carrierPlate = 1.03f;
+    public bool runPhysicalComplete = false;
 
     float workX = -6.6212f; //spawn position
     float workY = 1.0683f;
@@ -51,6 +53,33 @@ public class manualPlaceScript : MonoBehaviour
         {
             GameObject.Find("Main Camera").GetComponent<runInSimMode>().manualConvRunning = true;
         }
+
+        if (runPhysical == true)
+        {
+            if (spawned == false) { spawnNewWorkpiece(); spawned = true; }
+            lowerWorkpiecePhysical();
+            GameObject.Find("Main Camera").GetComponent<runInSimMode>().manualConvRunning = false;
+        }
+
+        if (runPhysical == false)
+        {
+            GameObject.Find("Main Camera").GetComponent<runInSimMode>().manualConvRunning = true;
+            runPhysicalComplete = false;
+        }
+    }
+
+    void lowerWorkpiecePhysical()
+    {
+        if (runPhysicalComplete == false)
+            {
+                workpieces[workpieceCounter - 1].transform.position = new Vector3(workX, carrierPlate, workZ);
+                Debug.Log("After manual conv running set to true");
+                spawned = false;
+                workpieceCounter++;
+                runPhysicalComplete = true;
+            }
+        
+        
     }
 
     void spawnNewWorkpiece()

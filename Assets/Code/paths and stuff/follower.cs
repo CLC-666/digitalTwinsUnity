@@ -162,7 +162,7 @@ public class follower : MonoBehaviour
 
         if (convertedSpeed > 0 && convertedSpeed < 1000000000 && Counter5 > 30)
         {
-            speed = convertedSpeed;
+            speed = convertedSpeed - 0.6f;
         }
 
         
@@ -230,7 +230,8 @@ public class follower : MonoBehaviour
 
         location();
 
-        mainOrderStructure();
+        if (GameObject.Find("Main Camera").GetComponent<runInSimMode>().simMode == true) { mainOrderStructureSim(); }
+
 
         conveyors();
         
@@ -379,10 +380,11 @@ public class follower : MonoBehaviour
         if (percentLapSecondIsland <= 92.5f && percentLapSecondIsland > 69 && pathMode == 4) { currentLocation = 11; }
         if (percentLapSecondIsland <= 17f || percentLapSecondIsland > 94f) { if (pathMode == 4) { currentLocation = 12; } }
         if (percentLapSecondIsland <= 36.5f && percentLapSecondIsland > 19 && pathMode == 4) { currentLocation = 13; }
-        if (percentSecondIslandRobotinoLap >= 60 && GameObject.Find("Main Camera").GetComponent<runInSimMode>().robotinoCarrierStop == true) { currentLocation = 14; }
+        if (percentSecondIslandRobotinoLap >= 59 && GameObject.Find("Main Camera").GetComponent<runInSimMode>().robotinoCarrierStop == true) { currentLocation = 14; }
     }
 
-    void mainOrderStructure()
+
+    void mainOrderStructureSim()
     {
         switch (caseSwitch) //each case should be a target station. If it meets the wrong one, move on.
         {
@@ -622,7 +624,7 @@ public class follower : MonoBehaviour
                 break;
 
             case 150: //product finshed
-                if (currentLocation == 2 && goStop == false && order == true)
+                if (currentLocation == 2 && goStop == false && order == true && GameObject.Find("Main Camera").GetComponent<runInSimMode>().manualStopInduction == true)
                 {
                     busy = true;
                     Debug.Log("Product finished");
@@ -641,6 +643,8 @@ public class follower : MonoBehaviour
         } 
 
     }
+
+    
 
     private void OnTriggerStay(Collider other)
     {
@@ -703,11 +707,11 @@ public class follower : MonoBehaviour
 
                 case 30:
                     goStop = true;
-                    if (magFrontConv == true && GameObject.Find("Main Camera").GetComponent<runInSimMode>().magFrontEndInduction == true)
-                    {
-                        percentLapFirstIsland = magFrontEndLoc;
-                        magFrontConvCase = 0;
-                    }
+                    //if (magFrontConv == true && GameObject.Find("Main Camera").GetComponent<runInSimMode>().magFrontEndInduction == true)
+                    //{
+                    //    percentLapFirstIsland = magFrontEndLoc;
+                    //    magFrontConvCase = 0;
+                    //}
                     break;
 
                 case 40:

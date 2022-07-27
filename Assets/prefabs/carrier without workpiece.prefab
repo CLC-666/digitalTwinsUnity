@@ -263,6 +263,24 @@ MonoBehaviour:
   tci2: 0
   tc1: 0
   tc2: 0
+  Counter5: 0
+  oldTime: 0
+  scaler: 0.03733
+  convSpeed: 67
+  fps: 0
+  convertedSpeed: 0
+  magFrontStartLoc: 155.5841
+  magFrontStopLoc: 67
+  magFrontEndLoc: 74.05742
+  manualStartLoc: 80.47764
+  manualStopLoc: 91.8778
+  manualEndLoc: 98.03284
+  camInspectStartLoc: 106.4509
+  camInspectStopLoc: 116.8613
+  camInspectEndLoc: 122.9403
+  codesys1StartLoc: 131.1676
+  codesys1StopLoc: 136.4246
+  codesys1EndLoc: 148.0858
 --- !u!65 &2935835130707129008
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -274,8 +292,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.17, y: 0.09253131, z: 0.12}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.17999971, y: 0.09253131, z: 0.12}
+  m_Center: {x: 0.0013253316, y: 0, z: 4.9563107e-18}
 --- !u!54 &-103947793778622976
 Rigidbody:
   m_ObjectHideFlags: 0

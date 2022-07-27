@@ -1,0 +1,21 @@
+speed * delta = 4 * 0.02 = 0.08
+
+0.08 * (60/0.02) = 240
+
+deltaDistance * frameTime = 0.0016* (60/0.02)
+			  = 4.8 units/second
+
+
+i want 2.82 percent / second
+18.12388 / 6.42 = 2.82
+
+2.82 / fps = speed * deltaTime
+
+(2.82 / fps) / deltaTime = speed
+
+
+((((67/10) / 60) / 0.0386) / fps) / deltaTime = speed
+
+(67/10)/60 = m/s of physical conveyor
+
+0.0373 = the scalar for distance between real and virtual conveyor

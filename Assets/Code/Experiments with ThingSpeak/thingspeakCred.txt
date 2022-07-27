@@ -1,0 +1,2 @@
+CCQ4CgI1EAQqECg2HwkSHjo,CCQ4CgI1EAQqECg2HwkSHjo,DtPj1SIKUyuSCdUhv48OLYD9,1697959
+username, clientId, password, channelID

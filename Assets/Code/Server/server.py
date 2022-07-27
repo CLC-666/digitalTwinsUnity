@@ -43,34 +43,34 @@ def clientthread(conn, addr):
 
                 # time.sleep(0.1)
                 message = conn.recv(17)
+				print(message.decode())
+                # if message:
 
-                if message:
+                    # # print ("<" + addr[0] + "> " + message.decode(), counter)
 
-                    # print ("<" + addr[0] + "> " + message.decode(), counter)
+                    # # if addr[0] == "172.21.1.1":
+                    # #     print(message.decode())
+                    # # Calls broadcast function to send message to all
+                    # message_to_send = message
+                    # # print("trying in while still")
 
-                    # if addr[0] == "172.21.1.1":
-                    #     print(message.decode())
-                    # Calls broadcast function to send message to all
-                    message_to_send = message
-                    # print("trying in while still")
+                    # #     var = round(time.time()*1000)
+                    # #     if var % 2:
+                    # #         broadcast(message_to_send, conn)
 
-                    #     var = round(time.time()*1000)
-                    #     if var % 2:
-                    #         broadcast(message_to_send, conn)
-
-                    if addr[0] != IP_address and addr[0] != "172.21.4.1" and message.decode() != old:
-                        broadcast(message_to_send, conn)
-                        old = message.decode()
-
-
+                    # if addr[0] != IP_address and addr[0] != "172.21.4.1" and message.decode() != old:
+                        # broadcast(message_to_send, conn)
+                        # old = message.decode()
 
 
 
-                else:
-                    """message may have no content if the connection
-                    is broken, in this case we remove the connection"""
-                    if addr[0] != IP_address:
-                        remove(conn)
+
+
+                # else:
+                    # """message may have no content if the connection
+                    # is broken, in this case we remove the connection"""
+                    # if addr[0] != IP_address:
+                        # remove(conn)
 
             except:
                 continue
